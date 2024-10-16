@@ -686,13 +686,13 @@ tea</span></a>.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>2</th>
@@ -701,23 +701,23 @@ tea</span></a>.</p>
     </tr>
     <tr>
       <th>3</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>7</th>
@@ -955,13 +955,13 @@ simulation method you have seen so far.</p>
   <tbody>
     <tr>
       <th>no</th>
-      <td>1</td>
       <td>3</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>yes</th>
-      <td>3</td>
       <td>1</td>
+      <td>3</td>
     </tr>
   </tbody>
 </table>
@@ -1010,7 +1010,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(3)
 </pre></div>
 </div>
 </div>
@@ -1030,7 +1030,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 3, 3, 1, 2, 2, 2, 1, 2, 2])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 0, 2, 1, 2, 2, 2, 2, 2, 1])
 </pre></div>
 </div>
 </div>
@@ -1042,7 +1042,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/020547002038c9e4dd4be63ea7814e5d0c194ced64a392e22977815425c03b4b.png" src="_images/020547002038c9e4dd4be63ea7814e5d0c194ced64a392e22977815425c03b4b.png" />
+<img alt="_images/fe6ca7f0f60617d81ebc5f91ee538f28e2c034c83b894e19b579767756d7f1fe.png" src="_images/fe6ca7f0f60617d81ebc5f91ee538f28e2c034c83b894e19b579767756d7f1fe.png" />
 </div>
 </div>
 <p>In this case the histogram is a little difficult to read, because
@@ -1065,11 +1065,11 @@ more clear.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count of 0s: 14
-Count of 1s: 231
-Count of 2s: 523
-Count of 3s: 217
-Count of 4s: 15
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count of 0s: 10
+Count of 1s: 215
+Count of 2s: 524
+Count of 3s: 232
+Count of 4s: 19
 </pre></div>
 </div>
 </div>
@@ -1083,7 +1083,7 @@ Count of 4s: 15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 14, 231, 523, 217,  15])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 10, 215, 524, 232,  19])
 </pre></div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ Count of 4s: 15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(523)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(524)
 </pre></div>
 </div>
 </div>
@@ -1126,7 +1126,7 @@ Count of 4s: 15
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/458c4efa41573e0d5ee23bec572386b7b84c3c3ec983b2046c45eb82cb8f3cc3.png" src="_images/458c4efa41573e0d5ee23bec572386b7b84c3c3ec983b2046c45eb82cb8f3cc3.png" />
+<img alt="_images/b1b22c60805682d947128cffc14e10c261a6f17419d91719e1d1285c8c776902.png" src="_images/b1b22c60805682d947128cffc14e10c261a6f17419d91719e1d1285c8c776902.png" />
 </div>
 </div>
 <p>The average value is:</p>
@@ -1137,7 +1137,7 @@ Count of 4s: 15
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.988)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.035)
 </pre></div>
 </div>
 </div>
@@ -1637,7 +1637,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 2., 0., 0., 2., 0., 0., 2., 0., 0.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0., 0., 2., 0., 0., 0., 2., 0., 0., 2.])
 </pre></div>
 </div>
 </div>
@@ -1649,7 +1649,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/07b1497f0880019ca412157ea9214a5adddd4933b94413c14950c1171e9820ab.png" src="_images/07b1497f0880019ca412157ea9214a5adddd4933b94413c14950c1171e9820ab.png" />
+<img alt="_images/7d312d20c572657e301f1c3fc11224f97c200b8bae11c4757e5ceda4fef09b1b.png" src="_images/7d312d20c572657e301f1c3fc11224f97c200b8bae11c4757e5ceda4fef09b1b.png" />
 </div>
 </div>
 <p>This gives our usual <em>simulation</em> probability of our observed chi-squared:</p>
@@ -1661,7 +1661,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.03
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.027
 </pre></div>
 </div>
 </div>
@@ -1762,23 +1762,23 @@ categories?  What are the expected values in that case.</p>
     </tr>
     <tr>
       <th>2</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>6</th>
@@ -1874,7 +1874,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 0, 0, 1, 0, 0, 0, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1, 0, 0, 1, 0, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -1886,7 +1886,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bb527b255151097675fa80f116626f645222979250c9ae7422d249f2eff75e89.png" src="_images/bb527b255151097675fa80f116626f645222979250c9ae7422d249f2eff75e89.png" />
+<img alt="_images/05367682fba9a878f6d0c69dc6942b053ceecb4381f561ca860714fd24ab2bbd.png" src="_images/05367682fba9a878f6d0c69dc6942b053ceecb4381f561ca860714fd24ab2bbd.png" />
 </div>
 </div>
 <p>In the null-world, the <em>average</em> count for the <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">yes</span></code> entry is around 0.5:</p>
@@ -1897,7 +1897,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.53)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.493)
 </pre></div>
 </div>
 </div>
