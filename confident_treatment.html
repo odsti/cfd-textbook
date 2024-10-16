@@ -1,0 +1,1052 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Confident treatment &#8212; Coding for data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'confident_treatment';</script>
+    <link rel="canonical" href="https://odsti.github.io/cfd-textbook/confident_treatment.html" />
+    <link rel="icon" href="_static/dsfe_favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bayes, confidence" href="bayes_confidence.html" />
+    <link rel="prev" title="Bayes and bars" href="bayes_bars.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="what-is-data-science.html">What is data science?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="why-data-science.html">Why Data Science?</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tools_techniques.html">Tools and techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="computational-tools.html">Computational Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more_on_jupyter.html">More on the Jupyter notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">On code</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="to_code.html">Ode to code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_problem.html">A sampling problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="three_girls.html">A simpler problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables_intro.html">Introduction to variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variables.html">Variables in code and mathematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Names.html">Names and variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Expressions.html">Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_functions.html">Introduction to functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Calls.html">Call expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sub_expressions.html">Expressions, and decoding code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_pass_three_girls.html">A first pass at the simple problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_types.html">Types of things</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Numbers.html">Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="strings_and_variables.html">Strings, variables and expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="String_Methods.html">String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Comparison.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lists.html">Lists</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Arrays</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ranges.html">Ranges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="More_on_Arrays.html">More on Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="array_indexing.html">Selecting values from an array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filling_arrays.html">Making and filling arrays.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="function_arguments.html">Function arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rng_choice.html">Random choice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boolean_arrays.html">Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaping_ahead.html">Leaping ahead</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Iteration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="iteration.html">Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indentation.html">Indentation, indentation, indentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reply_supreme.html">Reply to the Supreme Court</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference.html">Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Population and permutation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="population_permutation.html">Population and permutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permutation_idea.html">The idea of permutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permutation_pairs.html">Permutations and pairs</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="data_frames.html">Data frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="boolean_indexing.html">Indexing with Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_frame_intro.html">Introduction to data frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df_index.html">The DataFrame and the index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df_basic_col_indexing.html">Selecting columns from DataFrames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df_sort_head_tail.html">Sorting, heads and tails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="series_like_arrays.html">Series are like arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df_basic_row_indexing.html">Selecting rows from DataFrames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="value_counts.html">Value counts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced indexing in Pandas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="pandas_indexing.html">Indexing in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indexing_catechism.html">The doctrine of Pandas indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indexing_assignment.html">Assignment with indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indexing_expressions.html">Pandas and indexing expressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crosstabulation and inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="crosstab.html">Cross-tabulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="np_repeat.html">Numpy repeat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fishers_tea.html">Lady tasting tea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counts_to_observations.html">Counts to observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tea_with_chi.html">Chi-squared and the lady tasting tea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="noble_politics.html">Noble politics and comparing counts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Useful Pandas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="missing_values.html">Missing values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="df_plotting.html">Pandas plotting methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupby.html">The power of groupby</a></li>
+<li class="toctree-l1"><a class="reference internal" href="merge.html">Merging</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pandas pitfalls</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="safe_pandas.html">Handling Pandas safely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_encoding.html">Storing and loading text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numbers_and_strings.html">Numbers and strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More building blocks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="more_building_blocks.html">More building blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introducing_functions.html">Introducing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="none.html">On None</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conditional_statements.html">Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions_as_values.html">Functions as values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apply_functions.html">Apply functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The mean and straight lines</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="mean.html">The mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_meaning.html">The meaning of the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="np_argmin.html">Argmin (and argmax)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_and_slopes.html">The mean and slopes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sse_rmse.html">Sum of squares, root mean square</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finding_lines.html">Finding lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_minimize.html">Using minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inference_on_slopes.html">Inference on slopes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="single_multiple.html">Simple and multiple regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">On confidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">The Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="havana_math.html">A problem for the education minister</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Central_Limit_Theorem.html">The Central Limit Theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="large_numbers.html">The law of large numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laws_of_probability.html">Laws of probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_bayes.html">First Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_theorem.html">Bayes theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_bars.html">Bayes and bars</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Confident treatment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_confidence.html">Bayes, confidence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The end of the beginning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="end_of_beginning.html">The end of the beginning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra pages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="more_on_lists.html">More on lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introducing_python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/odsti/cfd-textbook/main?urlpath=tree/confident_treatment.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook/edit/main/confident_treatment.Rmd" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook/issues/new?title=Issue%20on%20page%20%2Fconfident_treatment.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/confident_treatment.Rmd" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.Rmd</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Confident treatment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notation">Some notation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="confident-treatment">
+<h1>Confident treatment<a class="headerlink" href="#confident-treatment" title="Link to this heading">#</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell; do not change it.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Make random number generator.</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Make printing of numbers a bit neater.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">suppress</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Make the plots look more fancy.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>How confident can we be that a treatment works?</p>
+<p>At the time I wrote this, you can find the following on the <a class="reference external" href="https://en.wikipedia.org/wiki/Burkitt%27s_lymphoma#Prognosis">Wikipedia page
+for Burkitt’s
+Lymphoma</a>.</p>
+<blockquote>
+<div><p>The overall cure rate for Burkitt’s lymphoma in developed countries is
+about 90%, but worse in low-income countries. Burkitt’s lymphoma is
+uncommon in adults, where it has a worse prognosis (Molyneux et al 2012).</p>
+<p>In 2006, treatment with dose-adjusted EPOCH with Rituximab showed
+promising initial results in a small series of patients (n=17), with
+a 100% response rate, and 100% overall survival and progression-free
+survival at 28 months (median follow-up) (Dunleavy et al 2006).</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Molyneux <em>et al</em> (2012). Burkitt’s Lymphoma.  The Lancet, 379(9822),
+1234-1244.</p></li>
+<li><p>Dunleavy <em>et al</em> (2006). Novel Treatment of Burkitt Lymphoma with
+Dose-Adjusted EPOCH-Rituximab: Preliminary Results Showing Excellent Outcome.
+Blood, 108(11), 2736–2736.</p></li>
+</ul>
+<p>Now I have the following questions.  Given the trial data above:</p>
+<ul class="simple">
+<li><p>How likely is it that the Rituximab treatment is <em>always</em> effective (100%)?</p></li>
+<li><p>How likely is it that Rituximab is <em>less</em> effective than standard treatment
+(less than 90% effective)?</p></li>
+</ul>
+<p>How are we going to answer these questions?</p>
+<p>First we go back to the calculations we do know.  We have previously
+calculated (by simulation) the chance that we will see this 17/17 result,
+given that the treatment is in fact 90% effective.</p>
+<p>Let’s do that again:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#- Simulate 100000 trials of 17 patients</span>
+<span class="n">n_iters</span> <span class="o">=</span> <span class="mi">100000</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+    <span class="n">cured</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">cured</span><span class="p">)</span>
+<span class="n">p_observed</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">counts</span> <span class="o">==</span> <span class="mi">17</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_iters</span>
+<span class="n">p_observed</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.16533
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we let you into a secret; you can get an exact value for this probability by using something called the <em>binomial</em> distribution.   We will not explain why that is the case, because it is not important for our purposes, but we can get the exact result corresponding to our estimate from simulation with:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
+
+<span class="n">n_obs</span> <span class="o">=</span> <span class="mi">17</span>   <span class="c1"># The number of observations (here, patients).</span>
+<span class="n">p_success</span> <span class="o">=</span> <span class="mf">0.9</span>  <span class="c1"># The probability of success on every trial (patient).</span>
+<span class="n">n_successes</span> <span class="o">=</span> <span class="mi">17</span>   <span class="c1"># The number of successes we want a probability for.</span>
+
+<span class="c1"># Exact calculation for probability we got by simulation.</span>
+<span class="n">exact_for_90</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n_successes</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">,</span> <span class="n">p_success</span><span class="p">)</span>
+<span class="n">exact_for_90</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.16677181699666577)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s confirm the simulation above really does give about the same value as
+the <code class="docutils literal notranslate"><span class="pre">binom</span></code> trick, by trying a simulation in a world where there is a 95% cure rate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+    <span class="n">cured</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">17</span><span class="p">)</span>
+    <span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">cured</span><span class="p">)</span>
+<span class="n">p_observed_95</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">counts</span> <span class="o">==</span> <span class="mi">17</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_iters</span>
+<span class="n">p_observed_95</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.4195
+</pre></div>
+</div>
+</div>
+</div>
+<p>And with <code class="docutils literal notranslate"><span class="pre">binom</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exact calculation for probability we got by simulation.</span>
+<span class="n">exact_for_95</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n_successes</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">)</span>
+<span class="n">exact_for_95</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.4181203352191771)
+</pre></div>
+</div>
+</div>
+</div>
+<p>In fact we can use <code class="docutils literal notranslate"><span class="pre">binom</span></code> to calculate both probabilities at the same time by
+passing an array to the probability argument:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exact calculation for two worlds</span>
+<span class="n">exact_for_both</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n_successes</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="some-notation">
+<h2>Some notation<a class="headerlink" href="#some-notation" title="Link to this heading">#</a></h2>
+<p>Call the 17/17 result <span class="math notranslate nohighlight">\(C_{17}\)</span> (for “17 cured”).  Call the world where the
+treatment is 90% effective <span class="math notranslate nohighlight">\(T_{90}\)</span>.</p>
+<p>In our first simulation we found the probability of seeing <span class="math notranslate nohighlight">\(C_{17}\)</span> in a <span class="math notranslate nohighlight">\(T_{90}\)</span> world:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_c17_given_t90</span> <span class="o">=</span> <span class="n">exact_for_90</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ve also got the equivalent value for a <span class="math notranslate nohighlight">\(T_{95}\)</span> world:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_c17_given_t95</span> <span class="o">=</span> <span class="n">exact_for_95</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s calculate the probability value for all positive integer percentages:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world_percents</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">)</span>
+<span class="n">world_probs</span> <span class="o">=</span> <span class="n">world_percents</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="n">p_c17_given_worlds</span> <span class="o">=</span> <span class="n">binom</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">n_successes</span><span class="p">,</span> <span class="n">n_obs</span><span class="p">,</span> <span class="n">world_probs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">world_percents</span><span class="p">,</span> <span class="n">p_c17_given_worlds</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;World percents&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;P(C17 given world percents)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/367e00ba7041a9b0c5c3cf31f6b49c860549687a3933ee7c05295db56414cf6f.png" src="_images/367e00ba7041a9b0c5c3cf31f6b49c860549687a3933ee7c05295db56414cf6f.png" />
+</div>
+</div>
+<p>Now we want to do our Bayes calculation, but we are missing something.  We do
+not have the prior probability of each world percent for this treatment.</p>
+<p>Maybe the true world percent is the standard percent — 90% — and the treatment
+is no more effective than average. Or maybe the true world percent is 100%.
+How do we know where to start with our probabilities for each world —
+<span class="math notranslate nohighlight">\(P(T_{90})\)</span>, <span class="math notranslate nohighlight">\(P(T_{100})\)</span> and so on?</p>
+<p>Let’s start somewhere.  Let’s say we have no idea what the true world
+probabilities are, so we will make all the initial probabilities the same.  We
+have 100 world percentages we are interested in, so the probability of each world is 1/100.  With that assumption, we can do our Bayes calculation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">worlds</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="c1"># Same probability for each treatment world.</span>
+<span class="n">n_worlds</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">world_percents</span><span class="p">)</span>
+<span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">n_worlds</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span><span class="n">n_worlds</span>
+<span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(C17 given T)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">p_c17_given_worlds</span>
+<span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T and C17)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T)&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(C17 given T)&#39;</span><span class="p">]</span>
+<span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T given C17)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T and C17)&#39;</span><span class="p">]</span> <span class="o">/</span>
+                            <span class="n">worlds</span><span class="p">[</span><span class="s1">&#39;P(T and C17)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="c1"># Use the percent values for the world as the row labels.</span>
+<span class="n">worlds</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">world_percents</span>
+<span class="n">worlds</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>P(T)</th>
+      <th>P(C17 given T)</th>
+      <th>P(T and C17)</th>
+      <th>P(T given C17)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>96</th>
+      <td>0.01</td>
+      <td>0.499587</td>
+      <td>0.004996</td>
+      <td>0.082308</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>0.01</td>
+      <td>0.595826</td>
+      <td>0.005958</td>
+      <td>0.098164</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>0.01</td>
+      <td>0.709322</td>
+      <td>0.007093</td>
+      <td>0.116862</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>0.01</td>
+      <td>0.842943</td>
+      <td>0.008429</td>
+      <td>0.138877</td>
+    </tr>
+    <tr>
+      <th>100</th>
+      <td>0.01</td>
+      <td>1.000000</td>
+      <td>0.010000</td>
+      <td>0.164752</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">short_worlds</span> <span class="o">=</span> <span class="n">worlds</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># Just show the 80% - 100%</span>
+<span class="n">short_worlds</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">subplots</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">False</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>  <span class="c1"># Space out the plots.</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/60fdc721d024cd1f4d66013927ad6639f991d7002e3b29805de91eaa2eee77c3.png" src="_images/60fdc721d024cd1f4d66013927ad6639f991d7002e3b29805de91eaa2eee77c3.png" />
+</div>
+</div>
+<p>With these assumptions, we can give some answers to our questions.</p>
+<p>The probability of this treatment having 100% cure rate is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">worlds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;P(T given C17)&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.1647523390001275)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The probability that the treatment is less than 90% effective is:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">worlds</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">worlds</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;P(T given C17)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.12407449105131524)
+</pre></div>
+</div>
+</div>
+</div>
+<p>You might well be thinking to yourself — what about a treatment world with
+99.5% response rate?   We can solve this too, by using finer percent intervals
+than we used in <code class="docutils literal notranslate"><span class="pre">world_percents</span></code> above.  Try it!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bayes_bars.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Bayes and bars</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bayes_confidence.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bayes, confidence</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-notation">Some notation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

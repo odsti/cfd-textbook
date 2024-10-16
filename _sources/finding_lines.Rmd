@@ -1,0 +1,544 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.16.0
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Finding lines
+
+In [The Mean and Slopes](mean_and_slopes), we were looking for the best slope
+to predict one vector of values from another vector of values.
+
+Specifically, we wanted our slope to predict the Packed Cell Volume (PCV)
+values from the Hemoglobin (HGB) values.
+
+By analogy with [The Mean as Predictor](mean_meaning), we decided to choose our
+line to minimize the average prediction errors, and the sum of squared
+prediction errors.
+
+We found a solution, by trying many slopes, and choosing the slope giving use
+the smallest error.
+
+For our question, we were happy to assume that the line passed through 0,
+0 — meaning, that when the Hemoglobin is 0, the Packed Cell Volume value is 0.
+Put another way, we assumed that our line had an *intercept* value of 0.  The
+intercept is the y value at which the line crosses the y axis, or, put another
+way, the y value when the x value is 0.
+
+What if we are in a situation where we want to find a line that had a (not
+zero) intercept, as well as a slope?
+
+```{python}
+import numpy as np
+import pandas as pd
+pd.set_option('mode.copy_on_write', True)
+import matplotlib.pyplot as plt
+# Make plots look a little bit more fancy
+plt.style.use('fivethirtyeight')
+# Print to 4 decimal places, show tiny values as 0
+np.set_printoptions(precision=4, suppress=True)
+```
+
+We return to the [students ratings dataset](data/rate_my_professors) dataset.
+
+This is a dataset, in Excel form, where each row is the average of students'
+ratings from <RateMyProfessors.com> across a single subject.  Thus, the first
+row refers to the average of all professors teaching English, the second row
+refers to all professors teaching Mathematics, and so on.
+
+Download the data file via this link {download}`rate_my_course.csv <data/rate_my_course.csv>`.
+
+Next we load the data.
+
+```{python}
+# Read the data file
+ratings = pd.read_csv('data/rate_my_course.csv')
+ratings.head()
+```
+
+We are interested in the relationship of the "Overall Quality" measure to the
+"Easiness" measure.
+
+```{python}
+# Get the columns as arrays for simplicity and speed.
+easiness = np.array(ratings['Easiness'])
+quality = np.array(ratings['Overall Quality'])
+```
+
+Do students rate easier courses as being of better quality?
+
+```{python}
+plt.plot(easiness, quality, 'o')
+plt.xlabel('Easiness')
+plt.ylabel('Overall Quality')
+```
+
+There might be a straight-line relationship here, but it doesn't look as if it
+would go through 0, 0:
+
+```{python}
+# The same plot as above, but showing the x, y origin at 0, 0
+plt.plot(easiness, quality, 'o')
+plt.xlabel('Easiness')
+plt.ylabel('Overall Quality')
+# Make sure 0, 0 is on the plot.
+plt.axis([0, 3.9, 0, 4.2])
+```
+
+In [The Mean and Slopes](mean_and_slopes), we assumed that the intercept was zero, so we only had to try different slopes to get our best line.
+
+
+Here we have a different problem, because we want to find a line that has an
+intercept that is not zero, so we need to find the *best slope* and the *best
+intercept* at the same time.  How do we search for a slope as well as an
+intercept?
+
+
+But wait - why do we have to search for the slope and the intercept *at the same time*?  Can't we just find the best slope, and then the best intercept?
+
+In fact we can't do that, because the best slope will change for every intercept.
+
+To see why that is, we need to try a few different lines.   To do that, we need to remind ourselves about defining lines, and then testing them.
+
+
+Remember, we can describe a line with an *intercept* and a *slope*.  Call the
+*intercept* $c$ and a *slope* $s$.  A line predicts the $y$ values from the
+$x$ values, using the slope $s$ and the intercept $c$:
+
+$$
+y = c + x * s
+$$
+
+
+Let's start with a guess for the line, just from eyeballing the plot. We guess
+that:
+
+* The intercept is around 2.25
+* The slope is around 0.47
+
+The *predicted* $y$ values from this line are (from the formula above):
+
+```{python}
+predicted = 2.25 + easiness * 0.47
+```
+
+where `easiness` contains our actual $x$ values.
+
+The prediction error at each point come from the actual $y$ values minus the
+predicted $y$ values.
+
+```{python}
+errors = quality - predicted
+```
+
+where `quality` contains our actual $y$ values.
+
+We can look at the *predictions* for this line (in red), and the actual values (in blue) and then the errors (the lengths of the dotted lines joining the red predictions and the corresponding blue actual values).
+
+```{python}
+# Don't worry about this code.
+# It plots the line, and the errors.
+x_values = easiness  # The thing we're predicting from, on the x axis
+y_values = quality  # The thing we're predicting, on the y axis.
+plt.plot(x_values, y_values, 'o')
+plt.plot(x_values, predicted, 'o', color='red')
+# Draw a line between predicted and actual
+for i in np.arange(len(x_values)):
+    x = x_values[i]
+    y_0 = predicted[i]
+    y_1 = y_values[i]
+    plt.plot([x, x], [y_0, y_1], ':', color='black', linewidth=1)
+```
+
+The Root Mean Squared Error (RMSE) is:
+
+```{python}
+# Root mean squared error given c and s
+rmse_c_s = np.sqrt(np.mean(errors ** 2))
+rmse_c_s
+```
+Actually, those bits of code are so useful, let's make them into a function:
+
+```{python}
+def plot_with_errors(x_values, y_values, c, s):
+    """ Plot a line through data with errors
+
+    Parameters
+    ----------
+    x_values : array
+        Values we are predicting from, for the x-axis of the plot.
+    y_values : array
+        Values we are predicting, for the y-axis of the plot.
+    c : number
+        Intercept for predicting line.
+    s : number
+        Slope for predicting line.
+
+    Returns
+    -------
+    rmse : number
+        The square root of the mean squared error, for the given `x_values`,
+        `y_values` and line.
+    """
+    # Predict the y values from the line.
+    predicted = c + s * x_values
+    # Errors are the real values minus the predicted values.
+    errors = y_values - predicted
+    # Plot real values in blue, predicted values in red.
+    plt.plot(x_values, y_values, 'o', color='blue')
+    plt.plot(x_values, predicted, 'o', color='red')
+    # Draw a line between predicted and actual
+    for i in np.arange(len(x_values)):
+        x = x_values[i]
+        y_0 = predicted[i]
+        y_1 = y_values[i]
+        plt.plot([x, x], [y_0, y_1], ':', color='black', linewidth=1)
+    return np.sqrt(np.mean(errors ** 2))
+```
+
+Notice the string at the top of the function, giving details about what the function does, its arguments, and the values it returns.  This is called the *docstring*.  It can remind you and other people what the function does, and how to use it.  Try making a new cell and type `plot_with_errors?`.  You'll see this string is the help that Python will fetch for this function.
+
+Now the same thing with the function:
+
+```{python}
+plot_with_errors(easiness, quality, 2.25, 0.47)
+```
+
+If we try a different intercept, we'll get a different line, and a different
+error.  Let's try an intercept of 2.1:
+
+```{python}
+plot_with_errors(easiness, quality, 2.1, 0.47)
+```
+
+Or, we could go back to the same intercept, but try a different slope, and we'd get a different error.  Let's try a slope of 0.5:
+
+```{python}
+plot_with_errors(easiness, quality, 2.25, 0.5)
+```
+
+Now we use the long slow method to find the best slope for our initial
+intercept of 2.25.  You may recognize the following from the [mean and
+slopes](mean_and_slopes) notebook.
+
+First we make a function, a bit like the function above, that gives us the
+error for any given intercept (`c`) and slope (`s`) like this:
+
+```{python}
+def calc_rmse_for_c_s(c, s):
+    predicted_quality = c + easiness * s
+    errors = quality - predicted_quality
+    return np.sqrt(np.mean(errors ** 2))
+```
+
+We have already calculated the error for the original guess at slope and
+intercept, but let's do it again for practice:
+
+```{python}
+# RMSE for our initial guessed line.
+predicted = 2.25 + easiness * 0.47
+error = quality - predicted
+np.sqrt(np.mean(error ** 2))
+```
+
+Check that our function gives the same value for the same intercept and slope:
+
+```{python}
+calc_rmse_for_c_s(2.25, 0.47)
+```
+
+OK, now we use this function to try lots of different slopes, for this
+intercept, and see which slope gives us the lowest error.  See the means,
+slopes notebook for the first time we did this.
+
+```{python}
+some_slopes = np.arange(-2, 2, 0.001)
+slope_df = pd.DataFrame()
+slope_df['slope_to_try'] = some_slopes
+slope_df
+```
+
+As for the [mean and slopes](mean_and_slopes) notebook, we make an array to
+hold the RMSE results for each slope.
+
+```{python}
+# Number of slopes.
+n_slopes = len(some_slopes)
+# Array to store the RMSE for each slope.
+rmses = np.zeros(n_slopes)
+```
+
+Then (as before) we calculate and store the RMSE value for each slope, with this given intercept.
+
+```{python}
+# Try all these slopes for an intercept of 2.25
+for i in np.arange(n_slopes):  # For each candidate slope.
+    # Get the corresponding slope.
+    this_slope = some_slopes[i]
+    # Calculate the error measure for this slope and intercept 2.25.
+    this_error = calc_rmse_for_c_s(2.25, this_slope)
+    # Put the error into the results array at the corresponding position.
+    rmses[i] = this_error
+
+# Put all the RMSE scores into the DataFrame as a column for display.
+slope_df['RMSE'] = rmses
+slope_df
+```
+
+We plot the errors we got for each slope, and find the slope giving the
+smallest error:
+
+```{python}
+plt.plot(slope_df['slope_to_try'], slope_df['RMSE'])
+plt.xlabel('Candidate slopes')
+plt.ylabel('Root mean squared error')
+```
+
+Find the row corresponding to the smallest RMSE:
+
+```{python}
+# Row label corresponding to minimum value.
+row_with_min = slope_df['RMSE'].idxmin()
+slope_df.loc[row_with_min]
+```
+
+```{python}
+# Slope giving smallest RMSE for intercept 2.25
+slope_df.loc[row_with_min, 'RMSE']
+```
+
+OK — that's the best slope for an intercept of 2.25.  How about our other
+suggestion, of an intercept of 2.1?  Let's try that:
+
+```{python}
+# Try all candidate slopes for an intercept of 2.1.
+# We will reuse "rmses" and "slope_df" for simplicity.
+for i in np.arange(n_slopes):  # For each candidate slope.
+    # Get the corresponding slope.
+    this_slope = some_slopes[i]
+    # Calculate the error measure for this slope and intercept 2.21.
+    this_error = calc_rmse_for_c_s(2.1, this_slope)
+    # Put the error into the results array at the corresponding position.
+    rmses[i] = this_error
+
+# Put all the RMSE scores into the DataFrame as a column for display.
+slope_df['RMSE'] = rmses
+slope_df
+```
+
+```{python}
+# Recalculate row holding minimum RMSE
+row_with_min_for_2p1 = slope_df['RMSE'].idxmin()
+slope_df.loc[row_with_min_for_2p1]
+```
+
+Oh dear - the best slope has changed.  And, in general, for any intercept, you
+may able to see that the best slope will be different, as the slope tries to
+adjust for the stuff that the intercept does not explain.
+
+This means we can't just find the intercept, and find the best slope for that
+intercept, at least not in our case - we have to find the best *pair* of
+intercept and slope.  This is the pair, of all possible pairs, that gives the
+lowest error.
+
+
+Our task then, is to find the *pair of values* — `c` and `s` — such that we get
+the smallest possible value for the root mean squared errors above.
+
+
+One way of doing this, is to try *every possible* plausible pair of intercept
+and slope, calculate the error for this pair, and then find the *pair* that
+gave the lowest error.
+
+We are now searching over many *pairs* of slopes and intercepts.
+
+
+Here are some candidate intercepts to try:
+
+```{python}
+# Some intercepts to try
+some_inters = np.arange(1, 3.2, 0.01)
+inter_df = pd.DataFrame()
+inter_df['intercept_to_try'] = some_inters
+inter_df
+```
+
+We would like to calculate RMSE values for all *combinations* of slopes and intercepts.   That is, we want to get RMSE values for all slopes, for the first intercept value (1), *and* RMSE values for all slopes, and the second intercept value (1.01), and so on.
+
+We have:
+
+```{python}
+print('Number of slopes to try:', n_slopes)
+n_inters = len(some_inters)
+print('Number of intercepts to try:', n_inters)
+n_pairs = n_slopes * n_inters
+print('Number of pairs to try:', n_pairs)
+```
+
+To do this, we could make a new DataFrame with one row per intercept, slope pair.  The intercept column `inter_to_try` will have the intercept values, and the second `slope_to_try` will have the slope values.
+
+Let's repeat each intercept value `n_slopes` times, using [np.repeat](np_repeat).   As you remember, `np.repeat` repeats each element in the array by a given number of times:
+
+```{python}
+# Repeat each element in the array 3 times.
+np.repeat([1, 2, 3], 3)
+```
+
+To make the column of intercepts we repeat each element of the intercepts array `n_slopes` times:
+
+```{python}
+pair_df = pd.DataFrame()
+repeated_inters = np.repeat(some_inters, n_slopes)
+# Show in DataFrame
+pair_df['inter_to_try'] = repeated_inters
+pair_df
+```
+
+To make the `slope_to_try` column, we need to repeat *the whole `some_slopes` array* `n_inters` times.   Notice that `np.repeat` repeats each *element* a given number of times.  To repeat the whole array, we can use `np.tile`, like this:
+
+```{python}
+# Repeat the whole array 3 times.
+np.tile([1, 2, 3], 3)
+```
+
+To repeat the whole `some_slopes` array `n_inters` times:
+
+```{python}
+tiled_slopes = np.tile(some_slopes, n_inters)
+# Show in DataFrame
+pair_df['slope_to_try'] = tiled_slopes
+pair_df
+```
+
+The rows of this DataFrame (and the arrays that went into them) define all the
+possible intercept, slope pairs.
+
+We next make another array to contains the RMSE values for each pair.
+
+```{python}
+# An array to store the RMSE values for each intercept, slope pair.
+pair_rmses = np.zeros(n_pairs)
+```
+
+We can use these arrays to go through each slope, intercept pair in turn,
+calculate the RMSE, and store it for later use.
+
+```{python}
+# Go through each pair to calculate the corresponding RMSE.
+# (Or, equivalently, go through the values for each row in the `pair_df`
+# DataFrame).
+for i in np.arange(n_pairs):
+    # Get the intercept for this pair (intercept at this position).
+    this_intercept = repeated_inters[i]
+    # Get the slope for this pair (slope at this position).
+    this_slope = tiled_slopes[i]
+    # Calculate the error measure.
+    this_error = calc_rmse_for_c_s(this_intercept, this_slope)
+    # Put the error into the RMSE results array at this position.
+    pair_rmses[i] = this_error
+
+# Add the RMSE column to the original DataFrame for display.
+pair_df['RMSE'] = pair_rmses
+pair_df
+```
+
+For each of the `n_inters` possible intercepts, we have tried all `n_slopes`
+possible slopes, and we have found the RMSE for each intercept, slope pair.  We can now find the *pair* that gives the lowest RMSE.
+
+```{python}
+# The lowest error that we found for any slope, intercept pair
+min_row_label = pair_df['RMSE'].idxmin()
+best_row = pair_df.loc[min_row_label]
+best_row
+```
+
+Notice that the error (RMSE) for this pair is lower than the error we found for
+our guessed `c` and `s`:
+
+```{python}
+calc_rmse_for_c_s(2.25, 0.47)
+```
+
+```{python}
+# The intercept corresponding to the lowest error
+best_intercept = best_row['inter_to_try']
+best_slope = best_row['slope_to_try']
+print('Best intercept, slope pair:', best_intercept, best_slope)
+```
+
+Plot the data, predictions and errors for the line that minimizes the sum of
+squared error:
+
+```{python}
+plot_with_errors(easiness, quality, best_intercept, best_slope)
+```
+
+Now you know about [optimization](optimization), you will not be surprised to
+discover that Scipy `minimize` can also do the search for the intercept and
+slope pair for us.  We send `minimize` the function we are trying to minimize,
+and a starting guess for the intercept and slope.
+
+
+`minimize` is a little fussy about the functions it will use.  It insists that all the parameters need to be passed in as a single argument.   In our case, we need to pass both parameters (the intercept and slope) as one value, containing two elements, like this:
+
+```{python}
+def calc_rmse_for_minimize(c_s):
+    # c_s has two elements, the intercept c and the slope s.
+    c = c_s[0]
+    s = c_s[1]
+    predicted_quality = c + easiness * s
+    errors = quality - predicted_quality
+    return np.sqrt(np.mean(errors ** 2))
+```
+
+This is the form of the function that minimize can use.  See [using
+minimize](using_minimize) for more detail.
+
+We first confirm this gives us the same answer we got before from our function with two arguments:
+
+```{python}
+# The original function
+calc_rmse_for_c_s(2.25, 0.47)
+```
+
+```{python}
+# The function in the form that minimize wants
+# The two parameters go into a list, that we can pass as a single argument.
+calc_rmse_for_minimize([2.25, 0.47])
+```
+
+As usual with `minimize` we need to give a starting guess for the intercept and
+slope.  We will start with our initial guess of `[2.25, 0.47]`, but any
+reasonable guess will do.
+
+```{python}
+from scipy.optimize import minimize
+minimize(calc_rmse_for_minimize, [2.25, 0.47])
+```
+
+Notice that `minimize` doesn't get exactly the same result as we found with the
+long slow way above.  This is because the long slow way only tested intercepts
+that were step-sizes of 0.01 apart (and slopes that were 0.001 apart).
+`minimize` can use much smaller step-sizes, and so finds a more accurate
+answer.
+
+We won't spend any time justifying this, but this is also the answer we get
+from traditional fitting of the least-squares line, as implemented, for
+example, in the Scipy `linregress` function:
+
+```{python}
+from scipy.stats import linregress
+linregress(easiness, quality)
+```
+
+Notice the values for `slope` and `intercept` in the output above.
