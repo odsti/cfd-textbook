@@ -243,6 +243,7 @@
 <li class="toctree-l1"><a class="reference internal" href="population_permutation.html">Population and permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="permutation_idea.html">The idea of permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="permutation_pairs.html">Permutations and pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
 <ul class="nav bd-sidenav">
@@ -781,7 +782,7 @@ surprising at the 5% level — about 5% of the time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.34038631, 0.14820852, 0.48032383, 0.97770984, 0.36773792])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.25298528, 0.24841437, 0.33632735, 0.65092615, 0.28663371])
 </pre></div>
 </div>
 </div>
@@ -796,7 +797,7 @@ or smaller about 5% of the time.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0505
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0499
 </pre></div>
 </div>
 </div>
@@ -823,7 +824,7 @@ group of 3 and another of 37:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.45293035, 0.45920065, 0.73180343, 0.27463259, 0.82181257])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.39110403, 0.76399033, 0.80045213, 0.09637426, 0.58631337])
 </pre></div>
 </div>
 </div>
@@ -838,7 +839,7 @@ group of 3 and another of 37:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0472
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.043
 </pre></div>
 </div>
 </div>
@@ -857,7 +858,7 @@ distribution looks like this, with a <span class="math notranslate nohighlight">
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4a8766b7731b62509589f6b33131b48a3a60b13479b7193971a828ce38545011.png" src="../_images/4a8766b7731b62509589f6b33131b48a3a60b13479b7193971a828ce38545011.png" />
+<img alt="../_images/0711903f8f7f92ec34d4d403407ee4773a463c710bbc8073a80204db368ad54e.png" src="../_images/0711903f8f7f92ec34d4d403407ee4773a463c710bbc8073a80204db368ad54e.png" />
 </div>
 </div>
 <p>We use this highly not-normal distribution to provide numbers to our t-test:</p>
@@ -878,7 +879,7 @@ distribution looks like this, with a <span class="math notranslate nohighlight">
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.81145865, 0.60672757, 0.63560729, 0.85504385, 0.13768463])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.70750916, 0.79934239, 0.12665574, 0.88806854, 0.44849366])
 </pre></div>
 </div>
 </div>
@@ -894,7 +895,7 @@ random differences as being surprising at the 5% level:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0735
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.076
 </pre></div>
 </div>
 </div>
@@ -925,7 +926,7 @@ random differences as being surprising at the 5% level:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0582
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0583
 </pre></div>
 </div>
 </div>
@@ -969,7 +970,7 @@ loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.406, 0.817, 0.629, 0.813, 0.186])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.279, 0.745, 0.02 , 0.272, 0.94 ])
 </pre></div>
 </div>
 </div>
@@ -984,7 +985,7 @@ loop.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.053
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.049
 </pre></div>
 </div>
 </div>

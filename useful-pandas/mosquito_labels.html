@@ -241,6 +241,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../permutation/population_permutation.html">Population and permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_idea.html">The idea of permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_pairs.html">Permutations and pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
 <ul class="nav bd-sidenav">
@@ -1023,7 +1024,7 @@ labels.</p>
     </tr>
     <tr>
       <th>45</th>
-      <td>water</td>
+      <td>beer</td>
       <td>27</td>
     </tr>
     <tr>
@@ -1058,12 +1059,12 @@ labels.</p>
     </tr>
     <tr>
       <th>52</th>
-      <td>water</td>
+      <td>beer</td>
       <td>27</td>
     </tr>
     <tr>
       <th>53</th>
-      <td>water</td>
+      <td>beer</td>
       <td>22</td>
     </tr>
     <tr>
@@ -1073,22 +1074,22 @@ labels.</p>
     </tr>
     <tr>
       <th>55</th>
-      <td>beer</td>
+      <td>water</td>
       <td>37</td>
     </tr>
     <tr>
       <th>56</th>
-      <td>beer</td>
+      <td>water</td>
       <td>3</td>
     </tr>
     <tr>
       <th>57</th>
-      <td>water</td>
+      <td>beer</td>
       <td>23</td>
     </tr>
     <tr>
       <th>58</th>
-      <td>water</td>
+      <td>beer</td>
       <td>7</td>
     </tr>
     <tr>
@@ -1108,22 +1109,22 @@ labels.</p>
     </tr>
     <tr>
       <th>62</th>
-      <td>beer</td>
+      <td>water</td>
       <td>31</td>
     </tr>
     <tr>
       <th>63</th>
-      <td>water</td>
+      <td>beer</td>
       <td>30</td>
     </tr>
     <tr>
       <th>64</th>
-      <td>water</td>
+      <td>beer</td>
       <td>22</td>
     </tr>
     <tr>
       <th>65</th>
-      <td>beer</td>
+      <td>water</td>
       <td>20</td>
     </tr>
     <tr>
@@ -1133,7 +1134,7 @@ labels.</p>
     </tr>
     <tr>
       <th>67</th>
-      <td>beer</td>
+      <td>water</td>
       <td>23</td>
     </tr>
     <tr>
@@ -1143,12 +1144,12 @@ labels.</p>
     </tr>
     <tr>
       <th>69</th>
-      <td>water</td>
+      <td>beer</td>
       <td>23</td>
     </tr>
     <tr>
       <th>70</th>
-      <td>water</td>
+      <td>beer</td>
       <td>23</td>
     </tr>
     <tr>
@@ -1163,7 +1164,7 @@ labels.</p>
     </tr>
     <tr>
       <th>73</th>
-      <td>beer</td>
+      <td>water</td>
       <td>8</td>
     </tr>
     <tr>
@@ -1173,7 +1174,7 @@ labels.</p>
     </tr>
     <tr>
       <th>75</th>
-      <td>beer</td>
+      <td>water</td>
       <td>21</td>
     </tr>
     <tr>
@@ -1203,12 +1204,12 @@ labels.</p>
     </tr>
     <tr>
       <th>81</th>
-      <td>water</td>
+      <td>beer</td>
       <td>21</td>
     </tr>
     <tr>
       <th>82</th>
-      <td>beer</td>
+      <td>water</td>
       <td>25</td>
     </tr>
     <tr>
@@ -1218,12 +1219,12 @@ labels.</p>
     </tr>
     <tr>
       <th>84</th>
-      <td>beer</td>
+      <td>water</td>
       <td>7</td>
     </tr>
     <tr>
       <th>85</th>
-      <td>beer</td>
+      <td>water</td>
       <td>3</td>
     </tr>
   </tbody>
@@ -1241,7 +1242,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-3.211111111111112)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.057777777777779704)
 </pre></div>
 </div>
 </div>
@@ -1260,8 +1261,8 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.20444444, -1.20444444, -3.49777778,  2.42666667,  0.32444444,
-        3.        , -2.44666667,  5.10222222, -3.11555556,  5.58      ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 2.90444444,  2.04444444,  4.24222222, -1.96888889, -0.34444444,
+       -0.72666667,  3.        , -1.58666667,  2.52222222, -2.73333333])
 </pre></div>
 </div>
 </div>
@@ -1276,7 +1277,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b698f9d7521909ae0006b08383a60326321dbc63bfb244d498fc38f10e6d9ca.png" src="../_images/5b698f9d7521909ae0006b08383a60326321dbc63bfb244d498fc38f10e6d9ca.png" />
+<img alt="../_images/aaba25951f640b9e20973d8e76d4dee7b09f6ebebbc6343ce1b445fb4910286b.png" src="../_images/aaba25951f640b9e20973d8e76d4dee7b09f6ebebbc6343ce1b445fb4910286b.png" />
 </div>
 </div>
 <p>The chance of any one difference being greater than the one we observed:</p>
@@ -1288,7 +1289,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0617
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0599
 </pre></div>
 </div>
 </div>
@@ -1326,7 +1327,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.05749425057494251), df=np.float64(nan))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.051294870512948704), df=np.float64(nan))
 </pre></div>
 </div>
 </div>

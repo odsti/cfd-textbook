@@ -243,6 +243,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../permutation/population_permutation.html">Population and permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_idea.html">The idea of permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_pairs.html">Permutations and pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
 <ul class="nav bd-sidenav">
@@ -684,13 +685,13 @@ tea</span></a>.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>2</th>
@@ -699,8 +700,8 @@ tea</span></a>.</p>
     </tr>
     <tr>
       <th>3</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>4</th>
@@ -719,8 +720,8 @@ tea</span></a>.</p>
     </tr>
     <tr>
       <th>7</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
   </tbody>
 </table>
@@ -1028,7 +1029,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 2, 2, 2, 2, 2, 2, 3, 1, 2])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 3, 1, 2, 3, 2, 3, 2, 2, 2])
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1041,7 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f8f3947d593fcc834ba24fc27d5fc36bd685004e69d5461492dcba4f9c7ecf1c.png" src="../_images/f8f3947d593fcc834ba24fc27d5fc36bd685004e69d5461492dcba4f9c7ecf1c.png" />
+<img alt="../_images/e240ef74d63e5933a56e65df41bf09d92e1150053199e45c66ae703f9fe502c7.png" src="../_images/e240ef74d63e5933a56e65df41bf09d92e1150053199e45c66ae703f9fe502c7.png" />
 </div>
 </div>
 <p>In this case the histogram is a little difficult to read, because
@@ -1063,11 +1064,11 @@ more clear.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count of 0s: 24
-Count of 1s: 233
-Count of 2s: 523
-Count of 3s: 200
-Count of 4s: 20
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Count of 0s: 11
+Count of 1s: 240
+Count of 2s: 491
+Count of 3s: 245
+Count of 4s: 13
 </pre></div>
 </div>
 </div>
@@ -1081,7 +1082,7 @@ Count of 4s: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 24, 233, 523, 200,  20])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 11, 240, 491, 245,  13])
 </pre></div>
 </div>
 </div>
@@ -1093,7 +1094,7 @@ Count of 4s: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(523)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(491)
 </pre></div>
 </div>
 </div>
@@ -1124,7 +1125,7 @@ Count of 4s: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c78bcc9c390f32b7688d9fc660778ce8ab076d9bff0c7a0e4914b4defff4bb54.png" src="../_images/c78bcc9c390f32b7688d9fc660778ce8ab076d9bff0c7a0e4914b4defff4bb54.png" />
+<img alt="../_images/d671ad3aa399a12f573314bd9ef0ade07a40042d9450c33a476564746718d12a.png" src="../_images/d671ad3aa399a12f573314bd9ef0ade07a40042d9450c33a476564746718d12a.png" />
 </div>
 </div>
 <p>The average value is:</p>
@@ -1135,7 +1136,7 @@ Count of 4s: 20
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.959)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.009)
 </pre></div>
 </div>
 </div>
@@ -1635,7 +1636,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 0., 0., 0., 2., 2., 2., 0., 2., 0.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2., 0., 0., 0., 2., 2., 0., 0., 2., 2.])
 </pre></div>
 </div>
 </div>
@@ -1647,7 +1648,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/bcf92e1160387e172a03d4d274a4793f617bf96eed9abc857d0169e7a93ecbd1.png" src="../_images/bcf92e1160387e172a03d4d274a4793f617bf96eed9abc857d0169e7a93ecbd1.png" />
+<img alt="../_images/f1433802bb6e2d2bd125ecc24d3f512070b921655ed85a58672b107c81f5ba76.png" src="../_images/f1433802bb6e2d2bd125ecc24d3f512070b921655ed85a58672b107c81f5ba76.png" />
 </div>
 </div>
 <p>This gives our usual <em>simulation</em> probability of our observed chi-squared:</p>
@@ -1659,7 +1660,7 @@ these:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.031
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.036
 </pre></div>
 </div>
 </div>
@@ -1760,18 +1761,18 @@ categories?  What are the expected values in that case.</p>
     </tr>
     <tr>
       <th>2</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>no</td>
-      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
     </tr>
     <tr>
       <th>5</th>
@@ -1785,8 +1786,8 @@ categories?  What are the expected values in that case.</p>
     </tr>
     <tr>
       <th>7</th>
-      <td>yes</td>
-      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
     </tr>
   </tbody>
 </table>
@@ -1872,7 +1873,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 0, 1, 1, 2, 1, 0, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 0, 1, 2, 0, 0, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -1884,7 +1885,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8653d4b933965102d441570662548e1d47b1cd293b18dc414441bc93d68ed128.png" src="../_images/8653d4b933965102d441570662548e1d47b1cd293b18dc414441bc93d68ed128.png" />
+<img alt="../_images/24341f6c64c50ec122bff774827067d62d257c45c7329e5e6cfec5963cbc4604.png" src="../_images/24341f6c64c50ec122bff774827067d62d257c45c7329e5e6cfec5963cbc4604.png" />
 </div>
 </div>
 <p>In the null-world, the <em>average</em> count for the <code class="docutils literal notranslate"><span class="pre">yes</span></code>, <code class="docutils literal notranslate"><span class="pre">yes</span></code> entry is around 0.5:</p>
@@ -1895,7 +1896,7 @@ categories?  What are the expected values in that case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.498)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.512)
 </pre></div>
 </div>
 </div>

@@ -7,7 +7,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.14.1
+      jupytext_version: 1.16.0
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -65,10 +65,11 @@ is a measurement of anemia, and anemia is a common consequence of chronic
 kidney disease.
 
 ```{python}
-# Get the packed cell volume values as a Series.
-pcv_series = ckd['Packed Cell Volume']
+# Get the packed cell volume values as an array, for simplicity.
+pcv = np.array(ckd['Packed Cell Volume'])
 # Show the distribution.
-pcv_series.hist()
+plt.hist(pcv)
+plt.title('Packed Cell Volume');
 ```
 
 "Hemoglobin" (HGB) is the concentration of the
@@ -77,19 +78,11 @@ grams per deciliter.  Hemoglobin is the iron-containing protein in red blood
 cells that carries oxygen to the tissues.
 
 ```{python}
-# Get the hemoglobin concentration values as a Series.
-hgb_series = ckd['Hemoglobin']
+# Get the hemoglobin concentration values as an array.
+hgb = np.array(ckd['Hemoglobin'])
 # Show the distribution.
-hgb_series.hist()
-```
-
-We convert these Series into arrays, to make them simpler to work with.  We do
-this with the Numpy `array` function, that makes arrays from many other types
-of object.
-
-```{python}
-pcv = np.array(pcv_series)
-hgb = np.array(hgb_series)
+plt.hist(hgb)
+plt.title('Hemoglobin');
 ```
 
 ## Looking for straight lines
@@ -115,7 +108,7 @@ Here is the plot.  This time, for fun, we add a label to the X and Y axes with
 # Plot HGB on the x axis, PCV on the y axis
 plt.plot(hgb, pcv, 'o')
 plt.xlabel('Hemoglobin concentration')
-plt.ylabel('Packed cell volume')
+plt.ylabel('Packed cell volume');
 ```
 
 The `'o'` argument to the plot function above is a "plot marker".  It tells
@@ -138,7 +131,7 @@ plt.plot(hgb, pcv, 'o')
 plt.xlabel('Hemoglobin concentration')
 plt.ylabel('Packed cell volume')
 # Set the x axis to go from 0 to 18, y axis from 0 to 55.
-plt.axis([0, 18, 0, 55])
+plt.axis([0, 18, 0, 55]);
 ```
 
 It does look plausible that this line goes through the origin, and that makes
@@ -266,6 +259,7 @@ where x is the HGB.  In our case we assume the intercept is 0, so:
 
 ```{python}
 pcv_predicted = hgb * slope
+pcv_predicted[:10]
 ```
 
 Plot the predictions in red on the original data in blue.
@@ -423,30 +417,70 @@ Now we can use the same strategy as we used in the [mean meaning](mean_meaning)
 page, to try lots of slopes, and find the one that gives the smallest sum of
 squared error.
 
-```{python}
-# Slopes to try
-some_slopes = np.arange(2, 4, 0.01)
-n_slopes = len(some_slopes)
-# Try all these slopes, calculate and record sum of squared error
-sses_for_slopes = np.zeros(n_slopes)
-for i in np.arange(n_slopes):
-    # Get the slope.
-    slope = some_slopes[i]
-    # Calculate the error measure.
-    this_error = calc_sse(slope)
-    # Put the error into the array of errors
-    sses_for_slopes[i] = this_error
 
-# Show the first 10 values
-sses_for_slopes[:10]
+Let us first assemble slopes to try:
+
+```{python}
+some_slopes = np.arange(2, 4, 0.01)
+slope_df = pd.DataFrame()
+slope_df['slope_to_try'] = some_slopes
+slope_df
+```
+
+We're going to go through each slope in the `slopes_to_try` column.  For each slope, we are going to calculate the sum of squared error (SSE) for that slope.
+
+
+We first make an array to hold the SSE results for each slope.  In dur course, this will become a column in our DataFrame.
+
+```{python}
+n_slopes = len(some_slopes)
+n_slopes
+```
+
+```{python}
+# Array to store the SSE for each slope.
+sses = np.zeros(n_slopes)
+```
+
+We first work out the SSE for the first candidate slope.
+
+```{python}
+# The first slope value:
+slope_to_try = some_slopes[0]
+sse = calc_sse(slope_to_try)
+print(f'SSE for', slope_to_try, 'is', sse)
+```
+
+We could then put it into our DataFrame:
+
+```{python}
+sses[0] = sse
+# Put the SSE values into the DataFrame
+slope_df['SSE'] = sses
+slope_df
+```
+
+Now do the same for all the slopes:
+
+```{python}
+for i in np.arange(n_slopes):  # For each candidate slope.
+    # Get the corresponding slope.
+    this_slope = some_slopes[i]
+    # Calculate the error measure.
+    this_error = calc_sse(this_slope)
+    # Put the error into the results array at the corresponding position.
+    sses[i] = this_error
+
+# Put all the SSE scores into the DataFrame as a column for display.
+slope_df['SSE'] = sses
+slope_df
 ```
 
 We plot the slopes we have tried, on the x axis, against the sum of squared
 error, on the y-axis.
 
-
 ```{python}
-plt.plot(some_slopes, sses_for_slopes)
+plt.plot(slope_df['slope_to_try'], slope_df['SSE'])
 plt.xlabel('Candidate slopes')
 plt.ylabel('Sum of squared error')
 ```
@@ -454,26 +488,31 @@ plt.ylabel('Sum of squared error')
 The minimum of the sum of squared error is the value we found:
 
 ```{python}
-print('Smallest error', np.min(sses_for_slopes))
+print('Smallest error', slope_df['SSE'].min())
 ```
 
-We find the slope value that corresponds the minimum sum of squared error:
+We have the smallest error, but we'd really like to know which *row* corresponds to the smallest error, so we can work out which *slope* gives the smallest error.
+
+
+Fortunately, Pandas has a method for that, called `idxmin`.  This tells us the *row label* corresponding to the minimum value, like this:
 
 ```{python}
-# Get the position (index) of the minimum value.
-position_of_min = np.argmin(sses_for_slopes)
-position_of_min
+# Row label corresponding to minimum value.
+row_with_min = slope_df['SSE'].idxmin()
+row_with_min
 ```
 
+This label does give us the row with the minimum value:
+
 ```{python}
-# Show the minimum value, but fetched by position.
-sses_for_slopes[position_of_min]
+# Row corresponding to minimum value.
+slope_df.loc[row_with_min]
 ```
 
-The slope that corresponded to the minimum value:
+Notice `SSE` contains the same minimum value as you saw above from `.min()`.   But we also see the corresponding `slopes_to_try` slope value.
 
 ```{python}
-best_slope = some_slopes[position_of_min]
+best_slope = slope_df.loc[row_with_min, 'slope_to_try']
 best_slope
 ```
 

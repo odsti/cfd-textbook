@@ -241,6 +241,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../permutation/population_permutation.html">Population and permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_idea.html">The idea of permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_pairs.html">Permutations and pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
 <ul class="nav bd-sidenav">
@@ -1176,9 +1177,9 @@ colors it returns -1.</p>
   </thead>
   <tbody>
     <tr>
-      <th>35</th>
-      <td>red</td>
-      <td>1</td>
+      <th>23</th>
+      <td>black</td>
+      <td>-1</td>
     </tr>
   </tbody>
 </table>
@@ -1208,7 +1209,7 @@ colors it returns -1.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/64ee3fa7a39b65ac347b805cb068d1fcefdf7a23fe06b2f171a9ae4ed039def8.png" src="../_images/64ee3fa7a39b65ac347b805cb068d1fcefdf7a23fe06b2f171a9ae4ed039def8.png" />
+<img alt="../_images/0a1559d4e7b5bba76dd22b65e2c69bf3382e02e80c36eaea7a9b96d323cde2cc.png" src="../_images/0a1559d4e7b5bba76dd22b65e2c69bf3382e02e80c36eaea7a9b96d323cde2cc.png" />
 </div>
 </div>
 <p>Here are the corresponding winnings:</p>
@@ -1219,7 +1220,7 @@ colors it returns -1.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/9e3a1d05d257d32633dd0089184f797c4c06b544aaaad862588cbc385e5f30d9.png" src="../_images/9e3a1d05d257d32633dd0089184f797c4c06b544aaaad862588cbc385e5f30d9.png" />
+<img alt="../_images/ec25de491001bd84528574b60be06ee62fbac2c4a4ac442ba5387d18a1543b38.png" src="../_images/ec25de491001bd84528574b60be06ee62fbac2c4a4ac442ba5387d18a1543b38.png" />
 </div>
 </div>
 <p>Notice that this distribution is very far from being a bell shaped distribution curve.  Now let’s think about <em>net</em> wins after a certain number of bets.</p>
@@ -1264,7 +1265,7 @@ spins of the roulette wheel.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;Frequency&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/c6757365d3e31f2b2d424e334bfe9e2df0d5e58fd1289ecd82c80454e7254a6a.png" src="../_images/c6757365d3e31f2b2d424e334bfe9e2df0d5e58fd1289ecd82c80454e7254a6a.png" />
+<img alt="../_images/2546c3b5a17dde3a828e9c51b6a09b76a725cc52d8b407f0b43453faffcda7f0.png" src="../_images/2546c3b5a17dde3a828e9c51b6a09b76a725cc52d8b407f0b43453faffcda7f0.png" />
 </div>
 </div>
 <p>That’s a roughly bell shaped histogram, even though the distribution we are
@@ -1306,7 +1307,7 @@ So your average winnings per dollar bet will be roughly -5.26 cents:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-20.9764)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-20.9064)
 </pre></div>
 </div>
 </div>
@@ -1326,7 +1327,7 @@ net gains:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(19.882923402759463)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(19.71239303179601)
 </pre></div>
 </div>
 </div>
@@ -1337,12 +1338,11 @@ normal, with an average and an SD that we can approximate.</p>
 </section>
 <section id="average-flight-delay">
 <h2>Average Flight Delay<a class="headerlink" href="#average-flight-delay" title="Link to this heading">#</a></h2>
-<p>The table <code class="docutils literal notranslate"><span class="pre">united</span></code> contains data on departure delays of 13,825 United Airlines
-domestic flights out of San Francisco airport in the summer of 2015. As we have
-seen before, the distribution of delays has a long right-hand tail.</p>
+<p>The table <code class="docutils literal notranslate"><span class="pre">united</span></code> contains data on departure delays of 13,667 United Airlines
+domestic flights out of San Francisco airport in the summer of 2015. The distribution of delays has a long right-hand tail.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;united_summer2015.csv&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">united</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;summer_united.csv&#39;</span><span class="p">)</span>
 <span class="n">delays</span> <span class="o">=</span> <span class="n">united</span><span class="p">[</span><span class="s1">&#39;Delay&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -1355,10 +1355,10 @@ seen before, the distribution of delays has a long right-hand tail.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c5a96f4296713beee168f54a9b74168cecfaa3ea4db0c8768fda691c0c0bbb40.png" src="../_images/c5a96f4296713beee168f54a9b74168cecfaa3ea4db0c8768fda691c0c0bbb40.png" />
+<img alt="../_images/e879982cae5e51ee83a582a26ef0f567609ecdc34b121205b82f8322f59aae0f.png" src="../_images/e879982cae5e51ee83a582a26ef0f567609ecdc34b121205b82f8322f59aae0f.png" />
 </div>
 </div>
-<p>The mean delay was about 16.6 minutes and the SD was about 39.5 minutes. Notice
+<p>The mean delay was about 16.9 minutes and the SD was about 39.7 minutes. Notice
 how large the SD is, compared to the mean. Those large deviations on the right
 have an effect, even though they are a very small proportion of the data.</p>
 <div class="cell docutils container">
@@ -1371,14 +1371,14 @@ have an effect, even though they are a very small proportion of the data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(16.658155515370705), np.float64(39.480199851609314))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(16.850735347918345), np.float64(39.66686982792497))
 </pre></div>
 </div>
 </div>
 </div>
 <p>Now suppose we sampled 400 delays at random with replacement. You could sample
 without replacement if you like, but the results would be very similar to
-with-replacement sampling. If you sample a few hundred out of 13,825 without
+with-replacement sampling. If you sample a few hundred out of 13,667 without
 replacement, you hardly change the population each time you pull out a value.</p>
 <p>In the sample, what could the average delay be? We expect it to be around 16 or
 17, because that’s the population average; but it is likely to be somewhat off.
@@ -1391,7 +1391,7 @@ contains the column of delays.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(16.0975)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(18.0575)
 </pre></div>
 </div>
 </div>
@@ -1421,7 +1421,7 @@ of the sample average.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2d8a78f63280d92f3fd98744b54ecf16de6c30e1145830c2d9da84b422c1c7de.png" src="../_images/2d8a78f63280d92f3fd98744b54ecf16de6c30e1145830c2d9da84b422c1c7de.png" />
+<img alt="../_images/f1475af550702b1d538820aa7d3c1a4adca06682f5e263844c2b038559a55647.png" src="../_images/f1475af550702b1d538820aa7d3c1a4adca06682f5e263844c2b038559a55647.png" />
 </div>
 </div>
 <p>Once again, we see a rough bell shape, even though we are drawing from a very
@@ -1561,7 +1561,7 @@ purple-flowered plants in a sample of 200 plants.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3004175dc85e260af529f48f5ec3e374f3a838bb9917d37a5140ed366ad1e1bb.png" src="../_images/3004175dc85e260af529f48f5ec3e374f3a838bb9917d37a5140ed366ad1e1bb.png" />
+<img alt="../_images/9d57a47f413908780d7b423327b675d7a6d0c689bc078ac82edf45077466d007.png" src="../_images/9d57a47f413908780d7b423327b675d7a6d0c689bc078ac82edf45077466d007.png" />
 </div>
 </div>
 <p>There’s that normal curve again, as predicted by the Central Limit Theorem,
@@ -1591,7 +1591,7 @@ so that the two columns have the same length.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/30692d9e5fbb0e057ff9d87bd6ad6905d0fa426ae624c3e495312ef5e1cb287c.png" src="../_images/30692d9e5fbb0e057ff9d87bd6ad6905d0fa426ae624c3e495312ef5e1cb287c.png" />
+<img alt="../_images/755f97708e1f185f92ee48d0095620e958d52cf08e83d10f9895c1d3d3552d86.png" src="../_images/755f97708e1f185f92ee48d0095620e958d52cf08e83d10f9895c1d3d3552d86.png" />
 </div>
 </div>
 <p>Both distributions are approximately normal but one is narrower than the other.

@@ -243,6 +243,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../permutation/population_permutation.html">Population and permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_idea.html">The idea of permutation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_and_t_test.html">Permutation and the t-test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_pairs.html">Permutations and pairs</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
 <ul class="nav bd-sidenav">
@@ -836,18 +837,16 @@ is a measurement of anemia, and anemia is a common consequence of chronic
 kidney disease.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the packed cell volume values as a Series.</span>
-<span class="n">pcv_series</span> <span class="o">=</span> <span class="n">ckd</span><span class="p">[</span><span class="s1">&#39;Packed Cell Volume&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the packed cell volume values as an array, for simplicity.</span>
+<span class="n">pcv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s1">&#39;Packed Cell Volume&#39;</span><span class="p">])</span>
 <span class="c1"># Show the distribution.</span>
-<span class="n">pcv_series</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">pcv</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Packed Cell Volume&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../_images/8b6061bc97383577e086f4469dbf81b3c3d779023cbddaf50d29a5329d7a3be8.png" src="../_images/8b6061bc97383577e086f4469dbf81b3c3d779023cbddaf50d29a5329d7a3be8.png" />
+<img alt="../_images/d4261b889b126391400a73df3a4c41268b5ef3e68dc20a7550b5a489559947ea.png" src="../_images/d4261b889b126391400a73df3a4c41268b5ef3e68dc20a7550b5a489559947ea.png" />
 </div>
 </div>
 <p>“Hemoglobin” (HGB) is the concentration of the
@@ -856,29 +855,16 @@ grams per deciliter.  Hemoglobin is the iron-containing protein in red blood
 cells that carries oxygen to the tissues.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the hemoglobin concentration values as a Series.</span>
-<span class="n">hgb_series</span> <span class="o">=</span> <span class="n">ckd</span><span class="p">[</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the hemoglobin concentration values as an array.</span>
+<span class="n">hgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ckd</span><span class="p">[</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">])</span>
 <span class="c1"># Show the distribution.</span>
-<span class="n">hgb_series</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">hgb</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Hemoglobin&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
-</pre></div>
-</div>
-<img alt="../_images/f85b3c53d27557aa006b0b922b70fa9dd08c0367b9b75ec3788fd9d3b94e7d13.png" src="../_images/f85b3c53d27557aa006b0b922b70fa9dd08c0367b9b75ec3788fd9d3b94e7d13.png" />
-</div>
-</div>
-<p>We convert these Series into arrays, to make them simpler to work with.  We do
-this with the Numpy <code class="docutils literal notranslate"><span class="pre">array</span></code> function, that makes arrays from many other types
-of object.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">pcv_series</span><span class="p">)</span>
-<span class="n">hgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">hgb_series</span><span class="p">)</span>
-</pre></div>
-</div>
+<img alt="../_images/c41da8f9d29b56aad22089631c614dd7fef22d92d411a5314ee448f421080e8e.png" src="../_images/c41da8f9d29b56aad22089631c614dd7fef22d92d411a5314ee448f421080e8e.png" />
 </div>
 </div>
 <section id="looking-for-straight-lines">
@@ -902,14 +888,11 @@ straight line going through 0, 0, and with a slope of about 3.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot HGB on the x axis, PCV on the y axis</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hgb</span><span class="p">,</span> <span class="n">pcv</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hemoglobin concentration&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Packed cell volume&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Packed cell volume&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Packed cell volume&#39;)
-</pre></div>
-</div>
 <img alt="../_images/7ac4f7ce6e839a0780a40f87e1801836b45a5ca60cd5fa2a5d85a200022eed3b.png" src="../_images/7ac4f7ce6e839a0780a40f87e1801836b45a5ca60cd5fa2a5d85a200022eed3b.png" />
 </div>
 </div>
@@ -932,14 +915,11 @@ x=0, y=0.  In order to this, we can add a <code class="docutils literal notransl
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Hemoglobin concentration&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Packed cell volume&#39;</span><span class="p">)</span>
 <span class="c1"># Set the x axis to go from 0 to 18, y axis from 0 to 55.</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">55</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">55</span><span class="p">]);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(0.0), np.float64(18.0), np.float64(0.0), np.float64(55.0))
-</pre></div>
-</div>
 <img alt="../_images/0c79f65ea896db83e69ee7da987a55d34faf6364686c1ecff554479479f74f06.png" src="../_images/0c79f65ea896db83e69ee7da987a55d34faf6364686c1ecff554479479f74f06.png" />
 </div>
 </div>
@@ -964,7 +944,7 @@ the second.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1c85589810&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f949cf3bed0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/d96efbb16fadbb625bde9414cb3dabf80fea73ee0c7e8bceb5cef09b467797e8.png" src="../_images/d96efbb16fadbb625bde9414cb3dabf80fea73ee0c7e8bceb5cef09b467797e8.png" />
@@ -980,7 +960,7 @@ the second.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1cc80ef490&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f949d112f50&gt;]
 </pre></div>
 </div>
 <img alt="../_images/427d6510de4b4a5df6edfa5bc7dbd95c729235eded3002d0c0513bf554c83fd5.png" src="../_images/427d6510de4b4a5df6edfa5bc7dbd95c729235eded3002d0c0513bf554c83fd5.png" />
@@ -1034,7 +1014,7 @@ and 8, 8 and 9, and so on.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1c85357b90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f949d000f90&gt;]
 </pre></div>
 </div>
 <img alt="../_images/48fb82a807f652ef7727a21e6a3e34811dbc41b767c7b82003b0375a7f15e6e2.png" src="../_images/48fb82a807f652ef7727a21e6a3e34811dbc41b767c7b82003b0375a7f15e6e2.png" />
@@ -1073,7 +1053,7 @@ prediction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1c85349ad0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f949cc23690&gt;]
 </pre></div>
 </div>
 <img alt="../_images/7baa7ae37550799a159feeedf37e666b473bdd7525edd14882e1bd80762e2a8a.png" src="../_images/7baa7ae37550799a159feeedf37e666b473bdd7525edd14882e1bd80762e2a8a.png" />
@@ -1115,6 +1095,12 @@ y = c + x * s
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pcv_predicted</span> <span class="o">=</span> <span class="n">hgb</span> <span class="o">*</span> <span class="n">slope</span>
+<span class="n">pcv_predicted</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([33.6, 28.5, 32.4, 16.8, 23.1, 29.4, 37.5, 30. , 31.5, 29.4])
 </pre></div>
 </div>
 </div>
@@ -1128,7 +1114,7 @@ y = c + x * s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f1c8520a290&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f949ccacbd0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/7fc27dd611d8bc7c96615d4be0600c6440ecac8b68a14a7c154bf868dedec9bd.png" src="../_images/7fc27dd611d8bc7c96615d4be0600c6440ecac8b68a14a7c154bf868dedec9bd.png" />
@@ -1342,38 +1328,327 @@ see these values, from function world.</p>
 <p>Now we can use the same strategy as we used in the <a class="reference internal" href="mean_meaning.html"><span class="doc std std-doc">mean meaning</span></a>
 page, to try lots of slopes, and find the one that gives the smallest sum of
 squared error.</p>
+<p>Let us first assemble slopes to try:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Slopes to try</span>
-<span class="n">some_slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
-<span class="n">n_slopes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">some_slopes</span><span class="p">)</span>
-<span class="c1"># Try all these slopes, calculate and record sum of squared error</span>
-<span class="n">sses_for_slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">):</span>
-    <span class="c1"># Get the slope.</span>
-    <span class="n">slope</span> <span class="o">=</span> <span class="n">some_slopes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="c1"># Calculate the error measure.</span>
-    <span class="n">this_error</span> <span class="o">=</span> <span class="n">calc_sse</span><span class="p">(</span><span class="n">slope</span><span class="p">)</span>
-    <span class="c1"># Put the error into the array of errors</span>
-    <span class="n">sses_for_slopes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_error</span>
-
-<span class="c1"># Show the first 10 values</span>
-<span class="n">sses_for_slopes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">some_slopes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">slope_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;slope_to_try&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">some_slopes</span>
+<span class="n">slope_df</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([37529.64  , 36885.2828, 36247.1066, 35615.1112, 34989.2967,
-       34369.6632, 33756.2105, 33148.9387, 32547.8477, 31952.9377])
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>slope_to_try</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.01</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.02</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.03</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.04</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>3.95</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>3.96</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>3.97</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>3.98</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>3.99</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 1 columns</p>
+</div></div></div>
+</div>
+<p>We’re going to go through each slope in the <code class="docutils literal notranslate"><span class="pre">slopes_to_try</span></code> column.  For each slope, we are going to calculate the sum of squared error (SSE) for that slope.</p>
+<p>We first make an array to hold the SSE results for each slope.  In dur course, this will become a column in our DataFrame.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_slopes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">some_slopes</span><span class="p">)</span>
+<span class="n">n_slopes</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>200
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Array to store the SSE for each slope.</span>
+<span class="n">sses</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We first work out the SSE for the first candidate slope.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first slope value:</span>
+<span class="n">slope_to_try</span> <span class="o">=</span> <span class="n">some_slopes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">sse</span> <span class="o">=</span> <span class="n">calc_sse</span><span class="p">(</span><span class="n">slope_to_try</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SSE for&#39;</span><span class="p">,</span> <span class="n">slope_to_try</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="n">sse</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SSE for 2.0 is 37529.64
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could then put it into our DataFrame:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">sse</span>
+<span class="c1"># Put the SSE values into the DataFrame</span>
+<span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;SSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sses</span>
+<span class="n">slope_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>slope_to_try</th>
+      <th>SSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.00</td>
+      <td>37529.64</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.01</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.02</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.03</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.04</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>3.95</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>3.96</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>3.97</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>3.98</td>
+      <td>0.00</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>3.99</td>
+      <td>0.00</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 2 columns</p>
+</div></div></div>
+</div>
+<p>Now do the same for all the slopes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_slopes</span><span class="p">):</span>  <span class="c1"># For each candidate slope.</span>
+    <span class="c1"># Get the corresponding slope.</span>
+    <span class="n">this_slope</span> <span class="o">=</span> <span class="n">some_slopes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="c1"># Calculate the error measure.</span>
+    <span class="n">this_error</span> <span class="o">=</span> <span class="n">calc_sse</span><span class="p">(</span><span class="n">this_slope</span><span class="p">)</span>
+    <span class="c1"># Put the error into the results array at the corresponding position.</span>
+    <span class="n">sses</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">this_error</span>
+
+<span class="c1"># Put all the SSE scores into the DataFrame as a column for display.</span>
+<span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;SSE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sses</span>
+<span class="n">slope_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>slope_to_try</th>
+      <th>SSE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2.00</td>
+      <td>37529.640000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2.01</td>
+      <td>36885.282846</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2.02</td>
+      <td>36247.106584</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2.03</td>
+      <td>35615.111214</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2.04</td>
+      <td>34989.296736</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>195</th>
+      <td>3.95</td>
+      <td>28791.567150</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>3.96</td>
+      <td>29352.483936</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>3.97</td>
+      <td>29919.581614</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>3.98</td>
+      <td>30492.860184</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>3.99</td>
+      <td>31072.319646</td>
+    </tr>
+  </tbody>
+</table>
+<p>200 rows × 2 columns</p>
+</div></div></div>
 </div>
 <p>We plot the slopes we have tried, on the x axis, against the sum of squared
 error, on the y-axis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">some_slopes</span><span class="p">,</span> <span class="n">sses_for_slopes</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;slope_to_try&#39;</span><span class="p">],</span> <span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;SSE&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Candidate slopes&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sum of squared error&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1389,7 +1664,7 @@ error, on the y-axis.</p>
 <p>The minimum of the sum of squared error is the value we found:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Smallest error&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">sses_for_slopes</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Smallest error&#39;</span><span class="p">,</span> <span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;SSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1399,38 +1674,42 @@ error, on the y-axis.</p>
 </div>
 </div>
 </div>
-<p>We find the slope value that corresponds the minimum sum of squared error:</p>
+<p>We have the smallest error, but we’d really like to know which <em>row</em> corresponds to the smallest error, so we can work out which <em>slope</em> gives the smallest error.</p>
+<p>Fortunately, Pandas has a method for that, called <code class="docutils literal notranslate"><span class="pre">idxmin</span></code>.  This tells us the <em>row label</em> corresponding to the minimum value, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the position (index) of the minimum value.</span>
-<span class="n">position_of_min</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">sses_for_slopes</span><span class="p">)</span>
-<span class="n">position_of_min</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Row label corresponding to minimum value.</span>
+<span class="n">row_with_min</span> <span class="o">=</span> <span class="n">slope_df</span><span class="p">[</span><span class="s1">&#39;SSE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+<span class="n">row_with_min</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(105)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>105
 </pre></div>
 </div>
 </div>
 </div>
+<p>This label does give us the row with the minimum value:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the minimum value, but fetched by position.</span>
-<span class="n">sses_for_slopes</span><span class="p">[</span><span class="n">position_of_min</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Row corresponding to minimum value.</span>
+<span class="n">slope_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_with_min</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(3619.8091499999964)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>slope_to_try       3.05000
+SSE             3619.80915
+Name: 105, dtype: float64
 </pre></div>
 </div>
 </div>
 </div>
-<p>The slope that corresponded to the minimum value:</p>
+<p>Notice <code class="docutils literal notranslate"><span class="pre">SSE</span></code> contains the same minimum value as you saw above from <code class="docutils literal notranslate"><span class="pre">.min()</span></code>.   But we also see the corresponding <code class="docutils literal notranslate"><span class="pre">slopes_to_try</span></code> slope value.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_slope</span> <span class="o">=</span> <span class="n">some_slopes</span><span class="p">[</span><span class="n">position_of_min</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_slope</span> <span class="o">=</span> <span class="n">slope_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">row_with_min</span><span class="p">,</span> <span class="s1">&#39;slope_to_try&#39;</span><span class="p">]</span>
 <span class="n">best_slope</span>
 </pre></div>
 </div>
