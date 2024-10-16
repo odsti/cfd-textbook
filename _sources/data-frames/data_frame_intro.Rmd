@@ -1,0 +1,164 @@
+---
+jupyter:
+  jupytext:
+    formats: ''
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.1'
+      jupytext_version: 1.2.4
+  kernelspec:
+    display_name: Python 3
+    language: python
+    name: python3
+  jupyterbook:
+    show_stderr: true
+---
+
+# Introduction to data frames
+
+
+[Pandas](https://pandas.pydata.org) is a Python package that implements *data
+frames*, and functions that operate on data frames.
+
+```{python}
+# Load the Pandas data science library, call it 'pd'
+import pandas as pd
+# Turn on a setting to use Pandas more safely.
+# We will discuss this setting later.
+pd.set_option('mode.copy_on_write', True)
+```
+
+We will also use the usual Numpy array library:
+
+```{python}
+# Load the Numpy array library, call it 'np'
+import numpy as np
+```
+
+## Loading a data frame from a file
+
+We start by loading data from a Comma Separated Value file (CSV
+file).  If you are running on your laptop, you should download
+the {download}`gender_stats_min.csv <../data/gender_stats_min.csv>`
+file to the same directory as this notebook.
+
+See the [gender statistics description page](../data/gender_stats) for more
+detail on the dataset.
+
+```{python}
+# Load the data file
+gender_data = pd.read_csv('gender_stats_min.csv')
+```
+
+This is our usual assignment statement. The Left Hand Side (LHS) is
+`gender_data`, the variable name.  The RHS is an expression, that returns a
+value.
+
+What type of value does it return?
+
+```{python}
+type(gender_data)
+```
+
+This tells us that the `gender_data` value (or object) is of type `DataFrame`.
+We can also see that that type is something that belongs to (is defined by) the
+Pandas library.
+
+As you can see, the DataFrame is a thing that contains a *table* of data.  The
+table has rows and columns.
+
+Pandas integrates with the Notebook, so, if you display a data frame in the
+notebook, it does a nice display:
+
+```{python}
+gender_data
+```
+
+This default display for the DataFrame shows you the first five rows, then a
+row of `...` and then the last five rows.  The row of `...` shows you that
+there are more rows the display does not show between the first five and the
+last five.
+
+## What does the data mean?
+
+In order to interpret these data, you need more information about what these
+column names refer to.  This information is sometimes called the *data
+dictionary*.  Here are the longer descriptions from the original data source
+(link above):
+
+* `gdp_us_billion`: GDP (in current US \$ billions).
+* `mat_mort_ratio`: Maternal mortality ratio (modeled estimate, per 100,000
+  live births).
+* `population`: Population, total (millions).
+
+
+## Missing values
+
+Notice the `NaN` at the top of the GDP column.  This is a *missing value*.  We
+will come to these in [missing values](missing_values).
+
+For the moment, we will do something quick and dirty, which is to drop all the
+missing values from the data frame.   *Be careful* - this is rarely the right
+thing to do, without a lot of investigation as to why the values are missing.
+
+```{python}
+# Drop all missing values.  Be careful, this is rarely the right thing to do.
+gender_data_no_na = gender_data.dropna()
+gender_data_no_na
+```
+
+## Attributes
+
+Like other Python objects (values), the DataFrame has *attributes*.
+
+An *attribute* is some named *value* attached to another value.  You can think
+of it as a *variable* attached to a value.  You can fetch the attached value
+using the `<value>.<attribute_name>` syntax.  For example, one attribute of the
+data frame, is the `shape`.  The `<value>` in our case is `gender_data_no_na`,
+and the `<attribute_name>` is `shape`.
+
+```{python}
+gender_data_no_na.shape
+```
+
+Notice that the `.shape` attribute is a sequence of two values.  The first is
+the number of *rows* and the second is the number of *columns*.
+
+## Columns
+
+As you would expect for a table, the DataFrame has columns, and the columns
+have *labels*.   You can see the column labels in the display above, but you
+can also get the column labels using the `.columns` attribute of the DataFrame.
+
+```{python}
+gender_data_no_na.columns
+```
+
+Notice from the display above, that Pandas wraps up the column names in their
+own value, of type `Index`.
+
+```{python}
+type(gender_data_no_na.columns)
+```
+
+The `Index` type is Pandas way of storing a sequence of labels — in this case
+column labels.
+
+You can get the column labels (names) as strings by using `list` on the
+`.columns`, like this:
+
+```{python}
+# Get column names from .columns attribute.
+list(gender_data_no_na.columns)
+```
+
+In fact, there is a short-cut for doing that, which is to apply `list` to the
+DataFrame itself.  In that case, the DataFrame interprets you to be asking for
+the column names:
+
+```{python}
+# Get column names from DataFrame directly.
+list(gender_data_no_na)
+```

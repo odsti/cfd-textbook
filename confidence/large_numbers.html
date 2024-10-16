@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>The law of large numbers &#8212; Coding for data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'confidence/large_numbers';</script>
+    <link rel="canonical" href="https://odsti.github.io/cfd-textbook/confidence/large_numbers.html" />
+    <link rel="icon" href="../_static/dsfe_favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Laws of probability" href="laws_of_probability.html" />
+    <link rel="prev" title="The Central Limit Theorem" href="Central_Limit_Theorem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="../_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../intro/what-is-data-science.html">What is data science?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/why-data-science.html">Why Data Science?</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/tools_techniques.html">Tools and techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/computational-tools.html">Computational Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/statistical-techniques.html">Statistical Techniques</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../intro/text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../intro/Plotting_the_Classics.html">Plotting the classics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/Literary_Characters.html">Literary characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intro/Another_Kind_Of_Character.html">Another kind of character</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/surviving_computers.html">Surviving the computer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/the_software.html">Our tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/using_jupyter.html">Using Jupyter notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro/more_on_jupyter.html">More on the Jupyter notebook</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">On code</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/to_code.html">Ode to code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/sampling_problem.html">A sampling problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/three_girls.html">A simpler problem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/variables_intro.html">Introduction to variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/variables.html">Variables in code and mathematics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/Names.html">Names and variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/Expressions.html">Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/functions.html">Introduction to functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/Calls.html">Call expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/sub_expressions.html">Expressions, and decoding code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../code-basics/first_pass_three_girls.html">A first pass at the simple problem</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data types</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-types/data_types.html">Types of things</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/Numbers.html">Numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/Strings.html">Strings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/strings_and_variables.html">Strings, variables and expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/String_Methods.html">String methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/Comparison.html">Comparisons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-types/lists.html">Lists</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Arrays</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../arrays/Arrays.html">Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/Ranges.html">Ranges</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/More_on_Arrays.html">More on Arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/array_indexing.html">Selecting values from an array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/filling_arrays.html">Making and filling arrays.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/function_arguments.html">Function arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/rng_choice.html">Random choice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/boolean_arrays.html">Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../arrays/leaping_ahead.html">Leaping ahead</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Iteration</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../iteration/iteration.html">Iteration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iteration/indentation.html">Indentation, indentation, indentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iteration/reply_supreme.html">Reply to the Supreme Court</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iteration/inference.html">Inference</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Population and permutation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../permutation/population_permutation.html">Population and permutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_idea.html">The idea of permutation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../permutation/permutation_and_t_test.html">Permutation and the t-test</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data frames</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/data_frames.html">Data frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/boolean_indexing.html">Indexing with Boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/data_frame_intro.html">Introduction to data frames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/df_index.html">The DataFrame and the index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/df_basic_col_indexing.html">Selecting columns from DataFrames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/df_sort_head_tail.html">Sorting, heads and tails</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/series_like_arrays.html">Series are like arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/df_basic_row_indexing.html">Selecting rows from DataFrames</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/value_counts.html">Value counts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Advanced indexing in Pandas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/pandas_indexing.html">Indexing in Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/indexing_catechism.html">The doctrine of Pandas indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/indexing_assignment.html">Assignment with indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/indexing_expressions.html">Pandas and indexing expressions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Crosstabulation and inference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../useful-pandas/crosstab.html">Cross-tabulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/np_repeat.html">Numpy repeat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/fishers_tea.html">Lady tasting tea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/counts_to_observations.html">Counts to observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/tea_with_chi.html">Chi-squared and the lady tasting tea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/noble_politics.html">Noble politics and comparing counts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Useful Pandas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/missing_values.html">Missing values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data-frames/df_plotting.html">Pandas plotting methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful-pandas/groupby.html">The power of groupby</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../useful-pandas/merge.html">Merging</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Pandas pitfalls</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/safe_pandas.html">Handling Pandas safely</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/text_encoding.html">Storing and loading text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../wild-pandas/numbers_and_strings.html">Numbers and strings</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More building blocks</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/more_building_blocks.html">More building blocks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/introducing_functions.html">Introducing Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/none.html">On None</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/conditional_statements.html">Conditional Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/functions_as_values.html">Functions as values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functions-conditionals/apply_functions.html">Apply functions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The mean and straight lines</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/mean.html">The mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/mean_meaning.html">The meaning of the mean</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/np_argmin.html">Argmin (and argmax)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/mean_and_slopes.html">The mean and slopes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/sse_rmse.html">Sum of squares, root mean square</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/optimization.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/finding_lines.html">Finding lines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/using_minimize.html">Using minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/inference_on_slopes.html">Inference on slopes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/combining_boolean_arrays.html">Combining boolean arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/standard_scores.html">Standard scores</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mean-slopes/Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../classification/classification.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Nearest_Neighbors.html">Nearest neighbors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Training_and_Testing.html">Training and testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Rows_of_Tables.html">Rows of tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Implementing_the_Classifier.html">Implementing the classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/Multiple_Regression.html">Multiple regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../classification/single_multiple.html">Simple and multiple regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../more-regression/logistic_regression.html">Logistic regression</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="confidence.html">On confidence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bootstrap.html">The Bootstrap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="havana_math.html">A problem for the education minister</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Central_Limit_Theorem.html">The Central Limit Theorem</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The law of large numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laws_of_probability.html">Laws of probability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="first_bayes.html">First Bayes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_theorem.html">Bayes theorem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_bars.html">Bayes and bars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="confident_treatment.html">Confident treatment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bayes_confidence.html">Bayes, confidence</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The end of the beginning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../end/end_of_beginning.html">The end of the beginning</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Extra pages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../extra/extra.html">Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/more_on_lists.html">More on lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/introducing_python.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/brisk_python.html">Brisk introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/data8_functions.html">Data 8 explanation of functions</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../extra/mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/mean_sq_deviations.html">The mean and squared differences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../extra/slope_deviations.html">Mathematics for the least-squares slope</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/odsti/cfd-textbook/main?urlpath=tree/confidence/large_numbers.Rmd" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook/edit/main/confidence/large_numbers.Rmd" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/odsti/cfd-textbook/issues/new?title=Issue%20on%20page%20%2Fconfidence/large_numbers.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/confidence/large_numbers.Rmd" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.Rmd</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The law of large numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-law-of-large-numbers">
+<h1>The law of large numbers<a class="headerlink" href="#the-law-of-large-numbers" title="Link to this heading">#</a></h1>
+<div class="cell tag_hide-cell docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell content</span>
+<span class="expanded">Hide code cell content</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t change this cell; just run it.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="c1"># Make random number generator.</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># Make the plots look more fancy.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+</div>
+<p>You have already seen the <a class="reference external" href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large
+numbers</a> in action, in the
+<a class="reference internal" href="Central_Limit_Theorem.html"><span class="doc std std-doc">central limit theorem page</span></a>.</p>
+<p>The law of large numbers says that, as you take larger and larger samples from
+a population, the value of some statistic (such as the mean) from the sample
+will get closer and closer to the same statistic calculated from the
+population.</p>
+<p>In this page, we look at probabilities and proportions.</p>
+<p>Consider the set up in the <a class="reference internal" href="laws_of_probability.html"><span class="doc std std-doc">Laws of Probability</span></a> page.  In that set up, we had a car park with 100 cars, of which 30 were red.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_red</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">/</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s consider another variant.  Now we have a huge car park.  Let’s say we
+consider the <a class="reference external" href="https://www.guinnessworldrecords.com/world-records/largest-car-park">largest car park in the
+world</a>,
+with 20,000 spaces, in West Edmonton Mall, Edmonton, Alberta.</p>
+<p>Again, we assume that there is an equal likelihood of any one car in the car
+park leaving next.</p>
+<p>This time though, pretend we don’t know the proportion of red cars.   We want
+to estimate that proportion by looking at a sample of cars leaving the car
+park.</p>
+<p>In fact — although we don’t know this (wink) — the actual proportion in the full 20,000 car park is 30%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_red</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">p_not_red</span> <span class="o">=</span> <span class="mf">0.7</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The car park is huge.  We are going to take samples of around 100 or 1000 cars.
+Let’s assume that the car park is so big, that even after taking a sample of
+999 cars, the probability for the next car being red or not red is the same (it
+won’t be, exactly, but near enough).  So, we’ll draw our samples of cars <em>with
+replacement</em>, just to make things easier to think about, as if the car had gone
+out, entered our sample, and gone back in again, to become one of the 20,000
+cars that can be next in our sample.</p>
+<p>Here we think about what happens as we take samples with larger and larger
+number of cars, and take the proportion (this is also an average) of reds in
+the sample.</p>
+<p>The law of large numbers says that, as we take more samples of the cars, the
+proportion of reds in the sample will get closer and closer to the probability
+of getting red on any one trial.</p>
+<p>Let’s start by taking samples of 100 cars.  One sample will be one <em>trial</em>.</p>
+<p>Here’s one trial, taking 100 cars:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cars</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;not_red&#39;</span><span class="p">],</span>
+                   <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">p_red</span><span class="p">,</span> <span class="n">p_not_red</span><span class="p">],</span>
+                   <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">prop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">cars</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proportion of red&#39;</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Proportion of red 0.35
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we run 1000 trials.  On each trial we get 100 cars, and record the
+proportion of red.  Finally we show the spread of proportions that we get.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_iters</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">n_cars</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">props</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;not_red&#39;</span><span class="p">],</span>
+                         <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">p_red</span><span class="p">,</span> <span class="n">p_not_red</span><span class="p">],</span>
+                         <span class="n">size</span><span class="o">=</span><span class="n">n_cars</span><span class="p">)</span>
+    <span class="n">props</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">samples</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_cars</span>
+<span class="c1"># Define the bins for the histogram to make them comparable across n_cars</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Proportions&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Proportions for p=0.3, &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">n_cars</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; samples&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3f5b925f2ce6e529ef1090343526cf20db3739407ae606064d1f610cdaf4a018.png" src="../_images/3f5b925f2ce6e529ef1090343526cf20db3739407ae606064d1f610cdaf4a018.png" />
+</div>
+</div>
+<p>Because we want to repeat this several times with different numbers of cars, we make the code above into a function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_proportions</span><span class="p">(</span><span class="n">n_cars</span><span class="p">,</span> <span class="n">n_iters</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_iters</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_iters</span><span class="p">):</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;not_red&#39;</span><span class="p">],</span>
+                              <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="n">p_red</span><span class="p">,</span> <span class="n">p_not_red</span><span class="p">],</span>
+                              <span class="n">size</span><span class="o">=</span><span class="n">n_cars</span><span class="p">)</span>
+        <span class="n">props</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">samples</span> <span class="o">==</span> <span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="n">n_cars</span>
+    <span class="c1"># Define the bins for the histogram to make them comparable across n_cars</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Proportions&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Proportions for p=0.3, &#39;</span> <span class="o">+</span>  <span class="nb">str</span><span class="p">(</span><span class="n">n_cars</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; samples&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is the spread (distribution) we saw above, for 100 car samples, but using
+the function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_proportions</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6e9094d65fe5c747dd0ed1bd9810dfe770242c8ca2cb1e90072919f2f8b70091.png" src="../_images/6e9094d65fe5c747dd0ed1bd9810dfe770242c8ca2cb1e90072919f2f8b70091.png" />
+</div>
+</div>
+<p>The law of large numbers says that, the larger the number of cars in our
+sample, the closer the proportions become, to the expected proportion — which
+is the probability, 0.3.</p>
+<p>Here we increase the number of cars in the sample to 1000.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_proportions</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/13bb4e3d76492a0a32a999dcb765003cc7886bab503ce20c011db97ca1b9bbdc.png" src="../_images/13bb4e3d76492a0a32a999dcb765003cc7886bab503ce20c011db97ca1b9bbdc.png" />
+</div>
+</div>
+<p>Notice that the distribution has got considerably tighter; the proportions do still vary from trial to trial, but they vary less than for the case with 100 cars, and they are, on average, a lot close to the expected value of 0.3.</p>
+<p>Here is the result of trials taking proportions of 10000 cars:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_proportions</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b8b8941e56647b2100a945e294c8510e4a4987c23f1458c3fa2e17ccc71fa451.png" src="../_images/b8b8941e56647b2100a945e294c8510e4a4987c23f1458c3fa2e17ccc71fa451.png" />
+</div>
+</div>
+<p>Now the distribution is getting very tight around the expected value.</p>
+<p>In fact, the law of large numbers tells us that, as the number of cars in our
+sample gets very high, the proportion of red in the sample gets very close
+to 0.3.</p>
+<p>Another way of saying this, is that <em>in the long run</em>, if we take huge numbers
+of cars in our sample, our proportions will get closer and closer to the
+probability on the single trial — of 0.3.</p>
+<p>One useful way to think of this, is of each individual car in the sample
+<em>flowing</em> along one of two paths.  There is a probability of 0.3 that the car
+will flow along the red path, and a probability of 0.7 that it will flow
+along the not_red path. <em>In the long</em> run, 30% of the cars end up at the end of
+the red path, and 70% of trials end up at the end of the not_red path.</p>
+<p><img alt="" src="../_images/red_first_sankey.png" /></p>
+<p>These diagrams of <em>flow</em> can be called <a class="reference external" href="https://en.wikipedia.org/wiki/Sankey_diagram">Sankey
+diagrams</a>.  They are useful for
+thinking about probability.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./confidence"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Central_Limit_Theorem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Central Limit Theorem</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="laws_of_probability.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Laws of probability</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

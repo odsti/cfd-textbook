@@ -1,0 +1,139 @@
+---
+jupyter:
+  jupyterbook:
+    show_stderr: true
+  jupytext:
+    formats: ''
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.14.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Selecting rows from DataFrames
+
+```{python}
+# Load the Pandas data science library, call it 'pd'
+import pandas as pd
+# Turn on a setting to use Pandas more safely.
+# We will discuss this setting later.
+pd.set_option('mode.copy_on_write', True)
+
+# Load the library for plotting, name it 'plt'
+import matplotlib.pyplot as plt
+# Make plots look a little more fancy
+plt.style.use('fivethirtyeight')
+```
+
+We return again to the DataFrame we were working on in [basic column
+indexing](df_basic_col_indexing.Rmd).
+
+```{python}
+# Original data frame before dropping missing values.
+gender_data = pd.read_csv('gender_stats_min.csv')
+labeled_gdata = gender_data.dropna().set_index('country_code')
+# Show the result
+labeled_gdata
+```
+
+Thus far we have used DataFrame indexing to select columns from DataFrames.
+
+Remember, *indexing* is where we use square brackets following a value in order
+to select data from inside that value.
+
+We also often want to select rows from DataFrames.   You have already seen
+the `.head` and `.tail` methods, for selecting rows. 
+
+This page covers a more general, and more useful way of selecting rows, using
+*direct indexing with a Boolean Series* (DIBS).
+
+
+## Direct indexing with a Boolean Series
+
+We often want to select rows from the data frame that match some criterion.
+
+For example, let us return to the problem of comparing richer and poorer
+countries.   So far we have sorted the DataFrame with `.sort_values` and then
+selected the first $n$ or last $n$ values, using `.head` and `.tail`.  But what
+if we wanted to select the rows corresponding the countries with a GDP above
+some threshold.
+
+Here's are the GDP values as a Series.  We are using *direct indexing with
+column labels* (DICL) on the DataFrame, to get the column as a Series:
+
+```{python}
+# Direct indexing with column labels (DICL).
+gdp = labeled_gdata['gdp_us_billion']
+gdp
+```
+
+Here's the histogram of GDP again:
+
+```{python}
+plt.hist(gdp)
+```
+
+Looking at the histogram, we could try 1000 (billion US dollars) as a threshold
+to identify high GDP countries.
+
+As you have found in the [Series are like arrays](series_like_arrays.Rmd) page,
+Series are like arrays in many ways.  As you remember, if you do a comparison
+on an array, you get a Boolean array, where each value in the Boolean array is
+the `True` or `False` answer to the comparison question for the corresponding
+element in the original array.  If you do a comparison on a Series, you get a
+Boolean Series, where each value in the Series is the `True` or `False` answer
+to the comparison question for the corresponding element in the original
+Series.
+
+For example, here we do a comparison on the `gdp` series, and we get a Boolean Series.
+
+```{python}
+gdp_gt_1000 = gdp > 1000
+gdp_gt_1000
+```
+
+Notice that the Boolean Series has the same row labels (index) as the original
+Series (here, `gdp`).
+
+The Boolean Series is — a Series:
+
+```{python}
+type(gdp_gt_1000)
+```
+
+We can use this Boolean series to select rows from the DataFrame, by *Boolean
+indexing* — *direct indexing with Boolean Series* (DIBS).
+
+When we index using the Boolean Series inside the square brackets, it works
+like as it does when we index an array with a Boolean array:
+
+```{python}
+rich_gender_data = labeled_gdata[gdp_gt_1000]
+rich_gender_data
+```
+
+```{python}
+type(rich_gender_data)
+```
+
+`rich_gender_data` is a new data frame, that is a subset of the original
+`labeled_gdata` frame.  It contains only the rows where the GDP value is
+greater than `1000` billion dollars.  Check the display of `rich_gender_data`
+above to confirm that the values in the `gdp_us_billion` column are all greater
+than `1000`.
+
+We can do a scatter plot of GDP values against maternal mortality rate, and we
+find again that, for rich countries, there is little relationship between GDP
+and maternal mortality.
+
+```{python}
+plt.scatter(rich_gender_data['gdp_us_billion'],
+            rich_gender_data['mat_mort_ratio'])
+```

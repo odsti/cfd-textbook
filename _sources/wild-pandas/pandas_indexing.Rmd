@@ -1,0 +1,653 @@
+---
+jupyter:
+  jupytext:
+    notebook_metadata_filter: all,-language_info
+    split_at_heading: true
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.16.0
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+# Indexing in Pandas
+
+<!---
+Summary:
+
+Simple indexing
+Indirect indexing
+   Labels with loc
+   Positions with iloc
+-->
+
+Way back in the [basic row indexing](../data-frames/df_basic_row_indexing), we
+showed row selection by indexing into data frames with *Boolean vectors*, such
+as Pandas Series. We called this *direct indexing with Boolean Series* (DIBS).
+We also covered selecting columns by [indexing into data frames with column
+labels](../data-frames/df_basic_col_indexing).  We called this *direct indexing
+with column labels* (DICL).
+
+
+## Simple indexing and the golden rule
+
+We will use the term *simple indexing* to cover both of DIBS and DICL.
+
+**Simple Indexing**
+
+> Direct indexing with either Boolean Series (DIBS) or column labels (DICL).
+
+Here follow some examples.
+
+We start with our usual imports:
+
+```{python}
+# Load the Numpy library, rename to "np"
+import numpy as np
+
+# Load the Pandas data science library, rename to "pd"
+import pandas as pd
+
+# Safe setting for Pandas.  Needs Pandas version >= 1.5.
+pd.set_option('mode.copy_on_write', True)
+```
+
+We return to a version of our first data frame, containing statistics on
+development and gender from the World Bank.
+
+This is the {download}`gender_stats.csv <../data/gender_stats.csv>` file.
+See [the gender stats data
+page](https://github.com/matthew-brett/datasets/tree/master/gender_stats) for
+some more detail.
+
+Download that file to the same directory as this notebook, if you are running
+on your own computer.
+
+```{python}
+# Load the data file as a data frame.
+gender_data = pd.read_csv('gender_stats.csv')
+
+# Show the first 10 rows
+gender_data.head(10)
+```
+
+### Direct Indexing with Column Labels (DICL)
+
+Direct Indexing with Column Labels (DICL) happens when we do *direct indexing*
+(square brackets immediately follow the data frame variable), where one or more
+*column labels* go inside the square brackets.
+
+For example, here we use DICL to get the values for one column as a Pandas Series:
+
+```{python}
+# DICL with a single column name
+gender_data['mat_mort_ratio']
+```
+
+We can use more than one column label by putting the column labels in a list:
+
+```{python}
+# DICL with a two column names in a list.
+cols_we_want = ['gdp_us_billion', 'mat_mort_ratio']
+gender_data[cols_we_want]
+```
+
+```{python}
+# DICL with a two column names in a list.
+# Here we create the list inside the indexing brackets, instead
+# of first creating it and storing it in a variable.
+# Notice the two uses of square brackets - following "gender_data" to
+# do indexing, and around the column labels to create a list.
+gender_data[['gdp_us_billion', 'mat_mort_ratio']]
+```
+
+DICL gives a single column (Series) with a single label, or a subset of columns
+(a new data frame) when we pass a list of column labels.
+
+### Direct Indexing with Boolean Series (DIBS)
+
+Direct Indexing with a Boolean Series (DIBS) happens when we put a Boolean
+Series within the indexing brackets.
+
+DIBS selects a subset of the *rows*.  Specifically, it selects the rows where the Boolean Series has True.  It returns a subset of the original dataframe.
+
+For example, let us say we wanted to select the rows in the `gender_data` data frame where the `mat_mort_ratio` value was greater than 100.
+
+We first create a Boolean Series, with True for rows where `mat_mort_ratio` is
+greater than 100, and False otherwise.
+
+```{python}
+# DICL to get the mat_mort_ratio column as a Series.
+mmr = gender_data['mat_mort_ratio']
+# Make a Boolean Series with True for > 100, False otherwise.
+mmr_gt_100 = mmr > 100
+```
+
+We index with the Boolean Series (DIBS), to select only those *rows* where `mat_mort_ratio` was greater than 100.  Notice that you get a data frame back.
+
+```{python}
+# DIBS
+gender_data[mmr_gt_100]
+```
+
+Here we created the Boolean Series in two steps, and then used it to do the indexing.  It's more common to create the Boolean Series with an expression inside the indexing brackets:
+
+```{python}
+# DIBS, creating the BS with an expression inside the indexing brackets.
+gender_data[gender_data['mat_mort_ratio'] > 100]
+```
+
+Notice that this is exactly the same as the indexing above; Python first sees
+and evaluates the expression inside the square brackets:
+`gender_data['mat_mort_ratio'] > 100`, to make the Boolean Series, and then
+passes the resulting series to the data frame indexing machinery to select the
+rows.
+
+## Indirect indexing
+
+The rest of this page covers more sophisticated indexing in Pandas - *indirect
+indexing*.
+
+Why don't we use the term *direct indexing* instead of *simple indexing*?
+Because there are various other things you can put inside the square brackets
+using direct indexing.  We won't go into other uses of direct indexing here,
+because we strongly recommend that you restrict yourself to DIBS and DICL for
+direct indexing — because other uses of direct indexing can quickly become
+confusing and ambiguous, and because you can do all the indexing you need using
+the indirect indexing techniques in this page.  As you will see, indirect
+indexing uses the `.loc` and `.iloc`attributes of the DataFrame.
+
+Here is the rule we propose.
+
+**The Golden Rule of Pandas Indexing**
+
+> Only use Boolean Series or column labels for direct indexing.  For any other
+type of indexing, use indirect indexing with `.loc` and `.iloc`.
+
+We do not just advocate this rule for beginners.  We (your humble authors) also
+stick to this rule, not only in this textbook, but in our daily work.  By
+sticking to this rule, you will avoid some nasty and confusing errors, and you
+will find it easier to think clearly about indexing.
+
+## Indirect indexing
+
+To understand indirect indexing, we return to the [index of data frames and
+Series](../data-frames/df_index).  The *index* contains the *row labels* for a
+data frame or series.
+
+We start with our usual imports:
+
+```{python}
+# Load the Numpy library, rename to "np"
+import numpy as np
+
+# Load the Pandas data science library, rename to "pd"
+import pandas as pd
+
+# Safe setting for Pandas.  Needs Pandas version >= 1.5.
+pd.set_option('mode.copy_on_write', True)
+```
+
+We return to a version of our first data frame, containing statistics on
+development and gender from the World Bank.
+
+This is the {download}`gender_stats.csv <../data/gender_stats.csv>` file.
+See [the gender stats data
+page](https://github.com/matthew-brett/datasets/tree/master/gender_stats) for
+some more detail.
+
+Download that file to the same directory as this notebook, if you are running
+on your own computer.
+
+```{python}
+# Load the data file as a data frame.
+gender_data = pd.read_csv('gender_stats.csv')
+
+# Show the first 10 rows
+gender_data.head(10)
+```
+
+As you know, the names at the top, in **bold typeface**, are the names of the
+columns.  We can see these names using the `columns` attribute of the data
+frame:
+
+```{python}
+gender_data.columns
+```
+
+These can also be called the *column labels*.
+
+Here is a summary of the meaning of most of the columns:
+
+* `fert_rate`: Fertility rate, total (births per woman).
+* `gdp_us_billion`: GDP (in current US \$ billions).
+* `health_exp_per_cap`: Health expenditure per capita, PPP (constant 2011
+  international \$).
+* `health_exp_pub`: Health expenditure, public (% of GDP).
+* `prim_ed_girls`: Primary education, pupils (% female).
+* `mat_mort_ratio`: Maternal mortality ratio (modeled estimate, per 100,000
+  live births).
+* `population`: Population, total (millions).
+
+We have not paid attention so far to the numbers at the left of the table
+display, also in bold typeface.
+
+In this case, they are ascending integers, starting at 0, with value 0 for the
+first row, 1 for the second row, and so on.
+
+These numbers are the *index* of the data frame.  The index contains the *row
+labels*.
+
+We can see the row labels / index with the `index` attribute of the data frame.
+
+```{python}
+gender_data.index
+```
+
+This is saying we have a simple index, that is like a `np.arange`, starting at
+0, and continuing in steps of 1 up to, but not including 216.
+
+So far, the index looks like row numbers, with 0 for the first row, 1 for the
+second row.  We will soon see that the index is more than that.
+
+
+For example, let us look at the last 15 rows.  We can get these with the `tail`
+method of the data frame.
+
+```{python}
+last_15 = gender_data.tail(15)
+last_15
+```
+
+Here is the `index` of this new data frame.
+
+```{python}
+last_15.index
+```
+
+Notice that the first row of this new data frame no longer has the label 0 - it
+has label 201.  These numbers are the labels from the original data frame, from
+which we selected the rows.
+
+Notice too that the second row in this table is the USA, and it has the label
+\202.
+
+
+Now imagine that I sort the original data frame by Gross Domestic Product, and
+select the top 15 rows.  By doing this, I select the top 15 richest countries.
+
+```{python}
+# Sort by GDP.
+df_by_gdp = gender_data.sort_values('gdp_us_billion', ascending=False)
+# Take the top 15 rows.
+richest_15 = df_by_gdp.head(15)
+richest_15
+```
+
+Now notice that the index values have followed their respective rows.  The row
+for the USA is now first, but it has kept its original index value (row label)
+\- 202.  The index value *identifies* the row.
+
+Here is the index for this small table:
+
+```{python}
+richest_15.index
+```
+
+Now let us say that I wanted to get the eleventh row of this table.
+
+I would be tempted to do something like `richest_15[10]` - but then - what
+would Pandas give me?   Does `10` mean the row label for "Australia"?  Or does
+it mean the eleventh row of the table, as it would for an array, and therefore
+the row for "Canada"?  That is, will the indexing using the *labels* (index
+values)?  Or will it use the positions (as for indexing in Numpy arrays)?
+
+The answer is, it is ambiguous, and when things are ambiguous, Pandas has to
+guess.   That's a bad idea, because then we have to guess what Pandas has
+guessed, and it is starting to get really confusing.
+
+For that reason, we careful Pandas users do not index rows with code like
+`richest_15[10]`.  When we are not using Booleans to select rows, we always use
+one of the two indexing attributes that Pandas provides.  Each does a different
+type of indexing.
+
+* The `loc` (label locate) attribute indexes using the *labels* (row index).
+* The `iloc` (position locate) attribute indexes using the positions.
+
+Here they are in action:
+
+```{python}
+# Get the row with label 10
+richest_15.loc[10]
+```
+
+```{python}
+# Get the row at position / offset 10
+richest_15.iloc[10]
+```
+
+In more details, what is happening in the first cell above is that
+`richest_15.loc` gives us a special value (AKA *object*) that:
+
+* knows about the `richest_15` data frame;
+* will give us rows and columns, if we use `[ something ]` on it.
+
+So, read `richest_15.loc[10]` as:
+
+* Get the `richest_15` value (the data frame);
+* Get the `loc` attribute of this data frame. This evaluates to a special
+  object (value) that can give us rows and columns from the data frame, by
+  looking at labels;
+* Use this object to fetch the row labeled 10, by using indexing (`[10]`)
+
+
+Likewise, read `richest_15.iloc[10]` as:
+
+* Get the `richest_15` value (the data frame);
+* Get the `iloc` attribute of this data frame. This evaluates to a special
+  object (value) that can give us rows and columns from the data frame, by
+  looking at positions (offsets);
+* Use this object to fetch the row at offset 10, by using indexing (`[10]`).
+
+
+When you select rows and columns from a data frame, consider carefully what you
+want.
+
+Do you want to select rows and columns by *label* (by *index*, in the rows).
+Then you want `.loc`.
+
+Do you want to select rows and columns by *position* (offset).  Then you want
+`.iloc`.
+
+
+## indexing and slices
+
+
+`.loc` indexing gets you rows and columns by *label*.
+
+One form of indexing you have seen for arrays, is labeling by *slice*, to get a
+sequence of values.
+
+A *slice* is an expression with a colon (`:`) in it somewhere.  Here's slice
+indexing into an array:
+
+```{python}
+my_array = np.array(['one', 'two', 'three', 'four', 'five'])
+# Give array of values from position 2 up to, not including position 4
+my_array[2:4]
+```
+
+The same sort of indexing works using both `.iloc` and `.loc`.  For `.iloc`,
+the parallel is obvious - because we specify positions in exactly the same way:
+
+```{python}
+# Rows from position 2, up to, not including, position 4
+richest_15.iloc[2:4]
+```
+
+You can also do this kind of indexing with `.loc`, but it works differently.
+To make this clear, let's start with `.loc` indexing where the row labels are
+strings.  We set the row labels to be the country codes.
+
+```{python}
+richest_15_with_code = richest_15.set_index('country_code')
+richest_15_with_code
+```
+
+As we would expect, we will get an error if we try to use numbers for `.loc`
+row indexing, because `.loc` indexing only uses labels, and the labels are now
+all strings:
+
+```{python tags=c("raises-exception")}
+richest_15_with_code.loc[2:4]
+```
+
+In fact we can use slices, but the value in front of the colon (if any) is the
+*label* of the first row we want, and the value after the colon is the *label*
+of the *last* row we want.
+
+Notice that *this is different from position indexing* for arrays, or using
+`.iloc`.  In those cases, the value after the colon gives the *stop* position.
+We return values from positions up to *but not including* the stop position.
+As a reminder:
+
+```{python}
+# From position 2 up to, but not including, position 4
+richest_15_with_code.iloc[2:4]
+```
+
+Now consider this `.loc` indexing with a slice.  Here the value after the colon
+is not a *stop* value, but an *end* label.  We *do* return the row
+corresponding to the end label:
+
+```{python}
+# All countries starting at label 'JPN' and ending (including)
+# row labeled 'FRA'
+richest_15_with_code.loc['JPN':'FRA']
+```
+
+**For reflection** - why did Pandas choose to make label indexing work this
+way?  Have a look at the example above.
+
+
+## Loc and iloc indexing work on columns too
+
+
+Consider this.  We use `.loc` and the label for the *row*, followed by the
+label for the *column*.
+
+```{python}
+richest_15.loc[10, 'gdp_us_billion']
+```
+
+This selects the row *labeled* 10 (the USA row) and returns the value from the
+`gdp_us_billion` column.
+
+Conversely, `iloc` only understands positions, and so, integers.  It does not
+understand or use labels:
+
+```{python tags=c("raises-exception")}
+# We can't specify columns by label, using iloc.
+richest_15.iloc[10, 'gdp_us_billion']
+```
+
+Notice the somewhat informative error right at the bottom of the error message.
+
+
+`iloc` can get columns by their position.  For example, `fertility_rate` is the
+third column, and so we can get the fertility rate by asking `iloc` for the
+eleventh row, third column, like so:
+
+```{python}
+richest_15.iloc[10, 2]
+```
+
+This is the value from the row at offset 10 and the column at offset 2.
+
+
+## Series have an index too
+
+
+Data frames have columns (and column labels), and rows (with row labels --- the
+index).
+
+Series also have element labels --- they also have an index.
+
+Consider this column, of the fertility rates of the richest countries:
+
+```{python}
+# Get the fert_rate column from the data frame
+rich_ferts = richest_15['fert_rate']
+rich_ferts.head()
+```
+
+As y'all know, this is a Series:
+
+```{python}
+type(rich_ferts)
+```
+
+You probably also spotted the numbers to the left of the values.  Yes, the row
+labels have come across from the data frame into the Series.  We can see that
+the first element has row label 202, and we remember that this is the row label
+(index value) for the USA.
+
+
+As for the data frames, here is the index for the series:
+
+```{python}
+rich_ferts.index
+```
+
+Like data frames, we can index by label, with `loc`, and by position, with
+`iloc`:
+
+```{python}
+# The value for row labeled 10 - Australia.
+rich_ferts.loc[10]
+```
+
+```{python}
+# The value for the row at position 10 - Canada
+rich_ferts.iloc[10]
+```
+
+## Rows from data frames are Series
+
+
+Here we select the row at position 0 (the first row):
+
+```{python}
+first_row = richest_15.iloc[0]
+first_row
+```
+
+This is a Series:
+
+```{python}
+type(first_row)
+```
+
+Notice that the Series has 9 elements, one for each column in the data frame.
+
+As you remember, we can see the number of rows and columns in a data frame
+with:
+
+```{python}
+richest_15.shape
+```
+
+Remember, the columns have names, which we can also call *labels*.
+
+When we select a row out of a data frame, we have one element per column, and
+the labels for the columns now become the labels for the rows.
+
+```{python}
+first_row.index
+```
+
+As for any other Series, we can get elements by label, with `loc`:
+
+```{python}
+first_row.loc['fert_rate']
+```
+
+We can also get elements by position (offset), with `iloc`:
+
+```{python}
+first_row.iloc[0]
+```
+
+## You can index without loc and iloc, but please don't, except ...
+
+
+In the pages following the [data frame
+introduction](../data-frames/data_frame_intro), you saw that we can index into
+data frame directly, using `[ something ]` after the data frame value, without
+using `loc` or `iloc`.  Call this *direct indexing*.  This is a very reasonable
+thing to do if:
+
+* the `something` is a Boolean Series ([DIBS](../data-frames/df_basic_row_indexing)).
+  This is not ambiguous.
+* the `something` is a column label or list of labels
+  ([DICL](../data-frames/df_basic_col_indexing)).  This isn't ambiguous either.
+
+Both of these are entirely reasonable uses of direct indexing:
+
+```{python}
+# Direct indexing with a Boolean Series (DIBS).
+# Select rows where 'health_exp_per_cap' is greater than 3000 dollars.
+is_big_spender = richest_15['health_exp_per_cap'] > 3000  # Boolean Series
+big_health_spenders = richest_15[is_big_spender]
+big_health_spenders
+```
+
+```{python}
+# Direct indexing with column labels (DICL).
+# Select the 'country_code' column.
+country_code = richest_15['country_code']
+country_code
+```
+
+Those uses of direct indexing are entirely sensible.  Other uses of direct
+indexing are not sensible, and we strongly encourage you not to use them.
+
+For example, Pandas will also allow you to this, with the Series we just made:
+
+```{python}
+# Nooooooo !
+country_code[10]
+```
+
+Please don't do that.  This is ambiguous.  Did you really mean the country with
+label 10?  Or did you mean the country at position 10?   Pandas will guess for
+you.  Don't let it.  If you are not selecting rows / elements with Booleans,
+always do this:
+
+```{python}
+# By label
+country_code.loc[10]
+```
+
+or this:
+
+```{python}
+# By position
+country_code.iloc[10]
+```
+
+## You can use Boolean indexing with `.loc`
+
+
+It is often convenient to use direct indexing with Booleans, as we have just seen:
+
+```{python}
+# Create a Boolean series with True for big spender rows, False otherwise.
+is_big_spender = richest_15['health_exp_per_cap'] > 3000
+is_big_spender
+```
+
+```{python}
+# Direct Boolean indexing:
+# Select rows where 'health_exp_per_cap' is greater than 3000 dollars.
+big_health_spenders = richest_15[is_big_spender]
+big_health_spenders
+```
+
+We can also use Booleans with `loc` indexing.  This allows us to do things such
+as selecting rows with Booleans, and columns with labels, in one shot, like
+this:
+
+```{python}
+# Boolean indexing for rows, with "loc"
+# Get "country_name" column values for big health spenders:
+big_spender_names = richest_15.loc[is_big_spender, 'country_name']
+big_spender_names
+```
+
+In fact you can use some Boolean sequences with `iloc` as well, but that needs
+[a little more explanation](../functions-conditionals/booleans_and_labels).
