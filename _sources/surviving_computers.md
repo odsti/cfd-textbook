@@ -48,6 +48,6 @@ will find that you can think more quickly and carefully.
 
 ## References
 
-```{bibliography} /bib/course_refs.bib
+```{bibliography} course_refs.bib
 :filter: docname in docnames
 ```

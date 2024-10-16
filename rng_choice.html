@@ -640,7 +640,7 @@ choosing between 0 and 1, like this.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
 </pre></div>
 </div>
 </div>
@@ -660,7 +660,7 @@ do this:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
 </pre></div>
 </div>
 </div>
@@ -694,7 +694,7 @@ do that:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(1)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(0)
 </pre></div>
 </div>
 </div>
@@ -716,7 +716,7 @@ jurors, each with a probability of 0.26 of being 1 (Black).  We could do this:</
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0])
 </pre></div>
 </div>
 </div>
@@ -733,7 +733,7 @@ of being a Girl.  Let’s do the same as we did before, and use 0 for a boy, and
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 0, 1, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 1, 0, 1])
 </pre></div>
 </div>
 </div>
@@ -750,7 +750,7 @@ and get the same outcome:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 1, 0, 1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 0, 0, 0])
 </pre></div>
 </div>
 </div>
@@ -794,7 +794,7 @@ the bucket.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 6, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 8, 4])
 </pre></div>
 </div>
 </div>
@@ -823,7 +823,7 @@ in general, the digits cannot repeat in this case.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 1, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0, 3, 8])
 </pre></div>
 </div>
 </div>
@@ -840,7 +840,7 @@ digits.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([1, 6, 1, 2, 3, 0, 0, 2, 8, 8])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([7, 7, 4, 9, 4, 3, 1, 4, 1, 1])
 </pre></div>
 </div>
 </div>
@@ -853,7 +853,7 @@ digits.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 3, 1, 0, 1, 6, 2, 2, 7, 4])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2, 3, 6, 5, 5, 5, 3, 2, 5, 0])
 </pre></div>
 </div>
 </div>
@@ -898,11 +898,11 @@ error:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 3, 8, 0, 6, 5, 5, 7, 0, 9, 0, 2, 5, 6, 4, 4, 4, 0, 3, 8, 7, 5,
-       2, 9, 9, 5, 6, 1, 0, 4, 0, 7, 4, 9, 1, 7, 6, 6, 5, 0, 7, 6, 1, 1,
-       1, 0, 2, 9, 8, 2, 8, 6, 7, 0, 7, 1, 7, 7, 9, 3, 9, 9, 1, 4, 4, 7,
-       0, 8, 0, 4, 2, 0, 8, 5, 6, 9, 1, 6, 7, 8, 0, 4, 3, 1, 9, 7, 5, 8,
-       8, 2, 9, 9, 7, 5, 6, 3, 5, 3, 8, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 2, 6, 6, 3, 3, 8, 8, 5, 6, 3, 1, 6, 3, 6, 6, 4, 8, 3, 6, 8, 7,
+       5, 0, 9, 3, 9, 9, 9, 9, 0, 9, 0, 5, 8, 9, 4, 9, 0, 0, 2, 4, 2, 4,
+       8, 9, 8, 4, 1, 0, 5, 6, 9, 8, 6, 5, 1, 7, 1, 4, 7, 0, 6, 6, 5, 4,
+       6, 5, 4, 9, 3, 3, 7, 7, 2, 3, 0, 7, 6, 7, 8, 1, 9, 8, 7, 4, 2, 2,
+       2, 9, 3, 9, 9, 4, 6, 2, 7, 2, 3, 6])
 </pre></div>
 </div>
 </div>

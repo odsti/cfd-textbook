@@ -45,6 +45,6 @@ There are two data files containing the same data:
 
 ## References
 
-```{bibliography} /bib/course_refs.bib
+```{bibliography} /course_refs.bib
 :filter: docname in docnames
 ```

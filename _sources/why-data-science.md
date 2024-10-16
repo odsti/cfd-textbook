@@ -56,6 +56,6 @@ everyone.
 
 ## References
 
-```{bibliography} /bib/course_refs.bib
+```{bibliography} course_refs.bib
 :filter: docname in docnames
 ```
