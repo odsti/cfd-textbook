@@ -1887,7 +1887,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Yes&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;],
       dtype=object)
 </pre></div>
 </div>
@@ -1959,7 +1959,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
     </tr>
     <tr>
       <th>275</th>
-      <td>Yes</td>
+      <td>No</td>
       <td>rescuer</td>
     </tr>
     <tr>
@@ -1974,7 +1974,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
     </tr>
     <tr>
       <th>278</th>
-      <td>No</td>
+      <td>Yes</td>
       <td>rescuer</td>
     </tr>
     <tr>
@@ -2037,13 +2037,13 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
   <tbody>
     <tr>
       <th>No</th>
-      <td>56</td>
-      <td>173</td>
+      <td>60</td>
+      <td>169</td>
     </tr>
     <tr>
       <th>Yes</th>
-      <td>15</td>
-      <td>36</td>
+      <td>11</td>
+      <td>40</td>
     </tr>
   </tbody>
 </table>
@@ -2075,7 +2075,7 @@ to belong to a political party.  Let us restrict our attention to the count of
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(36)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(40)
 </pre></div>
 </div>
 </div>
@@ -2103,7 +2103,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([42., 42., 40., 36., 43., 37., 41., 40., 37., 36.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([34., 36., 43., 37., 33., 41., 40., 41., 40., 37.])
 </pre></div>
 </div>
 </div>
@@ -2116,7 +2116,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e820f233cb0aad5c17a3588a3833bb987c8572dfd22cd9420138c269a7be6b4e.png" src="_images/e820f233cb0aad5c17a3588a3833bb987c8572dfd22cd9420138c269a7be6b4e.png" />
+<img alt="_images/6378080e073f2f75872faa103771af36462a5e2e6d9faa7bbdd0e3db662f7568.png" src="_images/6378080e073f2f75872faa103771af36462a5e2e6d9faa7bbdd0e3db662f7568.png" />
 </div>
 </div>
 <p>How unusual is the actual value, in this ideal world?</p>
@@ -2129,7 +2129,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.018
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.027
 </pre></div>
 </div>
 </div>
@@ -2235,7 +2235,7 @@ counts, for each trial:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([34., 34., 44., 41., 38., 33., 36., 36., 39., 37.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([37., 37., 40., 31., 34., 41., 34., 37., 38., 31.])
 </pre></div>
 </div>
 </div>
@@ -2249,7 +2249,7 @@ counts, for each trial:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([54., 54., 64., 61., 58., 53., 56., 56., 59., 57.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([57., 57., 60., 51., 54., 61., 54., 57., 58., 51.])
 </pre></div>
 </div>
 </div>
@@ -2293,7 +2293,7 @@ Differences all the same?
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.021
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.026
 </pre></div>
 </div>
 </div>
@@ -2309,7 +2309,7 @@ Differences all the same?
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.021
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.026
 </pre></div>
 </div>
 </div>
