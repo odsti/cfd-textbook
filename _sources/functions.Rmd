@@ -357,6 +357,6 @@ result is None
 
 ## End of the introduction
 
-That's it for the introduction.  For a less basic description, have
-a look at the [Berkeley introduction to
-functions](data8_functions.Rmd).
+That's it for the introduction.  For a less basic description, have a look at
+the [Berkeley introduction to
+functions](https://inferentialthinking.com/chapters/08/Functions_and_Tables.html).

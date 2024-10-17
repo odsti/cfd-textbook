@@ -182,12 +182,6 @@
 <li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
@@ -308,21 +302,11 @@
 <li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_multiple.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
@@ -351,8 +335,6 @@
 <li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
@@ -710,7 +692,7 @@ distribution</em> of the mean difference:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/620b03ff1bfc3e02a7150ac2c84626fb6b769c90d28930b30ad2209d031bfa95.png" src="_images/620b03ff1bfc3e02a7150ac2c84626fb6b769c90d28930b30ad2209d031bfa95.png" />
+<img alt="_images/0bd15d6c95235455a7f1fe6d2d13dbc8f80440d457986e8cb9552a11a3b5be45.png" src="_images/0bd15d6c95235455a7f1fe6d2d13dbc8f80440d457986e8cb9552a11a3b5be45.png" />
 </div>
 </div>
 <p>We can work out the proportion of the sampling distribution that is greater
@@ -725,7 +707,7 @@ the observed value, if we are in fact in the null (ideal) world:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0596
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06
 </pre></div>
 </div>
 </div>
@@ -742,7 +724,7 @@ calculate the standard deviation.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.807496616407851)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.7651951770351526)
 </pre></div>
 </div>
 </div>
@@ -761,7 +743,7 @@ spread out the distribution is, around its mean.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c8de0d52e67524a843fb8a2c24cfa868126a302e1b9d43a195cad80124d7f2c4.png" src="_images/c8de0d52e67524a843fb8a2c24cfa868126a302e1b9d43a195cad80124d7f2c4.png" />
+<img alt="_images/ae6c7198281adccd3de138666482517742c9b5f28f3e2a5d3c8f669690df2afb.png" src="_images/ae6c7198281adccd3de138666482517742c9b5f28f3e2a5d3c8f669690df2afb.png" />
 </div>
 </div>
 <p>We can use the standard deviation as a unit of distance in the distribution.</p>
@@ -776,7 +758,7 @@ distribution, which is zero.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.5791054947042877)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.6032623556384045)
 </pre></div>
 </div>
 </div>
@@ -829,7 +811,7 @@ permutation distribution:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.807496616407851)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.7651951770351526)
 </pre></div>
 </div>
 </div>
@@ -890,7 +872,7 @@ permutation test.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0596
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.06
 </pre></div>
 </div>
 </div>

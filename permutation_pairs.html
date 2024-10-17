@@ -184,12 +184,6 @@
 <li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
@@ -310,21 +304,11 @@
 <li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_multiple.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
@@ -353,8 +337,6 @@
 <li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
@@ -1277,8 +1259,8 @@ difference by -1.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1,  1, -1, -1,  1, -1,  1,  1,  1, -1, -1, -1,  1, -1,  1,  1,  1,
-        1,  1, -1,  1,  1,  1,  1,  1])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1, -1,  1, -1, -1,  1, -1, -1,  1,  1, -1,  1,  1,  1,  1,  1,  1,
+        1, -1, -1,  1, -1,  1, -1, -1])
 </pre></div>
 </div>
 </div>
@@ -1324,8 +1306,8 @@ of 1 correspond to pairs we have left in the original order.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([  2,   0, -12,  -1,   2,   3,  11,   8,   4, -19,   9, -21,  11,
-         2,   5,  -5,   3,   4,   6,  -9,  20,   2,   4,  17,  18])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ -2,   0,  12,  -1,  -2,  -3, -11,  -8,   4,  19,   9,  21,  11,
+        -2,   5,  -5,   3,   4,  -6,  -9,  20,  -2,   4, -17, -18])
 </pre></div>
 </div>
 </div>
@@ -1339,7 +1321,7 @@ of 1 correspond to pairs we have left in the original order.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.56)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(1.04)
 </pre></div>
 </div>
 </div>
@@ -1356,7 +1338,7 @@ of 1 correspond to pairs we have left in the original order.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2.64)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.16)
 </pre></div>
 </div>
 </div>
@@ -1381,8 +1363,8 @@ distribution in the null world.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.88, -0.4 ,  2.08,  0.88,  1.2 ,  0.32,  0.96,  0.  ,  2.  ,
-       -1.36])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-1.04, -1.52,  3.84, -1.68,  1.52, -2.08,  4.32,  2.48, -3.92,
+        0.32])
 </pre></div>
 </div>
 </div>
@@ -1399,7 +1381,7 @@ distribution in the null world.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7b1e6d7504fd7889324bffe0e759576765bda01823946956b7b97cc4c29d5a62.png" src="_images/7b1e6d7504fd7889324bffe0e759576765bda01823946956b7b97cc4c29d5a62.png" />
+<img alt="_images/1ce11e87191b4f82f3bca3cac32d1e075a235e892a2119173b52ea4a29a38032.png" src="_images/1ce11e87191b4f82f3bca3cac32d1e075a235e892a2119173b52ea4a29a38032.png" />
 </div>
 </div>
 <p>Finally we ask how unusual the actual value is in the sampling distribution from the null world:</p>
@@ -1411,7 +1393,7 @@ distribution in the null world.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0003
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0004
 </pre></div>
 </div>
 </div>

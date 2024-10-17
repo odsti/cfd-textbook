@@ -182,12 +182,6 @@
 <li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
@@ -308,21 +302,11 @@
 <li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_multiple.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
@@ -351,8 +335,6 @@
 <li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
@@ -1414,7 +1396,7 @@ the parameter.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fcfa3d6bc1c7f20fcf2fa5f97d4ec669ff83a92f70ff50d100a3b25cf48fada3.png" src="_images/fcfa3d6bc1c7f20fcf2fa5f97d4ec669ff83a92f70ff50d100a3b25cf48fada3.png" />
+<img alt="_images/c5b19fd88bc2d73e954b6317158875ecda89d9e7f536e16cf9df3d4cd4500106.png" src="_images/c5b19fd88bc2d73e954b6317158875ecda89d9e7f536e16cf9df3d4cd4500106.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1425,7 +1407,7 @@ the parameter.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(114581.47)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(108820.07)
 </pre></div>
 </div>
 </div>
@@ -1492,17 +1474,17 @@ the corresponding sample median.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29860    142038.73
-24086    146334.08
-7700     211972.35
-10389     84302.41
-31932    111655.93
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>41761     38832.56
+39522     85677.47
+467       93451.42
+15245    139506.00
+32152     74572.67
            ...    
-1291     185266.54
-13368    307384.56
-28132     36117.70
-29393    126607.31
-24095     38053.36
+38053    125093.80
+29080     94362.56
+553      103051.53
+13039    212208.88
+28818     97234.41
 Name: Total Compensation, Length: 500, dtype: float64
 </pre></div>
 </div>
@@ -1516,7 +1498,7 @@ Name: Total Compensation, Length: 500, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7a93cfcd09000c50e5228520097c5496e3536d5a00d5e25922976ef3465872af.png" src="_images/7a93cfcd09000c50e5228520097c5496e3536d5a00d5e25922976ef3465872af.png" />
+<img alt="_images/64df7aeab76ba2501fa020a50f00fd303e2a894fc2d2a1451c505f590fc71d06.png" src="_images/64df7aeab76ba2501fa020a50f00fd303e2a894fc2d2a1451c505f590fc71d06.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1527,7 +1509,7 @@ Name: Total Compensation, Length: 500, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(110348.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(109477.12)
 </pre></div>
 </div>
 </div>
@@ -1548,7 +1530,7 @@ median</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(111718.505)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(111874.47)
 </pre></div>
 </div>
 </div>
@@ -1616,7 +1598,7 @@ but did not use in the bootstrap process.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5315f50a9e3d7f3357f6b169a29ffe074213468f5fd0dbeb20d50dd0c6c8fa72.png" src="_images/5315f50a9e3d7f3357f6b169a29ffe074213468f5fd0dbeb20d50dd0c6c8fa72.png" />
+<img alt="_images/15054487ddbff5895d1bd7fc2ad4913dfbf21d5e8a273a0c39307bb12d9a15c3.png" src="_images/15054487ddbff5895d1bd7fc2ad4913dfbf21d5e8a273a0c39307bb12d9a15c3.png" />
 </div>
 </div>
 <p>It is important to remember that the red dot is fixed: it is $110,305.79, the
@@ -1642,7 +1624,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(107466.390375)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(101792.10500000001)
 </pre></div>
 </div>
 </div>
@@ -1655,7 +1637,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(120015.06)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(114485.92)
 </pre></div>
 </div>
 </div>
@@ -1668,7 +1650,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([107466.390375, 120015.06    ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([101792.105, 114485.92 ])
 </pre></div>
 </div>
 </div>
@@ -1683,8 +1665,8 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 107466.390375
-Right 120015.06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 101792.10500000001
+Right 114485.92
 </pre></div>
 </div>
 </div>
@@ -1702,7 +1684,7 @@ Right 120015.06
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/dfdf5a38d20c6f3716f04a7fda329496e727b2c24c31548f5583a0f8b1b06faf.png" src="_images/dfdf5a38d20c6f3716f04a7fda329496e727b2c24c31548f5583a0f8b1b06faf.png" />
+<img alt="_images/17d3a81b535db395b16e1bb3c7633bc34c7450561e3580f966f142d7e7a1c539.png" src="_images/17d3a81b535db395b16e1bb3c7633bc34c7450561e3580f966f142d7e7a1c539.png" />
 </div>
 </div>
 <p>The “middle 95%” interval of estimates captured the parameter in our example.
@@ -1732,8 +1714,8 @@ one left and one right interval.  This is the code we have been using above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 107224.23
-Right 118572.77
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 104096.03
+Right 116947.66
 </pre></div>
 </div>
 </div>
@@ -1806,28 +1788,28 @@ estimates of the median.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>100809.110000</td>
-      <td>114083.86000</td>
+      <td>107607.330</td>
+      <td>123079.504750</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>102764.805000</td>
-      <td>114847.19075</td>
+      <td>104949.455</td>
+      <td>116737.645000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>99903.030000</td>
-      <td>112379.44775</td>
+      <td>108365.570</td>
+      <td>117607.505000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>104778.510000</td>
-      <td>114137.36000</td>
+      <td>102804.050</td>
+      <td>115553.540000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>105740.740000</td>
-      <td>116295.72000</td>
+      <td>106642.255</td>
+      <td>116570.018375</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1836,28 +1818,28 @@ estimates of the median.</p>
     </tr>
     <tr>
       <th>95</th>
-      <td>100624.950000</td>
-      <td>115316.35000</td>
+      <td>100165.500</td>
+      <td>113928.340000</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>98892.550000</td>
-      <td>110260.59000</td>
+      <td>104525.740</td>
+      <td>117287.200000</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>105094.197625</td>
-      <td>118597.16725</td>
+      <td>106332.230</td>
+      <td>114966.060000</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>97317.890000</td>
-      <td>108561.80000</td>
+      <td>100919.410</td>
+      <td>112655.210000</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>104223.940000</td>
-      <td>116104.83000</td>
+      <td>98579.555</td>
+      <td>111203.584750</td>
     </tr>
   </tbody>
 </table>
@@ -1915,28 +1897,28 @@ end is above.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>100809.110000</td>
-      <td>114083.86000</td>
+      <td>107607.330</td>
+      <td>123079.504750</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>102764.805000</td>
-      <td>114847.19075</td>
+      <td>104949.455</td>
+      <td>116737.645000</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>99903.030000</td>
-      <td>112379.44775</td>
+      <td>108365.570</td>
+      <td>117607.505000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>104778.510000</td>
-      <td>114137.36000</td>
+      <td>102804.050</td>
+      <td>115553.540000</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>105740.740000</td>
-      <td>116295.72000</td>
+      <td>106642.255</td>
+      <td>116570.018375</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1944,33 +1926,33 @@ end is above.</p>
       <td>...</td>
     </tr>
     <tr>
-      <th>92</th>
-      <td>106006.370000</td>
-      <td>114556.90000</td>
-    </tr>
-    <tr>
-      <th>93</th>
-      <td>99463.804500</td>
-      <td>113510.79000</td>
-    </tr>
-    <tr>
       <th>95</th>
-      <td>100624.950000</td>
-      <td>115316.35000</td>
+      <td>100165.500</td>
+      <td>113928.340000</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>104525.740</td>
+      <td>117287.200000</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>105094.197625</td>
-      <td>118597.16725</td>
+      <td>106332.230</td>
+      <td>114966.060000</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>100919.410</td>
+      <td>112655.210000</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>104223.940000</td>
-      <td>116104.83000</td>
+      <td>98579.555</td>
+      <td>111203.584750</td>
     </tr>
   </tbody>
 </table>
-<p>94 rows × 2 columns</p>
+<p>92 rows × 2 columns</p>
 </div></div></div>
 </div>
 <p>It takes a few minutes to construct all the intervals, but try it again if you
@@ -2009,7 +1991,7 @@ likely to be off.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8d8a1874d14c2e71ffb3c6aa659fdf6c05b57dfab20c2be1b60af227e15a9747.png" src="_images/8d8a1874d14c2e71ffb3c6aa659fdf6c05b57dfab20c2be1b60af227e15a9747.png" />
+<img alt="_images/7a945892864b8c48f46e1283756f12d562bcdb5ab5627271398f9be7c54d3779.png" src="_images/7a945892864b8c48f46e1283756f12d562bcdb5ab5627271398f9be7c54d3779.png" />
 </div>
 </details>
 </div>

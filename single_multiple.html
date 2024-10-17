@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Logistic regression" href="logistic_regression.html" />
-    <link rel="prev" title="Multiple regression" href="Multiple_Regression.html" />
+    <link rel="prev" title="Simple and multiple regression" href="intro_multiple_regression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -182,12 +182,6 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="tools_techniques.html">Tools and techniques</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="computational-tools.html">Computational Tools</a></li>
 <li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
@@ -310,21 +304,11 @@
 <li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
@@ -353,8 +337,6 @@
 <li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
@@ -664,9 +646,8 @@ document.write(`
 </div>
 <section id="back-to-simple-regression">
 <h2>Back to simple regression<a class="headerlink" href="#back-to-simple-regression" title="Link to this heading">#</a></h2>
-<p>The <a class="reference internal" href="Multiple_Regression.html"><span class="doc std std-doc">multiple regression</span></a> page introduced an extension the
-simple regression methods we saw in the <a class="reference internal" href="finding_lines.html"><span class="doc std std-doc">finding
-lines</span></a> page, and those following.</p>
+<p>We have seen simple regression methods in the <a class="reference internal" href="finding_lines.html"><span class="doc std std-doc">finding lines</span></a>
+page, and those following.</p>
 <p>Simple regression uses a single set of predictor values, and a straight line,
 to predict another set of values.</p>
 <p>For example, in the finding lines page above, we predicted the “quality” scores
@@ -675,10 +656,7 @@ to predict another set of values.</p>
 values to predict another set of values.  For example, in the multiple
 regression page, we used many sets of values, such as first and second floor
 area, lot area, and others, in order to predict the house sale price.</p>
-<p>The multiple regression page followed on directly from the classification
-pages; we used multiple regression to build a model of house prices, from the
-training set, and then predicted house prices in the testing set.</p>
-<p>In this page we go back a little, to simple regression, and show how it relates
+<p>Here we go back a little, to simple regression, and show how it relates
 to the multiple regression we have just done.</p>
 <p>On the way, we will start using a standard statistics library in Python, called
 StatsModels.</p>
@@ -1130,7 +1108,7 @@ predicting <code class="docutils literal notranslate"><span class="pre">Creatini
   <th>Date:</th>             <td>Thu, 17 Oct 2024</td> <th>  Prob (F-statistic):</th> <td>9.33e-13</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>18:36:53</td>     <th>  Log-Likelihood:    </th> <td> -95.343</td>
+  <th>Time:</th>                 <td>22:53:51</td>     <th>  Log-Likelihood:    </th> <td> -95.343</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    43</td>      <th>  AIC:               </th> <td>   194.7</td>
@@ -1243,7 +1221,7 @@ line using <code class="docutils literal notranslate"><span class="pre">Hemoglob
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f3ea26fe9d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x7f014c1a4490&gt;
 </pre></div>
 </div>
 <img alt="_images/d52752a085f3bb03f2233facbb2376700829b2482cbd6c149a2475d82dd1319e.png" src="_images/d52752a085f3bb03f2233facbb2376700829b2482cbd6c149a2475d82dd1319e.png" />
@@ -1282,8 +1260,7 @@ have allowed for the predictions using <code class="docutils literal notranslate
 </section>
 <section id="multiple-regression-in-one-go">
 <h2>Multiple regression in one go<a class="headerlink" href="#multiple-regression-in-one-go" title="Link to this heading">#</a></h2>
-<p>Here we build the machinery as we did in the <a class="reference internal" href="Multiple_Regression.html"><span class="doc std std-doc">multiple
-regression</span></a> page.</p>
+<p>Here we build the machinery for multiple regression.</p>
 <p>In particular, we are going to find three parameters:</p>
 <ul class="simple">
 <li><p>An intercept;</p></li>
@@ -1460,7 +1437,7 @@ and the <code class="docutils literal notranslate"><span class="pre">Hemoglobin<
   <th>Date:</th>             <td>Thu, 17 Oct 2024</td> <th>  Prob (F-statistic):</th> <td>1.08e-11</td>
 </tr>
 <tr>
-  <th>Time:</th>                 <td>18:36:53</td>     <th>  Log-Likelihood:    </th> <td> -95.221</td>
+  <th>Time:</th>                 <td>22:53:51</td>     <th>  Log-Likelihood:    </th> <td> -95.221</td>
 </tr>
 <tr>
   <th>No. Observations:</th>      <td>    43</td>      <th>  AIC:               </th> <td>   196.4</td>
@@ -1605,12 +1582,12 @@ this plane around until it has minimized the error.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="Multiple_Regression.html"
+       href="intro_multiple_regression.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Multiple regression</p>
+        <p class="prev-next-title">Simple and multiple regression</p>
       </div>
     </a>
     <a class="right-next"

@@ -42,9 +42,8 @@ def correlation(t, x, y):
 
 ## Back to simple regression
 
-The [multiple regression](Multiple_Regression) page introduced an extension the
-simple regression methods we saw in the [finding
-lines](finding_lines) page, and those following.
+We have seen simple regression methods in the [finding lines](finding_lines)
+page, and those following.
 
 Simple regression uses a single set of predictor values, and a straight line,
 to predict another set of values.
@@ -57,11 +56,7 @@ values to predict another set of values.  For example, in the multiple
 regression page, we used many sets of values, such as first and second floor
 area, lot area, and others, in order to predict the house sale price.
 
-The multiple regression page followed on directly from the classification
-pages; we used multiple regression to build a model of house prices, from the
-training set, and then predicted house prices in the testing set.
-
-In this page we go back a little, to simple regression, and show how it relates
+Here we go back a little, to simple regression, and show how it relates
 to the multiple regression we have just done.
 
 On the way, we will start using a standard statistics library in Python, called
@@ -286,8 +281,7 @@ have allowed for the predictions using `Urea`.
 
 ## Multiple regression in one go
 
-Here we build the machinery as we did in the [multiple
-regression](Multiple_Regression) page.
+Here we build the machinery for multiple regression.
 
 In particular, we are going to find three parameters:
 

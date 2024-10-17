@@ -182,12 +182,6 @@
 <li class="toctree-l2"><a class="reference internal" href="statistical-techniques.html">Statistical Techniques</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="text-is-data.html">Text is data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plotting_the_Classics.html">Plotting the classics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Literary_Characters.html">Literary characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Another_Kind_Of_Character.html">Another kind of character</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1"><a class="reference internal" href="surviving_computers.html">Surviving the computer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="the_software.html">Our tools</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_jupyter.html">Using Jupyter notebooks</a></li>
@@ -308,21 +302,11 @@
 <li class="toctree-l1"><a class="reference internal" href="combining_boolean_arrays.html">Combining boolean arrays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="standard_scores.html">Standard scores</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Correlation.html">Correlation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Regression</span></p>
+<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="intro_multiple_regression.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classification</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="classification.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Nearest_Neighbors.html">Nearest neighbors</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Training_and_Testing.html">Training and testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Rows_of_Tables.html">Rows of tables</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Implementing_the_Classifier.html">Implementing the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Accuracy_of_the_Classifier.html">Accuracy of the classifier</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Multiple_Regression.html">Multiple regression</a></li>
 <li class="toctree-l1"><a class="reference internal" href="single_multiple.html">Simple and multiple regression</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">More on regression</span></p>
-<ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="logistic_regression.html">Logistic regression</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Confidence</span></p>
@@ -351,8 +335,6 @@
 <li class="toctree-l1"><a class="reference internal" href="brisk_python.html">Brisk introduction to Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pathlib.html">Using the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> module</a></li>
 <li class="toctree-l1"><a class="reference internal" href="monty_hall_lists.html">The Monty Hall problem, with lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data8_functions.html">Data 8 explanation of functions</a></li>
-
 <li class="toctree-l1"><a class="reference internal" href="mean_deviations.html">Why the differences from the mean must add to zero.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mean_sq_deviations.html">The mean and squared differences</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slope_deviations.html">Mathematics for the least-squares slope</a></li>
@@ -1015,7 +997,7 @@ labels.</p>
   <tbody>
     <tr>
       <th>43</th>
-      <td>beer</td>
+      <td>water</td>
       <td>14</td>
     </tr>
     <tr>
@@ -1025,7 +1007,7 @@ labels.</p>
     </tr>
     <tr>
       <th>45</th>
-      <td>beer</td>
+      <td>water</td>
       <td>27</td>
     </tr>
     <tr>
@@ -1045,7 +1027,7 @@ labels.</p>
     </tr>
     <tr>
       <th>49</th>
-      <td>water</td>
+      <td>beer</td>
       <td>26</td>
     </tr>
     <tr>
@@ -1055,12 +1037,12 @@ labels.</p>
     </tr>
     <tr>
       <th>51</th>
-      <td>beer</td>
+      <td>water</td>
       <td>27</td>
     </tr>
     <tr>
       <th>52</th>
-      <td>beer</td>
+      <td>water</td>
       <td>27</td>
     </tr>
     <tr>
@@ -1075,7 +1057,7 @@ labels.</p>
     </tr>
     <tr>
       <th>55</th>
-      <td>beer</td>
+      <td>water</td>
       <td>37</td>
     </tr>
     <tr>
@@ -1090,27 +1072,27 @@ labels.</p>
     </tr>
     <tr>
       <th>58</th>
-      <td>water</td>
+      <td>beer</td>
       <td>7</td>
     </tr>
     <tr>
       <th>59</th>
-      <td>water</td>
+      <td>beer</td>
       <td>25</td>
     </tr>
     <tr>
       <th>60</th>
-      <td>water</td>
+      <td>beer</td>
       <td>17</td>
     </tr>
     <tr>
       <th>61</th>
-      <td>water</td>
+      <td>beer</td>
       <td>36</td>
     </tr>
     <tr>
       <th>62</th>
-      <td>water</td>
+      <td>beer</td>
       <td>31</td>
     </tr>
     <tr>
@@ -1125,12 +1107,12 @@ labels.</p>
     </tr>
     <tr>
       <th>65</th>
-      <td>water</td>
+      <td>beer</td>
       <td>20</td>
     </tr>
     <tr>
       <th>66</th>
-      <td>beer</td>
+      <td>water</td>
       <td>29</td>
     </tr>
     <tr>
@@ -1150,17 +1132,17 @@ labels.</p>
     </tr>
     <tr>
       <th>70</th>
-      <td>water</td>
+      <td>beer</td>
       <td>23</td>
     </tr>
     <tr>
       <th>71</th>
-      <td>beer</td>
+      <td>water</td>
       <td>13</td>
     </tr>
     <tr>
       <th>72</th>
-      <td>beer</td>
+      <td>water</td>
       <td>24</td>
     </tr>
     <tr>
@@ -1170,22 +1152,22 @@ labels.</p>
     </tr>
     <tr>
       <th>74</th>
-      <td>beer</td>
+      <td>water</td>
       <td>4</td>
     </tr>
     <tr>
       <th>75</th>
-      <td>beer</td>
+      <td>water</td>
       <td>21</td>
     </tr>
     <tr>
       <th>76</th>
-      <td>water</td>
+      <td>beer</td>
       <td>24</td>
     </tr>
     <tr>
       <th>77</th>
-      <td>water</td>
+      <td>beer</td>
       <td>21</td>
     </tr>
     <tr>
@@ -1195,7 +1177,7 @@ labels.</p>
     </tr>
     <tr>
       <th>79</th>
-      <td>water</td>
+      <td>beer</td>
       <td>27</td>
     </tr>
     <tr>
@@ -1210,7 +1192,7 @@ labels.</p>
     </tr>
     <tr>
       <th>82</th>
-      <td>water</td>
+      <td>beer</td>
       <td>25</td>
     </tr>
     <tr>
@@ -1220,12 +1202,12 @@ labels.</p>
     </tr>
     <tr>
       <th>84</th>
-      <td>beer</td>
+      <td>water</td>
       <td>7</td>
     </tr>
     <tr>
       <th>85</th>
-      <td>beer</td>
+      <td>water</td>
       <td>3</td>
     </tr>
   </tbody>
@@ -1243,7 +1225,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.13333333333333286)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(-0.6311111111111103)
 </pre></div>
 </div>
 </div>
@@ -1262,8 +1244,8 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-7.70222222,  0.03777778,  6.05777778,  0.13333333, -2.63777778,
-       -2.92444444, -4.35777778,  0.22888889,  0.70666667,  0.89777778])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0.72666667,  2.14      ,  0.61111111, -1.87333333, -2.54222222,
+       -2.54222222, -4.16666667, -3.88      ,  2.71333333,  2.61777778])
 </pre></div>
 </div>
 </div>
@@ -1278,7 +1260,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fab1d6c37cde38569ae89d09affda58ec1adf7f50969483618478d0ecf6cddab.png" src="_images/fab1d6c37cde38569ae89d09affda58ec1adf7f50969483618478d0ecf6cddab.png" />
+<img alt="_images/9a0d93df8fdba245db03aaea5e073e4738cf7f4fb92303038810d7b49d0b58ea.png" src="_images/9a0d93df8fdba245db03aaea5e073e4738cf7f4fb92303038810d7b49d0b58ea.png" />
 </div>
 </div>
 <p>The chance of any one difference being greater than the one we observed:</p>
@@ -1290,7 +1272,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0564
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0521
 </pre></div>
 </div>
 </div>
@@ -1328,7 +1310,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.057194280571942806), df=np.float64(nan))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.05749425057494251), df=np.float64(nan))
 </pre></div>
 </div>
 </div>
