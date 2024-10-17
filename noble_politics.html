@@ -410,18 +410,18 @@
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/odsti/cfd-textbook/main?urlpath=tree/noble_politics.Rmd" target="_blank"
+      <li><a href="interact/lab/index.html?path=noble_politics.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch on Binder"
+   title="Launch via JupyterLite"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img alt="Binder logo" src="_static/images/logo_binder.svg">
+    <img alt="JupyterLite logo" src="_static/images/logo_jupyterlite.svg">
   </span>
-<span class="btn__text-container">Binder</span>
+<span class="btn__text-container">JupyterLite</span>
 </a>
 </li>
       
@@ -1887,7 +1887,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;No&#39;, &#39;No&#39;, &#39;Yes&#39;, &#39;No&#39;, &#39;No&#39;, &#39;Yes&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([&#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;, &#39;No&#39;],
       dtype=object)
 </pre></div>
 </div>
@@ -1939,7 +1939,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
     </tr>
     <tr>
       <th>2</th>
-      <td>Yes</td>
+      <td>No</td>
       <td>bystander</td>
     </tr>
     <tr>
@@ -1959,7 +1959,7 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
     </tr>
     <tr>
       <th>275</th>
-      <td>No</td>
+      <td>Yes</td>
       <td>rescuer</td>
     </tr>
     <tr>
@@ -2037,13 +2037,13 @@ and <code class="docutils literal notranslate"><span class="pre">respondent</spa
   <tbody>
     <tr>
       <th>No</th>
-      <td>57</td>
-      <td>172</td>
+      <td>56</td>
+      <td>173</td>
     </tr>
     <tr>
       <th>Yes</th>
-      <td>14</td>
-      <td>37</td>
+      <td>15</td>
+      <td>36</td>
     </tr>
   </tbody>
 </table>
@@ -2075,7 +2075,7 @@ to belong to a political party.  Let us restrict our attention to the count of
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(37)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(36)
 </pre></div>
 </div>
 </div>
@@ -2103,7 +2103,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([34., 34., 37., 35., 37., 37., 37., 40., 37., 41.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([42., 42., 40., 36., 43., 37., 41., 40., 37., 36.])
 </pre></div>
 </div>
 </div>
@@ -2116,7 +2116,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/71395e565d0eb6d5839d86cc6ba0db1793393871ad3ced8017a9fe8c3d67713a.png" src="_images/71395e565d0eb6d5839d86cc6ba0db1793393871ad3ced8017a9fe8c3d67713a.png" />
+<img alt="_images/e820f233cb0aad5c17a3588a3833bb987c8572dfd22cd9420138c269a7be6b4e.png" src="_images/e820f233cb0aad5c17a3588a3833bb987c8572dfd22cd9420138c269a7be6b4e.png" />
 </div>
 </div>
 <p>How unusual is the actual value, in this ideal world?</p>
@@ -2129,7 +2129,7 @@ number of iterations to 1000 to keep the run-time down.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.023
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.018
 </pre></div>
 </div>
 </div>
@@ -2235,7 +2235,7 @@ counts, for each trial:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([41., 36., 39., 37., 37., 40., 38., 40., 36., 35.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([34., 34., 44., 41., 38., 33., 36., 36., 39., 37.])
 </pre></div>
 </div>
 </div>
@@ -2249,7 +2249,7 @@ counts, for each trial:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([61., 56., 59., 57., 57., 60., 58., 60., 56., 55.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([54., 54., 64., 61., 58., 53., 56., 56., 59., 57.])
 </pre></div>
 </div>
 </div>
@@ -2293,7 +2293,7 @@ Differences all the same?
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.019
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.021
 </pre></div>
 </div>
 </div>
@@ -2309,7 +2309,7 @@ Differences all the same?
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.019
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.021
 </pre></div>
 </div>
 </div>
