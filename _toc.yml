@@ -9,11 +9,6 @@ parts:
         sections:
           - file: computational-tools
           - file: statistical-techniques
-      - file: text-is-data
-        sections:
-          - file: Plotting_the_Classics
-          - file: Literary_Characters
-          - file: Another_Kind_Of_Character
       - file: surviving_computers
       - file: the_software
       - file: using_jupyter
@@ -156,23 +151,11 @@ parts:
       - file: standard_scores
       # ryostd
       - file: Correlation
-    # on_regression
+      # on_regression
+  - caption: Regression
+    chapters:
       - file: intro_multiple_regression
-  - caption: Classification
-    chapters:
-      - file: classification
-      - file: Nearest_Neighbors
-      - file: Training_and_Testing
-      # classify_song_discussion
-      - file: Rows_of_Tables
-      - file: Implementing_the_Classifier
-      # classify_song_part1
-      - file: Accuracy_of_the_Classifier
-      # classify_song_part2
-      - file: Multiple_Regression
       - file: single_multiple
-  - caption: More on regression
-    chapters:
       - file: logistic_regression
   - caption: Confidence
     chapters:
@@ -201,7 +184,6 @@ parts:
       - file: brisk_python
       - file: pathlib
       - file: monty_hall_lists
-      - file: data8_functions
       - file: mean_deviations
       - file: mean_sq_deviations
       - file: slope_deviations

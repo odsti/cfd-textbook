@@ -39,7 +39,7 @@ and then we implement the procedures in code, and draw our conclusions.
 By the end of the course, we have covered simulation of the real world using
 random numbers, drawing conclusions about differences between groups using
 random permutation, looking for straight line relationships using regression,
-and predicting categories of things using classification with machine learning.
+and allowing for multiple explanatory measures with multiple regression.  We look at ways of estimating the confidence of our estimates, using confidence intervals.
 
 ## Based on the Berkeley textbook
 
