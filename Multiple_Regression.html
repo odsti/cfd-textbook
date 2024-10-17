@@ -992,19 +992,19 @@ Correlation of Yr Sold and SalePrice:	0.026
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicting sale price for: 1st Flr SF        1175.0
-2nd Flr SF           0.0
-Total Bsmt SF     1175.0
-Garage Area          0.0
-Wood Deck SF         0.0
-Open Porch SF       90.0
-Lot Area         13072.0
-Year Built        2005.0
-Yr Sold           2008.0
-Name: 1134, dtype: float64
-Using slopes: [11.14276489  7.73060554  8.66227692  9.87015389  9.48613109 11.4974664
-  9.70949261  8.4316214  11.48831128]
-Result: 191202.11341934453
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Predicting sale price for: 1st Flr SF       1236.0
+2nd Flr SF          0.0
+Total Bsmt SF     912.0
+Garage Area       288.0
+Wood Deck SF        0.0
+Open Porch SF       0.0
+Lot Area         6993.0
+Year Built       1961.0
+Yr Sold          2006.0
+Name: 2496, dtype: float64
+Using slopes: [10.02538959 10.56935517  9.81668418 10.61073713 11.86473466 10.56547226
+  8.94038506 10.09633359  8.93309997]
+Result: 124638.91126759775
 </pre></div>
 </div>
 </div>
@@ -1018,8 +1018,8 @@ Result: 191202.11341934453
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 146000
-Predicted sale price using random slopes: 191202.11341934453
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 135000
+Predicted sale price using random slopes: 124638.91126759775
 </pre></div>
 </div>
 </div>
@@ -1049,7 +1049,7 @@ Predicted sale price using random slopes: 191202.11341934453
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE of all training examples using random slopes: 101519.00344503895
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RMSE of all training examples using random slopes: 91243.94271387736
 </pre></div>
 </div>
 </div>
@@ -1077,7 +1077,7 @@ Don’t worry about the details, unless you are interested.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fast RMSE of all training examples using random slopes: 101519.00344503895
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fast RMSE of all training examples using random slopes: 91243.94271387738
 </pre></div>
 </div>
 </div>
@@ -1106,16 +1106,16 @@ the minimum.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> message: Optimization terminated successfully.
  success: True
   status: 0
-     fun: 32677.15615347518
-       x: [ 6.997e+01  6.942e+01  5.587e+01  7.829e+01  3.364e+01
-            7.871e+01  3.519e-01  2.865e+01 -4.353e+01]
-     nit: 10
-   direc: [[-2.159e+01 -5.333e+00 ... -1.097e+01  9.935e+00]
-           [ 5.410e+01 -8.878e+00 ...  4.927e+00 -4.208e+01]
+     fun: 33806.56032535008
+       x: [ 6.827e+01  7.576e+01  6.203e+01  7.040e+01  3.950e+01
+            5.069e+01  4.110e-01  2.320e+01 -3.972e+01]
+     nit: 13
+   direc: [[-2.092e+01 -7.199e+00 ... -1.221e+01  1.065e+01]
+           [ 3.669e+01 -1.286e+01 ...  4.496e+00 -3.285e+01]
            ...
-           [ 5.840e+00  1.266e+01 ... -1.396e+00 -4.789e+00]
-           [-6.468e+00 -7.167e-01 ... -1.178e+00  1.418e+00]]
-    nfev: 844
+           [ 1.184e+01  1.882e+01 ... -2.152e+00 -9.261e+00]
+           [-5.503e+00  1.149e+00 ... -1.622e+00  2.349e+00]]
+    nfev: 1086
 </pre></div>
 </div>
 </div>
@@ -1131,7 +1131,7 @@ the minimum.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The best slopes for the training set:
-RMSE of all training examples using the best slopes: 32677.156153475178
+RMSE of all training examples using the best slopes: 33806.56032535008
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1166,15 +1166,15 @@ RMSE of all training examples using the best slopes: 32677.156153475178
   <tbody>
     <tr>
       <th>0</th>
-      <td>69.965645</td>
-      <td>69.420836</td>
-      <td>55.870655</td>
-      <td>78.285578</td>
-      <td>33.642879</td>
-      <td>78.713797</td>
-      <td>0.351913</td>
-      <td>28.646277</td>
-      <td>-43.527121</td>
+      <td>68.269522</td>
+      <td>75.755304</td>
+      <td>62.031428</td>
+      <td>70.400592</td>
+      <td>39.500744</td>
+      <td>50.69129</td>
+      <td>0.411001</td>
+      <td>23.200614</td>
+      <td>-39.724931</td>
     </tr>
   </tbody>
 </table>
@@ -1207,7 +1207,7 @@ other samples from the same population.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression: 34407.07389952305
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression: 32986.687307840715
 </pre></div>
 </div>
 </div>
@@ -1228,7 +1228,7 @@ near that line, but there is some error in the predictions.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e0d152f091cb51a3e48942175597e7f8a1552eeefe7c73b37f8b18acb1d5b7ee.png" src="_images/e0d152f091cb51a3e48942175597e7f8a1552eeefe7c73b37f8b18acb1d5b7ee.png" />
+<img alt="_images/298348e607ddbc5c6b1a7203a850a113b47af326949d153bd6e9ba538bb58417.png" src="_images/298348e607ddbc5c6b1a7203a850a113b47af326949d153bd6e9ba538bb58417.png" />
 </div>
 </div>
 <p>A residual plot for multiple regression typically compares the errors
@@ -1245,7 +1245,7 @@ of the graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae2b5bd90cd5327acb680aa6c62d1430240e84817813899d20c706e9cf7d73b6.png" src="_images/ae2b5bd90cd5327acb680aa6c62d1430240e84817813899d20c706e9cf7d73b6.png" />
+<img alt="_images/23e50ce810472d352dd16c747b5d1576b178abf0c5c12cb4742a34925df3b0ad.png" src="_images/23e50ce810472d352dd16c747b5d1576b178abf0c5c12cb4742a34925df3b0ad.png" />
 </div>
 </div>
 <p>As with simple linear regression, interpreting the result of a predictor is at least as important as making predictions. There are many lessons about interpreting multiple regression that are not included in this textbook. A natural next step after completing this text would be to study linear modeling and regression in further depth.</p>
@@ -1290,31 +1290,31 @@ of the graph.</p>
   </thead>
   <tbody>
     <tr>
-      <th>770</th>
-      <td>172500</td>
-      <td>918</td>
-      <td>765</td>
-      <td>918.0</td>
-      <td>440.0</td>
-      <td>1978</td>
+      <th>2175</th>
+      <td>148000</td>
+      <td>1113</td>
+      <td>0</td>
+      <td>1143.0</td>
+      <td>504.0</td>
+      <td>1976</td>
     </tr>
     <tr>
-      <th>2854</th>
-      <td>200100</td>
-      <td>901</td>
-      <td>901</td>
-      <td>793.0</td>
-      <td>216.0</td>
-      <td>1920</td>
+      <th>2204</th>
+      <td>135000</td>
+      <td>686</td>
+      <td>775</td>
+      <td>686.0</td>
+      <td>225.0</td>
+      <td>1926</td>
     </tr>
     <tr>
-      <th>1893</th>
-      <td>224500</td>
-      <td>845</td>
-      <td>1309</td>
-      <td>845.0</td>
-      <td>539.0</td>
-      <td>1964</td>
+      <th>2563</th>
+      <td>137000</td>
+      <td>1024</td>
+      <td>704</td>
+      <td>704.0</td>
+      <td>234.0</td>
+      <td>1949</td>
     </tr>
   </tbody>
 </table>
@@ -1382,54 +1382,54 @@ of the graph.</p>
   </thead>
   <tbody>
     <tr>
-      <th>1807</th>
-      <td>147000</td>
+      <th>1930</th>
+      <td>142000</td>
+      <td>1154</td>
+      <td>0</td>
+      <td>864.0</td>
+      <td>336.0</td>
+      <td>1953</td>
+      <td>106.752049</td>
+    </tr>
+    <tr>
+      <th>1874</th>
+      <td>127000</td>
+      <td>1107</td>
+      <td>0</td>
+      <td>949.0</td>
+      <td>308.0</td>
+      <td>1967</td>
+      <td>135.816052</td>
+    </tr>
+    <tr>
+      <th>1327</th>
+      <td>138000</td>
       <td>1143</td>
       <td>0</td>
-      <td>1143.0</td>
-      <td>0.0</td>
-      <td>2006</td>
-      <td>45.265881</td>
+      <td>1008.0</td>
+      <td>288.0</td>
+      <td>1928</td>
+      <td>137.673527</td>
     </tr>
     <tr>
-      <th>2470</th>
-      <td>139500</td>
-      <td>1142</td>
+      <th>1863</th>
+      <td>143450</td>
+      <td>1152</td>
       <td>0</td>
-      <td>1142.0</td>
-      <td>0.0</td>
+      <td>912.0</td>
+      <td>412.0</td>
+      <td>1968</td>
+      <td>149.936653</td>
+    </tr>
+    <tr>
+      <th>1087</th>
+      <td>190000</td>
+      <td>1166</td>
+      <td>0</td>
+      <td>856.0</td>
+      <td>400.0</td>
       <td>2005</td>
-      <td>46.669048</td>
-    </tr>
-    <tr>
-      <th>2655</th>
-      <td>126175</td>
-      <td>1163</td>
-      <td>0</td>
-      <td>1162.0</td>
-      <td>220.0</td>
-      <td>1955</td>
-      <td>226.302894</td>
-    </tr>
-    <tr>
-      <th>119</th>
-      <td>128950</td>
-      <td>1225</td>
-      <td>0</td>
-      <td>950.0</td>
-      <td>0.0</td>
-      <td>1959</td>
-      <td>235.034040</td>
-    </tr>
-    <tr>
-      <th>2669</th>
-      <td>64500</td>
-      <td>1020</td>
-      <td>0</td>
-      <td>1020.0</td>
-      <td>0.0</td>
-      <td>1918</td>
-      <td>235.836808</td>
+      <td>150.053324</td>
     </tr>
   </tbody>
 </table>
@@ -1449,7 +1449,7 @@ of the graph.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(121225.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(148090.0)
 </pre></div>
 </div>
 </div>
@@ -1464,8 +1464,8 @@ for our one test example. Looks reasonable!</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 146000
-Predicted sale price using nearest neighbors: 121225.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Actual sale price: 135000
+Predicted sale price using nearest neighbors: 148090.0
 </pre></div>
 </div>
 </div>
@@ -1488,8 +1488,8 @@ the predictions. Computation of the predictions may take several minutes.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression:  34407.07389952305
-Test set RMSE for nearest neighbor regression: 35572.582005001794
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Test set RMSE for multiple linear regression:  32986.687307840715
+Test set RMSE for nearest neighbor regression: 31992.031784860374
 </pre></div>
 </div>
 </div>
@@ -1513,7 +1513,7 @@ indicating that fewer prices were predicted with very high accuracy.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2e42daa5de1b3d3b7c049f2e84028f0a70f60303e9d2e978f2d25056f7a82142.png" src="_images/2e42daa5de1b3d3b7c049f2e84028f0a70f60303e9d2e978f2d25056f7a82142.png" />
+<img alt="_images/15824166dedcc539b87bb985ba15aec95b76ad2463969d07ab57e90a4b3ef92a.png" src="_images/15824166dedcc539b87bb985ba15aec95b76ad2463969d07ab57e90a4b3ef92a.png" />
 </div>
 </div>
 <p><div class="admonition note">
