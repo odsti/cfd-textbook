@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,6 +71,7 @@
     <link rel="prev" title="Simple and multiple regression" href="single_multiple.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,19 +87,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -103,7 +96,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -111,8 +103,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +120,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -158,21 +151,17 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -348,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -542,24 +536,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -616,15 +602,15 @@ document.write(`
 <span class="expanded">Hide code cell content</span>
 </summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="c1"># Safe setting for Pandas.  Needs Pandas version &gt;= 1.5.</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="c1"># Make the plots look more fancy.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 <span class="c1"># Optimization function</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 </pre></div>
 </div>
 </div>
@@ -933,7 +919,7 @@ with 1 and 0 values, is often called <em>dummy coding</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4733/2926526315.py:3: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5729/2926526315.py:3: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option(&#39;future.no_silent_downcasting&#39;, True)`
   hgb_app[&#39;appetite_dummy&#39;] = hgb_app[&#39;Appetite&#39;].replace(
 </pre></div>
 </div>
@@ -1004,7 +990,7 @@ the relationship between hemoglobin concentration and whether a patient has a
 good appetite.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/1471e93622348768ebccd8f21962f005eff18a8a54b39ebc3136420c229abb4a.png" src="_images/1471e93622348768ebccd8f21962f005eff18a8a54b39ebc3136420c229abb4a.png" />
+<img alt="_images/5d57260c1786831af7983ca7ba0b51508291955477a375038fac4f2ae68b9dcb.png" src="_images/5d57260c1786831af7983ca7ba0b51508291955477a375038fac4f2ae68b9dcb.png" />
 </div>
 </div>
 <p>From the plot, it does look as if the patients with lower hemoglobin are more
@@ -1071,7 +1057,7 @@ probability of having good appetite, based on hemoglobin concentrations?</p>
 <a class="reference internal" href="using_minimize.html"><span class="std std-doc">Using minimize page</span></a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rmse_any_line</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rmse_any_line</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
     <span class="c1"># c_s is a list containing two elements, an intercept and a slope.</span>
     <span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span> <span class="o">=</span> <span class="n">c_s</span>
     <span class="c1"># Values predicted from these x_values, using this intercept and slope.</span>
@@ -1170,7 +1156,7 @@ Name: Hemoglobin, Length: 158, dtype: float64
 from linear regression in orange.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/45816683273572a474de3649edefae36061337b3dbe6ca316a7b398e9809b943.png" src="_images/45816683273572a474de3649edefae36061337b3dbe6ca316a7b398e9809b943.png" />
+<img alt="_images/8aa073ca7ba6a4abfc101c45aaba5a47c7504e89e792bf4b97fc3c87e5113975.png" src="_images/8aa073ca7ba6a4abfc101c45aaba5a47c7504e89e792bf4b97fc3c87e5113975.png" />
 </div>
 </div>
 <p>The linear regression line looks plausible, as far as it goes, but it has
@@ -1208,14 +1194,14 @@ onto that soon.</p>
 <span class="c1"># will come on that machinery soon.  For now please ignore this code, and</span>
 <span class="c1"># concentrate on the plots below.</span>
 
-<span class="k">def</span> <span class="nf">inv_logit</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">inv_logit</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Reverse logit transformation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">odds_ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># Reverse the log operation.</span>
     <span class="k">return</span> <span class="n">odds_ratios</span> <span class="o">/</span> <span class="p">(</span><span class="n">odds_ratios</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Reverse odds ratios operation.</span>
 
 
-<span class="k">def</span> <span class="nf">params2pps</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">params2pps</span><span class="p">(</span><span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Calculate predicted probabilities of 1 for each observation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># Predicted log odds of being in class 1.</span>
@@ -1233,7 +1219,7 @@ onto that soon.</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/46ea463456d2d9eae7d8c89ace44ec01e151ae72d1b009ff26bf2b9d8529f82c.png" src="_images/46ea463456d2d9eae7d8c89ace44ec01e151ae72d1b009ff26bf2b9d8529f82c.png" />
+<img alt="_images/e0eb2dcda3856748a10a9ed4d9ab83449cf8fdd09fe6e0b1d7775b9a58d10652.png" src="_images/e0eb2dcda3856748a10a9ed4d9ab83449cf8fdd09fe6e0b1d7775b9a58d10652.png" />
 </div>
 </div>
 <p>The new not-straight line seems to have much to recommend it.  This shape of
@@ -1277,13 +1263,13 @@ transform converts the sigmoid curve to a straight line.</p>
 plot.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/2cb0e9ee757584362d430b9d3b6add9e37c685b59ac4b9ca3c153d40252dbbfe.png" src="_images/2cb0e9ee757584362d430b9d3b6add9e37c685b59ac4b9ca3c153d40252dbbfe.png" />
+<img alt="_images/98c4a3af1efb140aa203a5317fe41a8bcb0e0bc160e150d74fc18b45003cd526.png" src="_images/98c4a3af1efb140aa203a5317fe41a8bcb0e0bc160e150d74fc18b45003cd526.png" />
 </div>
 </div>
 <p>Next we apply the conversion from probability to odds-ratio:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/595afddbb30d3cba30c7414feb9ab1783f4cf109be4036797bb928704197a231.png" src="_images/595afddbb30d3cba30c7414feb9ab1783f4cf109be4036797bb928704197a231.png" />
+<img alt="_images/c841e9ec72a39c759e136421d9550187ae9a8cb4e7e687d6ae76dccf388fa512.png" src="_images/c841e9ec72a39c759e136421d9550187ae9a8cb4e7e687d6ae76dccf388fa512.png" />
 </div>
 </div>
 <p>Notice that this is an <em>exponential</em> graph, where the y values increase more
@@ -1303,7 +1289,7 @@ the logit transformation:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/55b5bd4253445175863c23ecadc9e089075f445b553029b4661f912a125ba0ca.png" src="_images/55b5bd4253445175863c23ecadc9e089075f445b553029b4661f912a125ba0ca.png" />
+<img alt="_images/fc223fcf8eaa4c0c28cb2a80c1925f3acb124dca86a8cbe15593c184d5125d1a.png" src="_images/fc223fcf8eaa4c0c28cb2a80c1925f3acb124dca86a8cbe15593c184d5125d1a.png" />
 </div>
 </div>
 <p>Now we have a straight line, with an intercept and slope, suitable for
@@ -1422,7 +1408,7 @@ of events of no interest - here 1.  So:</p>
 values to odds ratios for our appetite predictions, we get the following:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/595afddbb30d3cba30c7414feb9ab1783f4cf109be4036797bb928704197a231.png" src="_images/595afddbb30d3cba30c7414feb9ab1783f4cf109be4036797bb928704197a231.png" />
+<img alt="_images/c841e9ec72a39c759e136421d9550187ae9a8cb4e7e687d6ae76dccf388fa512.png" src="_images/c841e9ec72a39c759e136421d9550187ae9a8cb4e7e687d6ae76dccf388fa512.png" />
 </div>
 </div>
 <p>Notice that the odds ratios we found vary from very close to 0 (for p value
@@ -1439,13 +1425,13 @@ transformations that convert an exponential curve into a straight line.</p>
 <p>Here’s an example:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/3daee06950ed54c11f56236bbf542a15c82da92a7b8409b8a9464c370531e98c.png" src="_images/3daee06950ed54c11f56236bbf542a15c82da92a7b8409b8a9464c370531e98c.png" />
+<img alt="_images/705fada70e7cd49cc3655407f3e867523338b925ed2173cca61b096adc9ff7eb.png" src="_images/705fada70e7cd49cc3655407f3e867523338b925ed2173cca61b096adc9ff7eb.png" />
 </div>
 </div>
 <p>You have already see logs in action transforming the odds-ratio predictions.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/8420969231c0bf3365b94484d31727cf4170f97cf3f9652c15a2d1a444903eb3.png" src="_images/8420969231c0bf3365b94484d31727cf4170f97cf3f9652c15a2d1a444903eb3.png" />
+<img alt="_images/74bde84717674faa1c066bfdbd0597451fcbcd46b3be27bc4f70e785f8d0df7a.png" src="_images/74bde84717674faa1c066bfdbd0597451fcbcd46b3be27bc4f70e785f8d0df7a.png" />
 </div>
 </div>
 </section>
@@ -1460,7 +1446,7 @@ of two steps:</p>
 <p>The full logit transformation is therefore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">logit</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">logit</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Apply logit transformation to array of probabilities `p`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">odds_ratios</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
@@ -1472,7 +1458,7 @@ of two steps:</p>
 <p>Here are the original sigmoid predictions and the predictions with the <code class="docutils literal notranslate"><span class="pre">logit</span></code> transform applied:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/a3a492e6410b3e98581f9835a7a788bec98e47c7a4ddc13199600682ed6b4a2f.png" src="_images/a3a492e6410b3e98581f9835a7a788bec98e47c7a4ddc13199600682ed6b4a2f.png" />
+<img alt="_images/a2f00128136f300190a8157dbe1e37031fccd5c36b249f1bfcb2caef63f438ec.png" src="_images/a2f00128136f300190a8157dbe1e37031fccd5c36b249f1bfcb2caef63f438ec.png" />
 </div>
 </div>
 <p>We also want to be able to go backwards, from the straight-line predictions, to
@@ -1499,7 +1485,7 @@ probabilities.  The transformation that <em>reverses</em>  (inverts) the logit
 transform is therefore:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inv_logit</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">inv_logit</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Reverse logit transformation on array `v`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">odds_ratios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># Reverse the log operation.</span>
@@ -1533,7 +1519,7 @@ predictions with the logit transformation applied.</p>
 results of applying <code class="docutils literal notranslate"><span class="pre">inv_logit</span></code> to recover the original p values.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/ee78d0aa05c9a5b2ce50a7a34ff7d2c49dcf45a9b5b9fb21fea42cc897d91fc1.png" src="_images/ee78d0aa05c9a5b2ce50a7a34ff7d2c49dcf45a9b5b9fb21fea42cc897d91fc1.png" />
+<img alt="_images/ae9eb092549ac589ca6518c6ad7b81c3437c678770af16d7a872bf4737b1d4a9.png" src="_images/ae9eb092549ac589ca6518c6ad7b81c3437c678770af16d7a872bf4737b1d4a9.png" />
 </div>
 </div>
 </section>
@@ -1558,7 +1544,7 @@ axis:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aa72cc32afb9ff6188741fa466d83f5b63457a593ca1571f5c7eb7f664d96575.png" src="_images/aa72cc32afb9ff6188741fa466d83f5b63457a593ca1571f5c7eb7f664d96575.png" />
+<img alt="_images/ee01cf6ac42de9c15f325e33f1f56cf91d02c676005e3678e036ca41cc442a6a.png" src="_images/ee01cf6ac42de9c15f325e33f1f56cf91d02c676005e3678e036ca41cc442a6a.png" />
 </div>
 </div>
 <p>Changing the slope of the logit straight line makes the transition from 0 to 1
@@ -1579,7 +1565,7 @@ flatter or steeper:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/479c406399e693417817e4e5757ac67ee59d1ecb312e2010666e2173e4cfc5fc.png" src="_images/479c406399e693417817e4e5757ac67ee59d1ecb312e2010666e2173e4cfc5fc.png" />
+<img alt="_images/ad3c6ce27dc2a9878cb694434816aee9dc436d2fc988cc5772b95501fe747147.png" src="_images/ad3c6ce27dc2a9878cb694434816aee9dc436d2fc988cc5772b95501fe747147.png" />
 </div>
 </div>
 </section>
@@ -1612,7 +1598,7 @@ slope 0.8.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/29fe5be5c92562a4ed4a21dd7a8dd31d950ba847fc2355150753ca20a3f153bd.png" src="_images/29fe5be5c92562a4ed4a21dd7a8dd31d950ba847fc2355150753ca20a3f153bd.png" />
+<img alt="_images/c73fed43127b175a098d9ecd4e54071176c82f777c74f4b25926a0caabb8492f.png" src="_images/c73fed43127b175a098d9ecd4e54071176c82f777c74f4b25926a0caabb8492f.png" />
 </div>
 </div>
 <p>These are predictions on the straight line, but we now need to transform them
@@ -1628,7 +1614,7 @@ to p value (0 to 1) predictions on the sigmoid.  We use <code class="docutils li
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ff020bd0defbba7400225ac4007b65aa0b55e764dc7e4e87048d4fccf353231c.png" src="_images/ff020bd0defbba7400225ac4007b65aa0b55e764dc7e4e87048d4fccf353231c.png" />
+<img alt="_images/bc79f04430d4dff66defc3a8346dd22196be410849b6f59325d8662408aea4f1.png" src="_images/bc79f04430d4dff66defc3a8346dd22196be410849b6f59325d8662408aea4f1.png" />
 </div>
 </div>
 <p>Finally, we want to compare the predictions to the actual data to get a score.
@@ -1653,7 +1639,7 @@ of parameters (an intercept and slope), and calculate the root mean squared erro
 using the predicted p-values:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rmse_logit</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rmse_logit</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
     <span class="c1"># Unpack intercept and slope into values.</span>
     <span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span> <span class="o">=</span> <span class="n">c_s</span>
     <span class="c1"># Predicted values for log-odds straight line.</span>
@@ -1726,7 +1712,7 @@ our guessed intercept an slope of -7 and 0.8?</p>
 <p>Then plot:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/58d486fa2978b5fa6f5b6b08e6b422311f0f5d883cbefc9a35f841ef1709d661.png" src="_images/58d486fa2978b5fa6f5b6b08e6b422311f0f5d883cbefc9a35f841ef1709d661.png" />
+<img alt="_images/3868033021dce92577d8e6a3e17fe9c23074df40428308fa7832f039a1ee0ea0.png" src="_images/3868033021dce92577d8e6a3e17fe9c23074df40428308fa7832f039a1ee0ea0.png" />
 </div>
 </div>
 </section>
@@ -2462,7 +2448,7 @@ parameters giving the <em>minimum</em> of the <em>negative likelihood</em>, and 
 the <em>maximum likelihood</em> (ML).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simple_ml_logit_cost</span><span class="p">(</span><span class="n">intercept_and_slope</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simple_ml_logit_cost</span><span class="p">(</span><span class="n">intercept_and_slope</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Simple version of cost function for maximum likelihood</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">intercept</span><span class="p">,</span> <span class="n">slope</span> <span class="o">=</span> <span class="n">intercept_and_slope</span>
@@ -2528,7 +2514,7 @@ to see if they are reasonable.</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/894c028913912ad26b62393d8439b7957c394873b10e6ab1be5d80601af9d3c1.png" src="_images/894c028913912ad26b62393d8439b7957c394873b10e6ab1be5d80601af9d3c1.png" />
+<img alt="_images/c228435a69bd21c4eaed254b465cc3623403580930ad4b6e02d258fba5fa00f9.png" src="_images/c228435a69bd21c4eaed254b465cc3623403580930ad4b6e02d258fba5fa00f9.png" />
 </div>
 </div>
 </section>
@@ -2636,7 +2622,7 @@ likelihood, in our cost function.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c5cb06f5ec4156efd340eb54e83fa4d550676733db41c777d7fc2c73200bc6b2.png" src="_images/c5cb06f5ec4156efd340eb54e83fa4d550676733db41c777d7fc2c73200bc6b2.png" />
+<img alt="_images/2af91252f4a111b330bb379fec82494ed0f5a3d928e11b5d4ae269a00d2eae17.png" src="_images/2af91252f4a111b330bb379fec82494ed0f5a3d928e11b5d4ae269a00d2eae17.png" />
 </div>
 </div>
 <p>This means that our cost function does not have to do the last nasty unlog step
@@ -2660,7 +2646,7 @@ function, because the log likelihood is much less affected by errors from lack
 of precision in the calculation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mll_logit_cost</span><span class="p">(</span><span class="n">intercept_and_slope</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mll_logit_cost</span><span class="p">(</span><span class="n">intercept_and_slope</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Cost function for maximum log likelihood</span>
 
 <span class="sd">    Return minus of the log of the likelihood.</span>
@@ -2721,7 +2707,7 @@ version that used the likelihood:</p>
 </div>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/24b9feb508e7bf91c1751afb39da8dc8eb6dd95fd46a3dee810bdeb07c40cccd.png" src="_images/24b9feb508e7bf91c1751afb39da8dc8eb6dd95fd46a3dee810bdeb07c40cccd.png" />
+<img alt="_images/cb54efb173abec51759da6d16e1bcbf5ee7a1764aa723418346e3727cbc69c00.png" src="_images/cb54efb173abec51759da6d16e1bcbf5ee7a1764aa723418346e3727cbc69c00.png" />
 </div>
 </div>
 <p>You have just seen the standard calculations behind most packages that
@@ -2735,7 +2721,7 @@ Statsmodels.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the formula interface for Statsmodels</span>
-<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="k">as</span> <span class="nn">smf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statsmodels.formula.api</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smf</span>
 </pre></div>
 </div>
 </div>
@@ -2768,10 +2754,10 @@ Statsmodels.</p>
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>  <td>     1</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Thu, 17 Oct 2024</td> <th>  Pseudo R-squ.:     </th>  <td>0.4976</td>  
+  <th>Date:</th>            <td>Sat, 10 May 2025</td> <th>  Pseudo R-squ.:     </th>  <td>0.4976</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>22:55:57</td>     <th>  Log-Likelihood:    </th> <td> -29.168</td> 
+  <th>Time:</th>                <td>16:26:45</td>     <th>  Log-Likelihood:    </th> <td> -29.168</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th> <td> -58.054</td> 
@@ -2835,7 +2821,7 @@ dtype: float64
 Statsmodels:</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/434c9c974a9cad67a883ffa240e171e8d0ad470c040906a7b11d769bdbfee938.png" src="_images/434c9c974a9cad67a883ffa240e171e8d0ad470c040906a7b11d769bdbfee938.png" />
+<img alt="_images/994c97c9eecbb27e64e8757342a9f92d17f032b5b39d12d1e51bd96370f935d0.png" src="_images/994c97c9eecbb27e64e8757342a9f92d17f032b5b39d12d1e51bd96370f935d0.png" />
 </div>
 </div>
 <p>We can see graphically that these predictions look identical to the ones we
@@ -2945,7 +2931,8 @@ base <code class="docutils literal notranslate"><span class="pre">np.e</span></c
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -3015,8 +3002,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

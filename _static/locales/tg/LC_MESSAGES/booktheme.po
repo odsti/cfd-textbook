@@ -8,23 +8,44 @@ msgstr ""
 "Language: tg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Launch"
+msgstr "Оғоз"
+
+msgid "Download source file"
+msgstr "Файли манбаъро зеркашӣ кунед"
+
 msgid "Download notebook file"
 msgstr "Файли дафтарро зеркашӣ кунед"
 
-msgid "Fullscreen mode"
-msgstr "Ҳолати экрани пурра"
-
-msgid "Source repository"
-msgstr "Анбори манбаъ"
+msgid "Toggle navigation"
+msgstr "Гузаришро иваз кунед"
 
 msgid "Print to PDF"
 msgstr "Чоп ба PDF"
 
-msgid "Copyright"
-msgstr "Ҳуқуқи муаллиф"
+msgid "Edit this page"
+msgstr "Ин саҳифаро таҳрир кунед"
 
 msgid "Sphinx Book Theme"
 msgstr "Сфинкс Мавзӯи китоб"
+
+msgid "Theme by the"
+msgstr "Мавзӯъи аз"
+
+msgid "next page"
+msgstr "саҳифаи оянда"
+
+msgid "repository"
+msgstr "анбор"
+
+msgid "By"
+msgstr "Бо"
+
+msgid "previous page"
+msgstr "саҳифаи қаблӣ"
+
+msgid "Source repository"
+msgstr "Анбори манбаъ"
 
 msgid "By the"
 msgstr "Бо"
@@ -32,35 +53,11 @@ msgstr "Бо"
 msgid "Download this page"
 msgstr "Ин саҳифаро зеркашӣ кунед"
 
-msgid "repository"
-msgstr "анбор"
-
-msgid "Download source file"
-msgstr "Файли манбаъро зеркашӣ кунед"
-
-msgid "By"
-msgstr "Бо"
-
-msgid "Toggle navigation"
-msgstr "Гузаришро иваз кунед"
-
-msgid "next page"
-msgstr "саҳифаи оянда"
-
-msgid "Last updated on"
-msgstr "Last навсозӣ дар"
+msgid "Copyright"
+msgstr "Ҳуқуқи муаллиф"
 
 msgid "Contents"
 msgstr "Мундариҷа"
-
-msgid "Launch"
-msgstr "Оғоз"
-
-msgid "Theme by the"
-msgstr "Мавзӯъи аз"
-
-msgid "Open an issue"
-msgstr "Масъаларо кушоед"
 
 msgid "open issue"
 msgstr "барориши кушод"
@@ -68,8 +65,11 @@ msgstr "барориши кушод"
 msgid "suggest edit"
 msgstr "пешниҳод вироиш"
 
-msgid "Edit this page"
-msgstr "Ин саҳифаро таҳрир кунед"
+msgid "Open an issue"
+msgstr "Масъаларо кушоед"
 
-msgid "previous page"
-msgstr "саҳифаи қаблӣ"
+msgid "Fullscreen mode"
+msgstr "Ҳолати экрани пурра"
+
+msgid "Last updated on"
+msgstr "Last навсозӣ дар"

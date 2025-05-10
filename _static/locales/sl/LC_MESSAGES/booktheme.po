@@ -8,23 +8,44 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Launch"
+msgstr "Kosilo"
+
+msgid "Download source file"
+msgstr "Prenesite izvorno datoteko"
+
 msgid "Download notebook file"
 msgstr "Prenesite datoteko zvezka"
 
-msgid "Fullscreen mode"
-msgstr "Celozaslonski način"
-
-msgid "Source repository"
-msgstr "Izvorno skladišče"
+msgid "Toggle navigation"
+msgstr "Preklopi navigacijo"
 
 msgid "Print to PDF"
 msgstr "Natisni v PDF"
 
-msgid "Copyright"
-msgstr "avtorske pravice"
+msgid "Edit this page"
+msgstr "Uredite to stran"
 
 msgid "Sphinx Book Theme"
 msgstr "Tema knjige Sphinx"
+
+msgid "Theme by the"
+msgstr "Tema avtorja"
+
+msgid "next page"
+msgstr "Naslednja stran"
+
+msgid "repository"
+msgstr "odlagališče"
+
+msgid "By"
+msgstr "Avtor"
+
+msgid "previous page"
+msgstr "Prejšnja stran"
+
+msgid "Source repository"
+msgstr "Izvorno skladišče"
 
 msgid "By the"
 msgstr "Avtor"
@@ -32,35 +53,11 @@ msgstr "Avtor"
 msgid "Download this page"
 msgstr "Prenesite to stran"
 
-msgid "repository"
-msgstr "odlagališče"
-
-msgid "Download source file"
-msgstr "Prenesite izvorno datoteko"
-
-msgid "By"
-msgstr "Avtor"
-
-msgid "Toggle navigation"
-msgstr "Preklopi navigacijo"
-
-msgid "next page"
-msgstr "Naslednja stran"
-
-msgid "Last updated on"
-msgstr "Nazadnje posodobljeno dne"
+msgid "Copyright"
+msgstr "avtorske pravice"
 
 msgid "Contents"
 msgstr "Vsebina"
-
-msgid "Launch"
-msgstr "Kosilo"
-
-msgid "Theme by the"
-msgstr "Tema avtorja"
-
-msgid "Open an issue"
-msgstr "Odprite številko"
 
 msgid "open issue"
 msgstr "odprto vprašanje"
@@ -68,8 +65,11 @@ msgstr "odprto vprašanje"
 msgid "suggest edit"
 msgstr "predlagajte urejanje"
 
-msgid "Edit this page"
-msgstr "Uredite to stran"
+msgid "Open an issue"
+msgstr "Odprite številko"
 
-msgid "previous page"
-msgstr "Prejšnja stran"
+msgid "Fullscreen mode"
+msgstr "Celozaslonski način"
+
+msgid "Last updated on"
+msgstr "Nazadnje posodobljeno dne"

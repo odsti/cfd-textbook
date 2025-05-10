@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,6 +71,7 @@
     <link rel="prev" title="Standard scores" href="standard_scores.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,19 +87,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -103,7 +96,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -111,8 +103,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +120,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -158,21 +151,17 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -348,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -542,24 +536,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -625,14 +611,14 @@ document.write(`
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDDEN</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="c1"># Make random number generator.</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">stats</span>
 </pre></div>
 </div>
 </div>
@@ -646,7 +632,7 @@ document.write(`
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDDEN</span>
-<span class="k">def</span> <span class="nf">r_scatter</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">r_scatter</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
     <span class="s2">&quot;Generate a scatter plot with a correlation approximately r&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
@@ -775,7 +761,7 @@ the horizontal.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;acceleration&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/fe8f8a6af273070531a86c6cba151c7213cef088dbfd9fdc2789ec4ba3c0b167.png" src="_images/fe8f8a6af273070531a86c6cba151c7213cef088dbfd9fdc2789ec4ba3c0b167.png" />
+<img alt="_images/d2cb14e90ece126fba8d6cd1ab00c0448546d35efefbe6aef1720664d3b4f65b.png" src="_images/d2cb14e90ece126fba8d6cd1ab00c0448546d35efefbe6aef1720664d3b4f65b.png" />
 </div>
 </div>
 <p>Notice the positive association. The scatter of points is sloping
@@ -798,7 +784,7 @@ that tended to cost more.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mpg&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/5f69c200ba3fa466455bacd56110002eb9fc76a81e257925c30087c70323cb96.png" src="_images/5f69c200ba3fa466455bacd56110002eb9fc76a81e257925c30087c70323cb96.png" />
+<img alt="_images/aff8eef8406b544b5ab7f1dc6f40c871c015e276b896e2928a43bbc3858f7224.png" src="_images/aff8eef8406b544b5ab7f1dc6f40c871c015e276b896e2928a43bbc3858f7224.png" />
 </div>
 </div>
 <p>Along with the negative association, the scatter diagram of price versus
@@ -820,7 +806,7 @@ SUVs also shows a linear trend, but with a positive slope.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mpg&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/30526d2c8727c2e093a4fc772bc5fd5bf7405fbead217d5c08f1c11b9caedfdb.png" src="_images/30526d2c8727c2e093a4fc772bc5fd5bf7405fbead217d5c08f1c11b9caedfdb.png" />
+<img alt="_images/1fc36d534d0488bef926fa1987182ec437c384102accb9c23267b66164a49adb.png" src="_images/1fc36d534d0488bef926fa1987182ec437c384102accb9c23267b66164a49adb.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -833,7 +819,7 @@ SUVs also shows a linear trend, but with a positive slope.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;acceleration&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/a8bf714ee52e73c213041cf46114300ef6ab957becd80b99547bd9b6bef17367.png" src="_images/a8bf714ee52e73c213041cf46114300ef6ab957becd80b99547bd9b6bef17367.png" />
+<img alt="_images/ffa6f8752296ccae11f94224a6f26a2f3a37ede11254bb321b6b6eac91796e24.png" src="_images/ffa6f8752296ccae11f94224a6f26a2f3a37ede11254bb321b6b6eac91796e24.png" />
 </div>
 </div>
 <p>You will have noticed that we can derive useful information from the
@@ -846,7 +832,7 @@ linearity in two scatter diagrams.</p>
 <code class="docutils literal notranslate"><span class="pre">standard_units</span></code> to convert an array of numbers to standard units.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">standard_units</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">standard_units</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="s2">&quot;Convert any array of numbers to standard units.&quot;</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
@@ -868,7 +854,7 @@ with all the variables measured in standard units.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f0967b09c46c77966f5710b1911c59494ac467b0c74b37d1ce34502a332b9066.png" src="_images/f0967b09c46c77966f5710b1911c59494ac467b0c74b37d1ce34502a332b9066.png" />
+<img alt="_images/e435be67e8de8b7d69f8dd4e4c03f4085270c8bb64249c4ed2f6cde21fcee047.png" src="_images/e435be67e8de8b7d69f8dd4e4c03f4085270c8bb64249c4ed2f6cde21fcee047.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -883,7 +869,7 @@ with all the variables measured in standard units.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f1af6e39ed7177013a16533faf0bf121058144c772ec15911cc6e132b0dc4081.png" src="_images/f1af6e39ed7177013a16533faf0bf121058144c772ec15911cc6e132b0dc4081.png" />
+<img alt="_images/9a9d135a17d1d6976d8f379ea6ae9f31b0536dce07b3b20368489edf167d2b14.png" src="_images/9a9d135a17d1d6976d8f379ea6ae9f31b0536dce07b3b20368489edf167d2b14.png" />
 </div>
 </div>
 <p>The associations that we see in these figures are the same as those we
@@ -927,7 +913,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7a62d2c68479f79b65bdf1060bc5dea0e5844234c594c9c4b0c2bca88eba3122.png" src="_images/7a62d2c68479f79b65bdf1060bc5dea0e5844234c594c9c4b0c2bca88eba3122.png" />
+<img alt="_images/7d3dbcab1886765d6fec68efb0b425fd075c22bd736e197b4e31e99c8b8f73c7.png" src="_images/7d3dbcab1886765d6fec68efb0b425fd075c22bd736e197b4e31e99c8b8f73c7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -937,7 +923,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d5486b46506991e44ab715884878965e68cdecdd75a6e46db393e74dda6bac86.png" src="_images/d5486b46506991e44ab715884878965e68cdecdd75a6e46db393e74dda6bac86.png" />
+<img alt="_images/ffc36f6d63839593029930c43ca209aa278c99bafbe35a0809b594015740280a.png" src="_images/ffc36f6d63839593029930c43ca209aa278c99bafbe35a0809b594015740280a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -947,7 +933,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a115e31dc65632c947574174fb1273c64b8fc1cf15b85e017e628a1f0de9bb11.png" src="_images/a115e31dc65632c947574174fb1273c64b8fc1cf15b85e017e628a1f0de9bb11.png" />
+<img alt="_images/30b73ab909343a4b134e8ed50c5a0a062867ee0c1ca0c7afe92ddc23e9e0092f.png" src="_images/30b73ab909343a4b134e8ed50c5a0a062867ee0c1ca0c7afe92ddc23e9e0092f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -957,7 +943,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/810747d1cb0fc6f4f9b34783ae8bb7824a1d6686bd874bbd08049a9ded9ea3b8.png" src="_images/810747d1cb0fc6f4f9b34783ae8bb7824a1d6686bd874bbd08049a9ded9ea3b8.png" />
+<img alt="_images/de63c7919f837c686348d662d35546d9dd97aa8e12fb2a5c4acf756d757195ad.png" src="_images/de63c7919f837c686348d662d35546d9dd97aa8e12fb2a5c4acf756d757195ad.png" />
 </div>
 </div>
 </section>
@@ -967,7 +953,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 <p>We would follow the recipe we know from our previous regressions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rmse_any_line</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rmse_any_line</span><span class="p">(</span><span class="n">c_s</span><span class="p">,</span> <span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">):</span>
     <span class="n">c</span><span class="p">,</span> <span class="n">s</span> <span class="o">=</span> <span class="n">c_s</span>
     <span class="n">predicted</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">x_values</span> <span class="o">*</span> <span class="n">s</span>
     <span class="n">error</span> <span class="o">=</span> <span class="n">y_values</span> <span class="o">-</span> <span class="n">predicted</span>
@@ -979,7 +965,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 <p>Find the best intercept and slope:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 <span class="n">best_c</span><span class="p">,</span> <span class="n">best_s</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">rmse_any_line</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span>
                           <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">suv_mpg_su</span><span class="p">,</span> <span class="n">suv_msrp_su</span><span class="p">))</span><span class="o">.</span><span class="n">x</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Intercept&#39;</span><span class="p">,</span> <span class="n">best_c</span><span class="p">)</span>
@@ -1093,7 +1079,7 @@ not equal to 1.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/e05b3d390f3004ec98fbb056eede61b3b8f5b0fa9e8a591cfe6ee9b2d48c3c0f.png" src="_images/e05b3d390f3004ec98fbb056eede61b3b8f5b0fa9e8a591cfe6ee9b2d48c3c0f.png" />
+<img alt="_images/62601411f0fe998e3de5d8cedc81dc71d4a66042432bd119f0049e0c3ce5399f.png" src="_images/62601411f0fe998e3de5d8cedc81dc71d4a66042432bd119f0049e0c3ce5399f.png" />
 </div>
 </div>
 <p><strong>Step 1.</strong> Convert each variable to standard units.</p>
@@ -1279,7 +1265,7 @@ the amount of clustering nor the sign of the association.</p></li>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;y&#39;, ylabel=&#39;x&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/5fd258b375c1928af04ed97560d1d90129614df7093165407e10c9b7312e6101.png" src="_images/5fd258b375c1928af04ed97560d1d90129614df7093165407e10c9b7312e6101.png" />
+<img alt="_images/147d37379c1ebd83696143dda6152f017c89375571f23f0197cbb6585b84f0b0.png" src="_images/147d37379c1ebd83696143dda6152f017c89375571f23f0197cbb6585b84f0b0.png" />
 </div>
 </div>
 <section id="the-correlation-function">
@@ -1291,7 +1277,7 @@ a table and the labels of two columns in the table. The function returns
 <span class="math notranslate nohighlight">\(r\)</span>, the mean of the products of those column values in standard units.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_name</span><span class="p">,</span> <span class="n">y_name</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">correlation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_name</span><span class="p">,</span> <span class="n">y_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Correlation by calculation</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span>
@@ -1304,7 +1290,7 @@ a table and the labels of two columns in the table. The function returns
 <p>This is a <code class="docutils literal notranslate"><span class="pre">minimize</span></code> version of the function - it will return very similar results:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">correlation_minimize</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_name</span><span class="p">,</span> <span class="n">y_name</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">correlation_minimize</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">x_name</span><span class="p">,</span> <span class="n">y_name</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Correlation by minimization</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span>
@@ -1429,7 +1415,7 @@ then we can conclude that the <em>null world</em> is not a good model of the act
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2848f51d64ce5ab1f163f648a4a767ecb00f8299f8db3b4b91903fa7ad1a20f5.png" src="_images/2848f51d64ce5ab1f163f648a4a767ecb00f8299f8db3b4b91903fa7ad1a20f5.png" />
+<img alt="_images/e7a88711551a2437cf957ff99376336e616d4d7ad336141e8447098f2b66c0d0.png" src="_images/e7a88711551a2437cf957ff99376336e616d4d7ad336141e8447098f2b66c0d0.png" />
 </div>
 </div>
 <p>As we know, we can calculate the correlation coefficient by converting each variable to standard scores,
@@ -1494,7 +1480,7 @@ the null world:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/235871bcd3879da68546902521738f27c6adbd819b86e1f116a960441a13463f.png" src="_images/235871bcd3879da68546902521738f27c6adbd819b86e1f116a960441a13463f.png" />
+<img alt="_images/e8bb1d10516e927bc8555252e316942e118712c14228d26ce548fe0d51bac336.png" src="_images/e8bb1d10516e927bc8555252e316942e118712c14228d26ce548fe0d51bac336.png" />
 </div>
 </div>
 <p>We can get a specific probability value (a <span class="math notranslate nohighlight">\(p\)</span>-value) by counting the number of simulated
@@ -1546,7 +1532,7 @@ Here is an example of variables that have a perfect quadratic relation
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2e11b6bf840316fc319b3433319204097df26116a67eb98838957e162dd57f17.png" src="_images/2e11b6bf840316fc319b3433319204097df26116a67eb98838957e162dd57f17.png" />
+<img alt="_images/1baac1a61ec6c7bff696da8d7afa17bb4a37aa1781eed833ee1c541790219e9a.png" src="_images/1baac1a61ec6c7bff696da8d7afa17bb4a37aa1781eed833ee1c541790219e9a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1580,7 +1566,7 @@ which <span class="math notranslate nohighlight">\(r\)</span> is equal to 0, by 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/19a90aa2935a5f6bcde592ac942f8ed68f5e229f09ba8615435f1f9abd30d100.png" src="_images/19a90aa2935a5f6bcde592ac942f8ed68f5e229f09ba8615435f1f9abd30d100.png" />
+<img alt="_images/78183cbc045b3396d4f536e63bd3af7baeac010d4a301f2a68afacbf836236e4.png" src="_images/78183cbc045b3396d4f536e63bd3af7baeac010d4a301f2a68afacbf836236e4.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1605,7 +1591,7 @@ which <span class="math notranslate nohighlight">\(r\)</span> is equal to 0, by 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/8d35caa3f22c30fb00f457009d81f59c378ad1eab5ec369cb7b8e7cdd2c45306.png" src="_images/8d35caa3f22c30fb00f457009d81f59c378ad1eab5ec369cb7b8e7cdd2c45306.png" />
+<img alt="_images/b0fdb20e7c4b0ac65ced7bda6014cec3659aa46ea15a3b89ba95646fddbbfca7.png" src="_images/b0fdb20e7c4b0ac65ced7bda6014cec3659aa46ea15a3b89ba95646fddbbfca7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1728,7 +1714,7 @@ to 0.985.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Critical Reading&#39;, ylabel=&#39;Math&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/3485861ed353b4c8e7f30c50f693cec038a6af071a22e6c0ad331d88ed94356f.png" src="_images/3485861ed353b4c8e7f30c50f693cec038a6af071a22e6c0ad331d88ed94356f.png" />
+<img alt="_images/df2f5885aec7d98649a45523092389e229e7853403f3241ddf671494c12b9b03.png" src="_images/df2f5885aec7d98649a45523092389e229e7853403f3241ddf671494c12b9b03.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1838,7 +1824,8 @@ take a look.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1911,8 +1898,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

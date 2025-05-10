@@ -41,21 +41,27 @@ random numbers, drawing conclusions about differences between groups using
 random permutation, looking for straight line relationships using regression,
 and allowing for multiple explanatory measures with multiple regression.  We look at ways of estimating the confidence of our estimates, using confidence intervals.
 
-## Based on the Berkeley textbook
+## Inspired by the Berkeley textbook
 
-This textbook draws heavily on the excellent [Computational and Inferential
-Thinking](https://www.inferentialthinking.com) textbook for the data science
-course at the University of California Berkeley: [The foundations of data
-science](http://data8.org/). Many thanks to the main authors [Ani
+This textbook draws heavily on the approach in the excellent [Computational and
+Inferential Thinking](https://www.inferentialthinking.com) textbook for the
+data science course at the University of California Berkeley: [The foundations
+of data science](http://data8.org/).  As you will see noted in various places,
+some pages in this textbook are early versions of pages in the Berkeley
+textbook. Many thanks to the main authors [Ani
 Adhikari](http://statistics.berkeley.edu/people/ani-adhikari) and [John
-DeNero](http://denero.org), as well as [David
-Wagner](https://www.cs.berkeley.edu/~daw), who wrote the beautiful chapter on
-machine learning and classification.
+DeNero](http://denero.org). [David Wagner](https://www.cs.berkeley.edu/~daw),
+wrote a [truly beautiful chapter on machine learning and
+classification](https://inferentialthinking.com/chapters/17/Classification.html),
+that you can find in the current Berkeley textbook.  Previous editions of this
+textbook had versions of those pages, but we removed them as they were such
+a substantial and original piece of work, we felt bad for including them in
+a textbook that is largely our own.
 
 ## Many sections are interactive
 
 You can interact with many of the sections in this textbook, with the
 "Interact" button at the top of the page. This will take you to a free online
 service that allows you to execute the code in the section, to generate the
-tables and figures. We encourage you to play with these interactive sections
-by changing the code and running it.
+tables and figures. We encourage you to play with these interactive sections by
+changing the code and running it.

@@ -8,23 +8,44 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Launch"
+msgstr "Uruchomić"
+
+msgid "Download source file"
+msgstr "Pobierz plik źródłowy"
+
 msgid "Download notebook file"
 msgstr "Pobierz plik notatnika"
 
-msgid "Fullscreen mode"
-msgstr "Pełny ekran"
-
-msgid "Source repository"
-msgstr "Repozytorium źródłowe"
+msgid "Toggle navigation"
+msgstr "Przełącz nawigację"
 
 msgid "Print to PDF"
 msgstr "Drukuj do PDF"
 
-msgid "Copyright"
-msgstr "prawa autorskie"
+msgid "Edit this page"
+msgstr "Edytuj tę strone"
 
 msgid "Sphinx Book Theme"
 msgstr "Motyw książki Sphinx"
+
+msgid "Theme by the"
+msgstr "Motyw autorstwa"
+
+msgid "next page"
+msgstr "Następna strona"
+
+msgid "repository"
+msgstr "magazyn"
+
+msgid "By"
+msgstr "Przez"
+
+msgid "previous page"
+msgstr "Poprzednia strona"
+
+msgid "Source repository"
+msgstr "Repozytorium źródłowe"
 
 msgid "By the"
 msgstr "Przez"
@@ -32,35 +53,11 @@ msgstr "Przez"
 msgid "Download this page"
 msgstr "Pobierz tę stronę"
 
-msgid "repository"
-msgstr "magazyn"
-
-msgid "Download source file"
-msgstr "Pobierz plik źródłowy"
-
-msgid "By"
-msgstr "Przez"
-
-msgid "Toggle navigation"
-msgstr "Przełącz nawigację"
-
-msgid "next page"
-msgstr "Następna strona"
-
-msgid "Last updated on"
-msgstr "Ostatnia aktualizacja"
+msgid "Copyright"
+msgstr "prawa autorskie"
 
 msgid "Contents"
 msgstr "Zawartość"
-
-msgid "Launch"
-msgstr "Uruchomić"
-
-msgid "Theme by the"
-msgstr "Motyw autorstwa"
-
-msgid "Open an issue"
-msgstr "Otwórz problem"
 
 msgid "open issue"
 msgstr "otwarty problem"
@@ -68,8 +65,11 @@ msgstr "otwarty problem"
 msgid "suggest edit"
 msgstr "zaproponuj edycję"
 
-msgid "Edit this page"
-msgstr "Edytuj tę strone"
+msgid "Open an issue"
+msgstr "Otwórz problem"
 
-msgid "previous page"
-msgstr "Poprzednia strona"
+msgid "Fullscreen mode"
+msgstr "Pełny ekran"
+
+msgid "Last updated on"
+msgstr "Ostatnia aktualizacja"

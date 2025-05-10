@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="On confidence" href="confidence.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -346,9 +335,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -540,24 +534,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -607,11 +593,11 @@ document.write(`
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Don&#39;t change this cell; just run it.</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="c1"># Safe setting for Pandas.  Needs Pandas version &gt;= 1.5.</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="c1"># Make the plots look more fancy.</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1248,7 +1234,7 @@ of the total compensations.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0a7e13cfae4f4f00c3665c4901ce9358acf778abe46b250c8a335d9ac2722ec6.png" src="_images/0a7e13cfae4f4f00c3665c4901ce9358acf778abe46b250c8a335d9ac2722ec6.png" />
+<img alt="_images/b0cb73d307a8bc355da10fc87e0bc25439f2a8fe4c138d5e410862b9038b7343.png" src="_images/b0cb73d307a8bc355da10fc87e0bc25439f2a8fe4c138d5e410862b9038b7343.png" />
 </div>
 </div>
 <p>While most of the values are below $300,000, a few are quite a bit higher. For
@@ -1396,7 +1382,7 @@ the parameter.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e1b455f1067909ea2e625566b77538dbb02948c30bc7bcc0e3c7f520c3c74fd9.png" src="_images/e1b455f1067909ea2e625566b77538dbb02948c30bc7bcc0e3c7f520c3c74fd9.png" />
+<img alt="_images/30090d47ca16c05ad6f8bc3e94ec2812386a5bb489ff8835ba81ade1136bfbf6.png" src="_images/30090d47ca16c05ad6f8bc3e94ec2812386a5bb489ff8835ba81ade1136bfbf6.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1407,7 +1393,7 @@ the parameter.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(113044.78)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(112204.73999999999)
 </pre></div>
 </div>
 </div>
@@ -1474,17 +1460,17 @@ the corresponding sample median.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>35270    143122.98
-14042    121000.83
-21171     96627.63
-15509    101032.04
-37288    106334.61
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>33865    164904.79
+25580    158380.61
+3529     179607.66
+25505    139793.40
+36319     75153.41
            ...    
-39415     25589.05
-32924     42837.00
-21941    156872.46
-30365     97505.58
-39949     94250.99
+37704     32181.60
+11797    133125.67
+6669      18971.63
+20739    144216.03
+1673     256748.68
 Name: Total Compensation, Length: 500, dtype: float64
 </pre></div>
 </div>
@@ -1498,7 +1484,7 @@ Name: Total Compensation, Length: 500, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0119e131e1d3594f553fea6e596f6aea4e7753e5419fa569b920c9fb0133d055.png" src="_images/0119e131e1d3594f553fea6e596f6aea4e7753e5419fa569b920c9fb0133d055.png" />
+<img alt="_images/4fc1f21be9a6384e188907de4b53eb3fb8c25d0f2a1866ccf39f2279532bac01.png" src="_images/4fc1f21be9a6384e188907de4b53eb3fb8c25d0f2a1866ccf39f2279532bac01.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1509,7 +1495,7 @@ Name: Total Compensation, Length: 500, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(108350.11)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(109212.09)
 </pre></div>
 </div>
 </div>
@@ -1530,7 +1516,7 @@ median</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(114134.98)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(114118.925)
 </pre></div>
 </div>
 </div>
@@ -1546,7 +1532,7 @@ process. So the number of bootstrap samples will be called the number of
 replications.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bootstrap_median</span><span class="p">(</span><span class="n">original_sample</span><span class="p">,</span> <span class="n">replications</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bootstrap_median</span><span class="p">(</span><span class="n">original_sample</span><span class="p">,</span> <span class="n">replications</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return array of bootstrapped sample medians</span>
 
 <span class="sd">    Parameters</span>
@@ -1598,7 +1584,7 @@ but did not use in the bootstrap process.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/19f651649b69344e110014be8192b8955b28b21bf54e7e4dbdaf25018671d143.png" src="_images/19f651649b69344e110014be8192b8955b28b21bf54e7e4dbdaf25018671d143.png" />
+<img alt="_images/006a5d952b01a280d41947d87b74684ade7f7adf74f96830272664e232f3a55d.png" src="_images/006a5d952b01a280d41947d87b74684ade7f7adf74f96830272664e232f3a55d.png" />
 </div>
 </div>
 <p>It is important to remember that the red dot is fixed: it is $110,305.79, the
@@ -1624,7 +1610,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(108088.33)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(106606.05)
 </pre></div>
 </div>
 </div>
@@ -1637,7 +1623,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(118798.645)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(118070.03)
 </pre></div>
 </div>
 </div>
@@ -1650,7 +1636,7 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([108088.33 , 118798.645])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([106606.05, 118070.03])
 </pre></div>
 </div>
 </div>
@@ -1665,8 +1651,8 @@ medians contains the red dot”.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 108088.33
-Right 118798.645
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 106606.05
+Right 118070.03
 </pre></div>
 </div>
 </div>
@@ -1684,7 +1670,7 @@ Right 118798.645
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/64e3c690b8a5fa100f7704f4187acf24bffd78517e78b3e497dde1a3ef1136c6.png" src="_images/64e3c690b8a5fa100f7704f4187acf24bffd78517e78b3e497dde1a3ef1136c6.png" />
+<img alt="_images/b60420348f33502b3857f343fd35158f59b840d2e1304d630286aa5ba4240d4b.png" src="_images/b60420348f33502b3857f343fd35158f59b840d2e1304d630286aa5ba4240d4b.png" />
 </div>
 </div>
 <p>The “middle 95%” interval of estimates captured the parameter in our example.
@@ -1714,8 +1700,8 @@ one left and one right interval.  This is the code we have been using above.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 101744.95474999999
-Right 112377.23999999999
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Left 103579.44
+Right 112828.54999999999
 </pre></div>
 </div>
 </div>
@@ -1788,28 +1774,28 @@ estimates of the median.</p>
   <tbody>
     <tr>
       <th>0</th>
-      <td>111141.42000</td>
-      <td>122362.600000</td>
+      <td>99893.194375</td>
+      <td>112008.990000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>101405.72000</td>
-      <td>111206.965000</td>
+      <td>104152.265000</td>
+      <td>115714.489875</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>107095.92500</td>
-      <td>116431.712000</td>
+      <td>100645.625000</td>
+      <td>113717.560000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>109683.74625</td>
-      <td>123228.715000</td>
+      <td>106132.210000</td>
+      <td>118959.567625</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>101247.64500</td>
-      <td>113356.075000</td>
+      <td>107366.130000</td>
+      <td>118229.623375</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1818,28 +1804,28 @@ estimates of the median.</p>
     </tr>
     <tr>
       <th>95</th>
-      <td>106401.64000</td>
-      <td>117462.865000</td>
+      <td>99672.480000</td>
+      <td>110854.672250</td>
     </tr>
     <tr>
       <th>96</th>
-      <td>110061.86000</td>
-      <td>122150.180000</td>
+      <td>110970.770000</td>
+      <td>123998.190000</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>100314.07000</td>
-      <td>111619.160000</td>
+      <td>105506.010000</td>
+      <td>116274.745000</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>103856.05000</td>
-      <td>115645.112875</td>
+      <td>100837.230000</td>
+      <td>114225.140000</td>
     </tr>
     <tr>
       <th>99</th>
-      <td>111168.61000</td>
-      <td>120789.310000</td>
+      <td>110842.765000</td>
+      <td>121411.930000</td>
     </tr>
   </tbody>
 </table>
@@ -1896,29 +1882,29 @@ end is above.</p>
   </thead>
   <tbody>
     <tr>
+      <th>0</th>
+      <td>99893.194375</td>
+      <td>112008.990000</td>
+    </tr>
+    <tr>
       <th>1</th>
-      <td>101405.72000</td>
-      <td>111206.965000</td>
+      <td>104152.265000</td>
+      <td>115714.489875</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>107095.92500</td>
-      <td>116431.712000</td>
+      <td>100645.625000</td>
+      <td>113717.560000</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>109683.74625</td>
-      <td>123228.715000</td>
+      <td>106132.210000</td>
+      <td>118959.567625</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>101247.64500</td>
-      <td>113356.075000</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>106870.65500</td>
-      <td>116398.655000</td>
+      <td>107366.130000</td>
+      <td>118229.623375</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1926,33 +1912,33 @@ end is above.</p>
       <td>...</td>
     </tr>
     <tr>
+      <th>93</th>
+      <td>104862.110000</td>
+      <td>116353.220000</td>
+    </tr>
+    <tr>
       <th>94</th>
-      <td>107531.22500</td>
-      <td>119279.850000</td>
+      <td>106282.535000</td>
+      <td>116176.190000</td>
     </tr>
     <tr>
       <th>95</th>
-      <td>106401.64000</td>
-      <td>117462.865000</td>
-    </tr>
-    <tr>
-      <th>96</th>
-      <td>110061.86000</td>
-      <td>122150.180000</td>
+      <td>99672.480000</td>
+      <td>110854.672250</td>
     </tr>
     <tr>
       <th>97</th>
-      <td>100314.07000</td>
-      <td>111619.160000</td>
+      <td>105506.010000</td>
+      <td>116274.745000</td>
     </tr>
     <tr>
       <th>98</th>
-      <td>103856.05000</td>
-      <td>115645.112875</td>
+      <td>100837.230000</td>
+      <td>114225.140000</td>
     </tr>
   </tbody>
 </table>
-<p>96 rows × 2 columns</p>
+<p>94 rows × 2 columns</p>
 </div></div></div>
 </div>
 <p>It takes a few minutes to construct all the intervals, but try it again if you
@@ -1991,7 +1977,7 @@ likely to be off.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/aa3d595248f604f9aee3f8a626e5643936d6327366489e76e1b368007fe1e60b.png" src="_images/aa3d595248f604f9aee3f8a626e5643936d6327366489e76e1b368007fe1e60b.png" />
+<img alt="_images/e0589fa055e49cf491f6398567ec92267b6472deab775a9537f13084fe1d53e2.png" src="_images/e0589fa055e49cf491f6398567ec92267b6472deab775a9537f13084fe1d53e2.png" />
 </div>
 </details>
 </div>
@@ -2076,7 +2062,8 @@ will contain the parameter.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2140,8 +2127,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

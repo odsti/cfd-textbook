@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -68,6 +71,7 @@
     <link rel="prev" title="Optimization" href="optimization.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,19 +87,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -103,7 +96,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -111,8 +103,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -128,7 +120,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -158,21 +151,17 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -348,9 +337,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -542,24 +536,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -605,10 +591,10 @@ way, the y value when the x value is 0.</p>
 zero) intercept, as well as a slope?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="c1"># Make plots look a little bit more fancy</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
 <span class="c1"># Print to 4 decimal places, show tiny values as 0</span>
@@ -733,7 +719,7 @@ refers to all professors teaching Mathematics, and so on.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Overall Quality&#39;)
 </pre></div>
 </div>
-<img alt="_images/ff63381a54ceb125255b18cdbc6ab0814ec9900a09681e30c8dbd4204f7bc2a4.png" src="_images/ff63381a54ceb125255b18cdbc6ab0814ec9900a09681e30c8dbd4204f7bc2a4.png" />
+<img alt="_images/486ae5b0fd2f59c6ffb5f9f752557de813f177bb419cec64a529069842b43ccd.png" src="_images/486ae5b0fd2f59c6ffb5f9f752557de813f177bb419cec64a529069842b43ccd.png" />
 </div>
 </div>
 <p>There might be a straight-line relationship here, but it doesn’t look as if it
@@ -753,7 +739,7 @@ would go through 0, 0:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(np.float64(0.0), np.float64(3.9), np.float64(0.0), np.float64(4.2))
 </pre></div>
 </div>
-<img alt="_images/13946187ff46b9bbb91d684ddf2f25799aae4d61472874836f9d33333ed513a4.png" src="_images/13946187ff46b9bbb91d684ddf2f25799aae4d61472874836f9d33333ed513a4.png" />
+<img alt="_images/ef01ea9f879c0a90cbbf455f406d68cc2cbfb0af3c6bb111180eec3172330829.png" src="_images/ef01ea9f879c0a90cbbf455f406d68cc2cbfb0af3c6bb111180eec3172330829.png" />
 </div>
 </div>
 <p>In <a class="reference internal" href="mean_and_slopes.html"><span class="doc std std-doc">The Mean and Slopes</span></a>, we assumed that the intercept was zero, so we only had to try different slopes to get our best line.</p>
@@ -815,7 +801,7 @@ predicted <span class="math notranslate nohighlight">\(y\)</span> values.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/87f073956d2d7e55133a7036d282be9e4d988e541f21023a4a7fbf4c9f3f4121.png" src="_images/87f073956d2d7e55133a7036d282be9e4d988e541f21023a4a7fbf4c9f3f4121.png" />
+<img alt="_images/a097eba296fd9f0eedaecbd5bd1a777a058018b619491115501a9afa70c014c5.png" src="_images/a097eba296fd9f0eedaecbd5bd1a777a058018b619491115501a9afa70c014c5.png" />
 </div>
 </div>
 <p>The Root Mean Squared Error (RMSE) is:</p>
@@ -836,7 +822,7 @@ predicted <span class="math notranslate nohighlight">\(y\)</span> values.</p>
 <p>Actually, those bits of code are so useful, let’s make them into a function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_with_errors</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_with_errors</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Plot a line through data with errors</span>
 
 <span class="sd">    Parameters</span>
@@ -886,7 +872,7 @@ predicted <span class="math notranslate nohighlight">\(y\)</span> values.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.12027697029219235)
 </pre></div>
 </div>
-<img alt="_images/004de3b94085efb0ba7b247921f7409b4de99f74fe49b3ddd72d547a30e714ed.png" src="_images/004de3b94085efb0ba7b247921f7409b4de99f74fe49b3ddd72d547a30e714ed.png" />
+<img alt="_images/cadc3265206a6516be8327ef9caaea35ee2e346220448b6b397262aabbbba7f6.png" src="_images/cadc3265206a6516be8327ef9caaea35ee2e346220448b6b397262aabbbba7f6.png" />
 </div>
 </div>
 <p>If we try a different intercept, we’ll get a different line, and a different
@@ -901,7 +887,7 @@ error.  Let’s try an intercept of 2.1:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.18316435491606842)
 </pre></div>
 </div>
-<img alt="_images/52b3812cc5e832cfec072c7a6d98e7bda9bc6bffa0f4711c4382d4e1283e7f7a.png" src="_images/52b3812cc5e832cfec072c7a6d98e7bda9bc6bffa0f4711c4382d4e1283e7f7a.png" />
+<img alt="_images/c6fcedd20b8ad58702947e3424bcdff18dc62c65f160633cb2e744128275c495.png" src="_images/c6fcedd20b8ad58702947e3424bcdff18dc62c65f160633cb2e744128275c495.png" />
 </div>
 </div>
 <p>Or, we could go back to the same intercept, but try a different slope, and we’d get a different error.  Let’s try a slope of 0.5:</p>
@@ -915,7 +901,7 @@ error.  Let’s try an intercept of 2.1:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.16024697296024795)
 </pre></div>
 </div>
-<img alt="_images/cba590852950e5b4e9a8614e9ec27287b68b5d57f5dede5c183fccd80a005b9e.png" src="_images/cba590852950e5b4e9a8614e9ec27287b68b5d57f5dede5c183fccd80a005b9e.png" />
+<img alt="_images/e3a5c7802c7951d3c94204b1da7216ea87cb1da301c96126eb1d8ab768ff3005.png" src="_images/e3a5c7802c7951d3c94204b1da7216ea87cb1da301c96126eb1d8ab768ff3005.png" />
 </div>
 </div>
 <p>Now we use the long slow method to find the best slope for our initial
@@ -925,7 +911,7 @@ slopes</span></a> notebook.</p>
 error for any given intercept (<code class="docutils literal notranslate"><span class="pre">c</span></code>) and slope (<code class="docutils literal notranslate"><span class="pre">s</span></code>) like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_rmse_for_c_s</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_rmse_for_c_s</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
     <span class="n">predicted_quality</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">easiness</span> <span class="o">*</span> <span class="n">s</span>
     <span class="n">errors</span> <span class="o">=</span> <span class="n">quality</span> <span class="o">-</span> <span class="n">predicted_quality</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">errors</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
@@ -1175,7 +1161,7 @@ smallest error:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Root mean squared error&#39;)
 </pre></div>
 </div>
-<img alt="_images/dac6ca065b61deb0bafa08162fb3c9d1b9ea11a3fc1d43b76cf24871c56fa514.png" src="_images/dac6ca065b61deb0bafa08162fb3c9d1b9ea11a3fc1d43b76cf24871c56fa514.png" />
+<img alt="_images/f5c9331f171755ae4996a470137bf389cd5fd5cbbce83143982c9759510c879e.png" src="_images/f5c9331f171755ae4996a470137bf389cd5fd5cbbce83143982c9759510c879e.png" />
 </div>
 </div>
 <p>Find the row corresponding to the smallest RMSE:</p>
@@ -1841,7 +1827,7 @@ squared error:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.11930386031906048)
 </pre></div>
 </div>
-<img alt="_images/406c0898455128dae4efe45dda1ba41c7233666f0c3b8a446aff7e10acc6d5dc.png" src="_images/406c0898455128dae4efe45dda1ba41c7233666f0c3b8a446aff7e10acc6d5dc.png" />
+<img alt="_images/ab7da224424d6f94fd8977f563e382c3bb51f813524fdfc1e8046c3ce2084b63.png" src="_images/ab7da224424d6f94fd8977f563e382c3bb51f813524fdfc1e8046c3ce2084b63.png" />
 </div>
 </div>
 <p>Now you know about <a class="reference internal" href="optimization.html"><span class="doc std std-doc">optimization</span></a>, you will not be surprised to
@@ -1851,7 +1837,7 @@ and a starting guess for the intercept and slope.</p>
 <p><code class="docutils literal notranslate"><span class="pre">minimize</span></code> is a little fussy about the functions it will use.  It insists that all the parameters need to be passed in as a single argument.   In our case, we need to pass both parameters (the intercept and slope) as one value, containing two elements, like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc_rmse_for_minimize</span><span class="p">(</span><span class="n">c_s</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calc_rmse_for_minimize</span><span class="p">(</span><span class="n">c_s</span><span class="p">):</span>
     <span class="c1"># c_s has two elements, the intercept c and the slope s.</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">c_s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">c_s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -1897,7 +1883,7 @@ slope.  We will start with our initial guess of <code class="docutils literal no
 reasonable guess will do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
 <span class="n">minimize</span><span class="p">(</span><span class="n">calc_rmse_for_minimize</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1928,7 +1914,7 @@ from traditional fitting of the least-squares line, as implemented, for
 example, in the Scipy <code class="docutils literal notranslate"><span class="pre">linregress</span></code> function:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">linregress</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
 <span class="n">linregress</span><span class="p">(</span><span class="n">easiness</span><span class="p">,</span> <span class="n">quality</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2040,8 +2026,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>

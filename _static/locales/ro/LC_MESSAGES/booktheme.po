@@ -8,23 +8,44 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Launch"
+msgstr "Lansa"
+
+msgid "Download source file"
+msgstr "Descărcați fișierul sursă"
+
 msgid "Download notebook file"
 msgstr "Descărcați fișierul notebook"
 
-msgid "Fullscreen mode"
-msgstr "Modul ecran întreg"
-
-msgid "Source repository"
-msgstr "Depozit sursă"
+msgid "Toggle navigation"
+msgstr "Comutare navigare"
 
 msgid "Print to PDF"
 msgstr "Imprimați în PDF"
 
-msgid "Copyright"
-msgstr "Drepturi de autor"
+msgid "Edit this page"
+msgstr "Editați această pagină"
 
 msgid "Sphinx Book Theme"
 msgstr "Tema Sphinx Book"
+
+msgid "Theme by the"
+msgstr "Tema de"
+
+msgid "next page"
+msgstr "pagina următoare"
+
+msgid "repository"
+msgstr "repertoriu"
+
+msgid "By"
+msgstr "De"
+
+msgid "previous page"
+msgstr "pagina anterioară"
+
+msgid "Source repository"
+msgstr "Depozit sursă"
 
 msgid "By the"
 msgstr "Langa"
@@ -32,35 +53,11 @@ msgstr "Langa"
 msgid "Download this page"
 msgstr "Descarcă această pagină"
 
-msgid "repository"
-msgstr "repertoriu"
-
-msgid "Download source file"
-msgstr "Descărcați fișierul sursă"
-
-msgid "By"
-msgstr "De"
-
-msgid "Toggle navigation"
-msgstr "Comutare navigare"
-
-msgid "next page"
-msgstr "pagina următoare"
-
-msgid "Last updated on"
-msgstr "Ultima actualizare la"
+msgid "Copyright"
+msgstr "Drepturi de autor"
 
 msgid "Contents"
 msgstr "Cuprins"
-
-msgid "Launch"
-msgstr "Lansa"
-
-msgid "Theme by the"
-msgstr "Tema de"
-
-msgid "Open an issue"
-msgstr "Deschideți o problemă"
 
 msgid "open issue"
 msgstr "problema deschisă"
@@ -68,8 +65,11 @@ msgstr "problema deschisă"
 msgid "suggest edit"
 msgstr "sugerează editare"
 
-msgid "Edit this page"
-msgstr "Editați această pagină"
+msgid "Open an issue"
+msgstr "Deschideți o problemă"
 
-msgid "previous page"
-msgstr "pagina anterioară"
+msgid "Fullscreen mode"
+msgstr "Modul ecran întreg"
+
+msgid "Last updated on"
+msgstr "Ultima actualizare la"

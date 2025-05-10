@@ -8,23 +8,44 @@ msgstr ""
 "Language: th\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Launch"
+msgstr "เปิด"
+
+msgid "Download source file"
+msgstr "ดาวน์โหลดไฟล์ต้นฉบับ"
+
 msgid "Download notebook file"
 msgstr "ดาวน์โหลดไฟล์สมุดบันทึก"
 
-msgid "Fullscreen mode"
-msgstr "โหมดเต็มหน้าจอ"
-
-msgid "Source repository"
-msgstr "ที่เก็บซอร์ส"
+msgid "Toggle navigation"
+msgstr "ไม่ต้องสลับช่องทาง"
 
 msgid "Print to PDF"
 msgstr "พิมพ์เป็น PDF"
 
-msgid "Copyright"
-msgstr "ลิขสิทธิ์"
+msgid "Edit this page"
+msgstr "แก้ไขหน้านี้"
 
 msgid "Sphinx Book Theme"
 msgstr "ธีมหนังสือสฟิงซ์"
+
+msgid "Theme by the"
+msgstr "ธีมโดย"
+
+msgid "next page"
+msgstr "หน้าต่อไป"
+
+msgid "repository"
+msgstr "ที่เก็บ"
+
+msgid "By"
+msgstr "โดย"
+
+msgid "previous page"
+msgstr "หน้าที่แล้ว"
+
+msgid "Source repository"
+msgstr "ที่เก็บซอร์ส"
 
 msgid "By the"
 msgstr "โดย"
@@ -32,35 +53,11 @@ msgstr "โดย"
 msgid "Download this page"
 msgstr "ดาวน์โหลดหน้านี้"
 
-msgid "repository"
-msgstr "ที่เก็บ"
-
-msgid "Download source file"
-msgstr "ดาวน์โหลดไฟล์ต้นฉบับ"
-
-msgid "By"
-msgstr "โดย"
-
-msgid "Toggle navigation"
-msgstr "ไม่ต้องสลับช่องทาง"
-
-msgid "next page"
-msgstr "หน้าต่อไป"
-
-msgid "Last updated on"
-msgstr "ปรับปรุงล่าสุดเมื่อ"
+msgid "Copyright"
+msgstr "ลิขสิทธิ์"
 
 msgid "Contents"
 msgstr "สารบัญ"
-
-msgid "Launch"
-msgstr "เปิด"
-
-msgid "Theme by the"
-msgstr "ธีมโดย"
-
-msgid "Open an issue"
-msgstr "เปิดปัญหา"
 
 msgid "open issue"
 msgstr "เปิดปัญหา"
@@ -68,8 +65,11 @@ msgstr "เปิดปัญหา"
 msgid "suggest edit"
 msgstr "แนะนำแก้ไข"
 
-msgid "Edit this page"
-msgstr "แก้ไขหน้านี้"
+msgid "Open an issue"
+msgstr "เปิดปัญหา"
 
-msgid "previous page"
-msgstr "หน้าที่แล้ว"
+msgid "Fullscreen mode"
+msgstr "โหมดเต็มหน้าจอ"
+
+msgid "Last updated on"
+msgstr "ปรับปรุงล่าสุดเมื่อ"

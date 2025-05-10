@@ -16,19 +16,21 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -36,10 +38,11 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -66,6 +69,7 @@
     <link rel="prev" title="Merging" href="merge.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -81,19 +85,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -101,7 +94,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -109,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -126,7 +118,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -156,21 +149,17 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
+    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -346,9 +335,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -540,24 +534,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -622,7 +608,7 @@ issue of Pandas <em>copies</em> and <em>views</em>.</p>
 allow you to avoid this rather complicated distinction, and, if you have a Pandas
 version of 1.5 or greater, we strongly suggest you enable that option, like
 this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;mode.copy_on_write&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -647,7 +633,7 @@ University professors / lecturers teaching that subject. See <a class="reference
 page</span></a> for more detail.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -834,7 +820,7 @@ Name: Clarity, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5329/111022653.py:1: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6327/111022653.py:1: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -1261,7 +1247,7 @@ result.  For example, consider the following code:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5329/4222313501.py:3: ChainedAssignmentError: A value is trying to be set on a copy of a DataFrame or Series through chained assignment.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6327/4222313501.py:3: ChainedAssignmentError: A value is trying to be set on a copy of a DataFrame or Series through chained assignment.
 When using the Copy-on-Write mode, such chained assignment never works to update the original DataFrame or Series, because the intermediate object on which we are setting values always behaves as a copy.
 
 Try using &#39;.loc[row_indexer, col_indexer] = value&#39; instead, to perform the assignment in a single step.
@@ -1524,7 +1510,7 @@ view.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5329/3087147381.py:2: SettingWithCopyWarning: 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6327/3087147381.py:2: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
@@ -1690,26 +1676,26 @@ do enable these errors, for all your notebooks, like this:</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">SettingWithCopyError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_5329/1769055592.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">/tmp/ipykernel_6327/1769055592.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">row_A</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>   <span class="c1"># Copy?  Or view?  Difficult to guess.</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="c1"># Now this generates an error.</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">row_A</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Clarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">299</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">907</span>         <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_has_valid_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">909</span> 
 <span class="g g-Whitespace">    </span><span class="mi">910</span>         <span class="n">iloc</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;iloc&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">iloc</span>
 <span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">iloc</span><span class="o">.</span><span class="n">_setitem_with_indexer</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1940</span>         <span class="k">if</span> <span class="n">take_split_path</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1941</span>             <span class="c1"># We have to operate column-wise</span>
 <span class="g g-Whitespace">   </span><span class="mi">1942</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_with_indexer_split_path</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1943</span>         <span class="k">else</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">1944</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_single_block</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2211</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;iloc&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">2212</span>             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_frame</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
 <span class="g g-Whitespace">   </span><span class="mi">2213</span> 
@@ -1719,14 +1705,14 @@ do enable these errors, for all your notebooks, like this:</p>
 <span class="g g-Whitespace">   </span><span class="mi">2217</span>         <span class="c1"># actually do the set</span>
 <span class="g g-Whitespace">   </span><span class="mi">2218</span>         <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">setitem</span><span class="p">(</span><span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1489</span>             <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cacher</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1490</span>             <span class="k">if</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ref</span><span class="o">.</span><span class="n">_is_mixed_type</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1491</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_check_setitem_copy</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="s2">&quot;referent&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1492</span>             <span class="k">return</span> <span class="kc">True</span>
 <span class="ne">-&gt; </span><span class="mi">1493</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_is_chained_assignment_possible</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4395</span>         <span class="n">single</span><span class="o">-</span><span class="n">dtype</span> <span class="n">meaning</span> <span class="n">that</span> <span class="n">the</span> <span class="n">cacher</span> <span class="n">should</span> <span class="n">be</span> <span class="n">updated</span> <span class="n">following</span>
 <span class="g g-Whitespace">   </span><span class="mi">4396</span>         <span class="n">setting</span><span class="o">.</span>
 <span class="g g-Whitespace">   </span><span class="mi">4397</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -1734,7 +1720,7 @@ do enable these errors, for all your notebooks, like this:</p>
 <span class="ne">-&gt; </span><span class="mi">4399</span><span class="s2">             self._check_setitem_copy(t=&quot;referent&quot;)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4400</span><span class="s2">         return False</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4469</span><span class="s2">                 &quot;indexing.html#returning-a-view-versus-a-copy&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">4470</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">4471</span><span class="s2"> </span>
@@ -1770,7 +1756,7 @@ for the sake our our less linear readers. Consider this code:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5329/1657792584.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6327/1657792584.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -1785,24 +1771,24 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">SettingWithCopyError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_5329/1657792584.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">/tmp/ipykernel_6327/1657792584.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ratings</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Clarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">299</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">907</span>         <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_has_valid_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">909</span> 
 <span class="g g-Whitespace">    </span><span class="mi">910</span>         <span class="n">iloc</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;iloc&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">iloc</span>
 <span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">iloc</span><span class="o">.</span><span class="n">_setitem_with_indexer</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1940</span>         <span class="k">if</span> <span class="n">take_split_path</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1941</span>             <span class="c1"># We have to operate column-wise</span>
 <span class="g g-Whitespace">   </span><span class="mi">1942</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_with_indexer_split_path</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1943</span>         <span class="k">else</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">1944</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_single_block</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2211</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;iloc&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">2212</span>             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_frame</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
 <span class="g g-Whitespace">   </span><span class="mi">2213</span> 
@@ -1812,14 +1798,14 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span class="g g-Whitespace">   </span><span class="mi">2217</span>         <span class="c1"># actually do the set</span>
 <span class="g g-Whitespace">   </span><span class="mi">2218</span>         <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">setitem</span><span class="p">(</span><span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1489</span>             <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cacher</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1490</span>             <span class="k">if</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ref</span><span class="o">.</span><span class="n">_is_mixed_type</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1491</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_check_setitem_copy</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="s2">&quot;referent&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1492</span>             <span class="k">return</span> <span class="kc">True</span>
 <span class="ne">-&gt; </span><span class="mi">1493</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_is_chained_assignment_possible</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4395</span>         <span class="n">single</span><span class="o">-</span><span class="n">dtype</span> <span class="n">meaning</span> <span class="n">that</span> <span class="n">the</span> <span class="n">cacher</span> <span class="n">should</span> <span class="n">be</span> <span class="n">updated</span> <span class="n">following</span>
 <span class="g g-Whitespace">   </span><span class="mi">4396</span>         <span class="n">setting</span><span class="o">.</span>
 <span class="g g-Whitespace">   </span><span class="mi">4397</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -1827,7 +1813,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span class="ne">-&gt; </span><span class="mi">4399</span><span class="s2">             self._check_setitem_copy(t=&quot;referent&quot;)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4400</span><span class="s2">         return False</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4469</span><span class="s2">                 &quot;indexing.html#returning-a-view-versus-a-copy&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">4470</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">4471</span><span class="s2"> </span>
@@ -1858,25 +1844,25 @@ cell directly above is just a short-cut for this exact equivalent.</p>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">SettingWithCopyError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_5329/2016657039.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">/tmp/ipykernel_6327/2016657039.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">ratings</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">tmp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Clarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">299</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">907</span>         <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_has_valid_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">909</span> 
 <span class="g g-Whitespace">    </span><span class="mi">910</span>         <span class="n">iloc</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;iloc&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">iloc</span>
 <span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">iloc</span><span class="o">.</span><span class="n">_setitem_with_indexer</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1940</span>         <span class="k">if</span> <span class="n">take_split_path</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1941</span>             <span class="c1"># We have to operate column-wise</span>
 <span class="g g-Whitespace">   </span><span class="mi">1942</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_with_indexer_split_path</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1943</span>         <span class="k">else</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">1944</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_single_block</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2211</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;iloc&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">2212</span>             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_frame</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
 <span class="g g-Whitespace">   </span><span class="mi">2213</span> 
@@ -1886,14 +1872,14 @@ cell directly above is just a short-cut for this exact equivalent.</p>
 <span class="g g-Whitespace">   </span><span class="mi">2217</span>         <span class="c1"># actually do the set</span>
 <span class="g g-Whitespace">   </span><span class="mi">2218</span>         <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">setitem</span><span class="p">(</span><span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1489</span>             <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cacher</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1490</span>             <span class="k">if</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ref</span><span class="o">.</span><span class="n">_is_mixed_type</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1491</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_check_setitem_copy</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="s2">&quot;referent&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1492</span>             <span class="k">return</span> <span class="kc">True</span>
 <span class="ne">-&gt; </span><span class="mi">1493</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_is_chained_assignment_possible</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4395</span>         <span class="n">single</span><span class="o">-</span><span class="n">dtype</span> <span class="n">meaning</span> <span class="n">that</span> <span class="n">the</span> <span class="n">cacher</span> <span class="n">should</span> <span class="n">be</span> <span class="n">updated</span> <span class="n">following</span>
 <span class="g g-Whitespace">   </span><span class="mi">4396</span>         <span class="n">setting</span><span class="o">.</span>
 <span class="g g-Whitespace">   </span><span class="mi">4397</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -1901,7 +1887,7 @@ cell directly above is just a short-cut for this exact equivalent.</p>
 <span class="ne">-&gt; </span><span class="mi">4399</span><span class="s2">             self._check_setitem_copy(t=&quot;referent&quot;)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4400</span><span class="s2">         return False</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4469</span><span class="s2">                 &quot;indexing.html#returning-a-view-versus-a-copy&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">4470</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">4471</span><span class="s2"> </span>
@@ -1951,7 +1937,7 @@ with <code class="docutils literal notranslate"><span class="pre">.loc</span></c
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5329/1657792584.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6327/1657792584.py:1: FutureWarning: ChainedAssignmentError: behaviour will change in pandas 3.0!
 You are setting values through chained assignment. Currently this works in certain cases, but when using Copy-on-Write (which will become the default behaviour in pandas 3.0) this will never work to update the original DataFrame or Series, because the intermediate object on which we are setting values will behave as a copy.
 A typical example is when you are setting values in a column of a DataFrame, like:
 
@@ -1966,24 +1952,24 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">SettingWithCopyError</span><span class="g g-Whitespace">                      </span>Traceback (most recent call last)
-<span class="nn">/tmp/ipykernel_5329/1657792584.py</span> in <span class="ni">?</span><span class="nt">()</span>
+<span class="nn">/tmp/ipykernel_6327/1657792584.py</span> in <span class="ni">?</span><span class="nt">()</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ratings</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Clarity&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">299</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, key, value)</span>
 <span class="g g-Whitespace">    </span><span class="mi">907</span>         <span class="n">indexer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">908</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_has_valid_setitem_indexer</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">909</span> 
 <span class="g g-Whitespace">    </span><span class="mi">910</span>         <span class="n">iloc</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;iloc&quot;</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">iloc</span>
 <span class="ne">--&gt; </span><span class="mi">911</span>         <span class="n">iloc</span><span class="o">.</span><span class="n">_setitem_with_indexer</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1940</span>         <span class="k">if</span> <span class="n">take_split_path</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1941</span>             <span class="c1"># We have to operate column-wise</span>
 <span class="g g-Whitespace">   </span><span class="mi">1942</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_with_indexer_split_path</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1943</span>         <span class="k">else</span><span class="p">:</span>
 <span class="ne">-&gt; </span><span class="mi">1944</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_setitem_single_block</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/indexing.py</span> in <span class="ni">?</span><span class="nt">(self, indexer, value, name)</span>
 <span class="g g-Whitespace">   </span><span class="mi">2211</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="o">!=</span> <span class="s2">&quot;iloc&quot;</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">2212</span>             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_align_frame</span><span class="p">(</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">_values</span>
 <span class="g g-Whitespace">   </span><span class="mi">2213</span> 
@@ -1993,14 +1979,14 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span class="g g-Whitespace">   </span><span class="mi">2217</span>         <span class="c1"># actually do the set</span>
 <span class="g g-Whitespace">   </span><span class="mi">2218</span>         <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">setitem</span><span class="p">(</span><span class="n">indexer</span><span class="o">=</span><span class="n">indexer</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/series.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1489</span>             <span class="n">ref</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cacher</span><span class="p">()</span>
 <span class="g g-Whitespace">   </span><span class="mi">1490</span>             <span class="k">if</span> <span class="n">ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">ref</span><span class="o">.</span><span class="n">_is_mixed_type</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1491</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_check_setitem_copy</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="s2">&quot;referent&quot;</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1492</span>             <span class="k">return</span> <span class="kc">True</span>
 <span class="ne">-&gt; </span><span class="mi">1493</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_check_is_chained_assignment_possible</span><span class="p">()</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4395</span>         <span class="n">single</span><span class="o">-</span><span class="n">dtype</span> <span class="n">meaning</span> <span class="n">that</span> <span class="n">the</span> <span class="n">cacher</span> <span class="n">should</span> <span class="n">be</span> <span class="n">updated</span> <span class="n">following</span>
 <span class="g g-Whitespace">   </span><span class="mi">4396</span>         <span class="n">setting</span><span class="o">.</span>
 <span class="g g-Whitespace">   </span><span class="mi">4397</span>         <span class="s2">&quot;&quot;&quot;</span>
@@ -2008,7 +1994,7 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 <span class="ne">-&gt; </span><span class="mi">4399</span><span class="s2">             self._check_setitem_copy(t=&quot;referent&quot;)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4400</span><span class="s2">         return False</span>
 
-<span class="nn">/opt/hostedtoolcache/Python/3.11.10/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
+<span class="nn">/opt/hostedtoolcache/Python/3.11.12/x64/lib/python3.11/site-packages/pandas/core/generic.py</span> in <span class="ni">?</span><span class="nt">(self, t, force)</span>
 <span class="g g-Whitespace">   </span><span class="mi">4469</span><span class="s2">                 &quot;indexing.html#returning-a-view-versus-a-copy&quot;</span>
 <span class="g g-Whitespace">   </span><span class="mi">4470</span><span class="s2">             )</span>
 <span class="g g-Whitespace">   </span><span class="mi">4471</span><span class="s2"> </span>
@@ -2130,7 +2116,8 @@ works on the copy, and not on the original.  Hence <em>copy on write</em>.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -2203,8 +2190,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
