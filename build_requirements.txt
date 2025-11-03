@@ -2,7 +2,7 @@
 -r requirements.txt
 sphinx-book-theme@git+https://github.com/matthew-brett/sphinx-book-theme@jupyterlite-links
 -e .
-jupyter-book
+jupyter-book>=1,<2
 jupytext
 oktools
 # To allow static build / upload
