@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="Standard scores" href="standard_scores.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -337,14 +348,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -536,16 +542,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -604,10 +618,10 @@
 </div>
 </p>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDDEN</span>
@@ -625,10 +639,10 @@
 </details>
 </div>
 <div class="cell tag_hide-cell docutils container">
-<details class="hide above-input">
+<details class="admonition hide above-input">
 <summary aria-label="Toggle hidden content">
-<span class="collapsed">Show code cell content</span>
-<span class="expanded">Hide code cell content</span>
+<p class="collapsed admonition-title">Show code cell content</p>
+<p class="expanded admonition-title">Hide code cell content</p>
 </summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># HIDDEN</span>
@@ -761,7 +775,7 @@ the horizontal.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;acceleration&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/d2cb14e90ece126fba8d6cd1ab00c0448546d35efefbe6aef1720664d3b4f65b.png" src="_images/d2cb14e90ece126fba8d6cd1ab00c0448546d35efefbe6aef1720664d3b4f65b.png" />
+<img alt="_images/a1c1bc7666ba4f0ff4860d5e84ead659c657b7c169df0312082a06a48bf5403c.png" src="_images/a1c1bc7666ba4f0ff4860d5e84ead659c657b7c169df0312082a06a48bf5403c.png" />
 </div>
 </div>
 <p>Notice the positive association. The scatter of points is sloping
@@ -784,7 +798,7 @@ that tended to cost more.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mpg&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/aff8eef8406b544b5ab7f1dc6f40c871c015e276b896e2928a43bbc3858f7224.png" src="_images/aff8eef8406b544b5ab7f1dc6f40c871c015e276b896e2928a43bbc3858f7224.png" />
+<img alt="_images/87b092e6faac16f92c61dc7ec118087738ae1d70f3d906f1ac6e9f9209dc24c4.png" src="_images/87b092e6faac16f92c61dc7ec118087738ae1d70f3d906f1ac6e9f9209dc24c4.png" />
 </div>
 </div>
 <p>Along with the negative association, the scatter diagram of price versus
@@ -806,7 +820,7 @@ SUVs also shows a linear trend, but with a positive slope.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;mpg&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/1fc36d534d0488bef926fa1987182ec437c384102accb9c23267b66164a49adb.png" src="_images/1fc36d534d0488bef926fa1987182ec437c384102accb9c23267b66164a49adb.png" />
+<img alt="_images/4d61f7b7980a448c4cdad436cbc1e2cdccd262ce3c1af88167da0400fe889bd7.png" src="_images/4d61f7b7980a448c4cdad436cbc1e2cdccd262ce3c1af88167da0400fe889bd7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -819,7 +833,7 @@ SUVs also shows a linear trend, but with a positive slope.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;acceleration&#39;, ylabel=&#39;msrp&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/ffa6f8752296ccae11f94224a6f26a2f3a37ede11254bb321b6b6eac91796e24.png" src="_images/ffa6f8752296ccae11f94224a6f26a2f3a37ede11254bb321b6b6eac91796e24.png" />
+<img alt="_images/0ba82ea3941eca0074c2cf78e960eeeae81d45e34ad1160d991516ca52f4d622.png" src="_images/0ba82ea3941eca0074c2cf78e960eeeae81d45e34ad1160d991516ca52f4d622.png" />
 </div>
 </div>
 <p>You will have noticed that we can derive useful information from the
@@ -854,7 +868,7 @@ with all the variables measured in standard units.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e435be67e8de8b7d69f8dd4e4c03f4085270c8bb64249c4ed2f6cde21fcee047.png" src="_images/e435be67e8de8b7d69f8dd4e4c03f4085270c8bb64249c4ed2f6cde21fcee047.png" />
+<img alt="_images/ec87c05bcb36df2f83a93fb0fa033ab03775492667babb4d70c855a0186e08b9.png" src="_images/ec87c05bcb36df2f83a93fb0fa033ab03775492667babb4d70c855a0186e08b9.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -869,7 +883,7 @@ with all the variables measured in standard units.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9a9d135a17d1d6976d8f379ea6ae9f31b0536dce07b3b20368489edf167d2b14.png" src="_images/9a9d135a17d1d6976d8f379ea6ae9f31b0536dce07b3b20368489edf167d2b14.png" />
+<img alt="_images/4a2d21e7be942182f20263b102c5a8f497a3ead4f17fdc6dcc799afdc45e23f5.png" src="_images/4a2d21e7be942182f20263b102c5a8f497a3ead4f17fdc6dcc799afdc45e23f5.png" />
 </div>
 </div>
 <p>The associations that we see in these figures are the same as those we
@@ -913,7 +927,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7d3dbcab1886765d6fec68efb0b425fd075c22bd736e197b4e31e99c8b8f73c7.png" src="_images/7d3dbcab1886765d6fec68efb0b425fd075c22bd736e197b4e31e99c8b8f73c7.png" />
+<img alt="_images/85f6b50523cf3e99a00370c23af05ea567f7c530cd8d0fd45e26615bd20a6623.png" src="_images/85f6b50523cf3e99a00370c23af05ea567f7c530cd8d0fd45e26615bd20a6623.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -923,7 +937,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ffc36f6d63839593029930c43ca209aa278c99bafbe35a0809b594015740280a.png" src="_images/ffc36f6d63839593029930c43ca209aa278c99bafbe35a0809b594015740280a.png" />
+<img alt="_images/1ff398c612e13e40ce7a0472ab6ab974c6154ca4bab7ad562d21987f51e7da6a.png" src="_images/1ff398c612e13e40ce7a0472ab6ab974c6154ca4bab7ad562d21987f51e7da6a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -933,7 +947,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/30b73ab909343a4b134e8ed50c5a0a062867ee0c1ca0c7afe92ddc23e9e0092f.png" src="_images/30b73ab909343a4b134e8ed50c5a0a062867ee0c1ca0c7afe92ddc23e9e0092f.png" />
+<img alt="_images/21b0be46b56c83becb1170068e8c6e047e7a76c1651ceb0dd7b9da4e9543f224.png" src="_images/21b0be46b56c83becb1170068e8c6e047e7a76c1651ceb0dd7b9da4e9543f224.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -943,7 +957,7 @@ and the variables are said to be <em>uncorrelated</em>.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/de63c7919f837c686348d662d35546d9dd97aa8e12fb2a5c4acf756d757195ad.png" src="_images/de63c7919f837c686348d662d35546d9dd97aa8e12fb2a5c4acf756d757195ad.png" />
+<img alt="_images/91467bf137b64c56764cddce2d8b279de93d3f665e7ebf20b44307f458c4772f.png" src="_images/91467bf137b64c56764cddce2d8b279de93d3f665e7ebf20b44307f458c4772f.png" />
 </div>
 </div>
 </section>
@@ -1079,7 +1093,7 @@ not equal to 1.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/62601411f0fe998e3de5d8cedc81dc71d4a66042432bd119f0049e0c3ce5399f.png" src="_images/62601411f0fe998e3de5d8cedc81dc71d4a66042432bd119f0049e0c3ce5399f.png" />
+<img alt="_images/582a14b40e1a2640f59daea52d3066e03a15614abd8050eae9d84a3ffe4b28fe.png" src="_images/582a14b40e1a2640f59daea52d3066e03a15614abd8050eae9d84a3ffe4b28fe.png" />
 </div>
 </div>
 <p><strong>Step 1.</strong> Convert each variable to standard units.</p>
@@ -1265,7 +1279,7 @@ the amount of clustering nor the sign of the association.</p></li>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;y&#39;, ylabel=&#39;x&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/147d37379c1ebd83696143dda6152f017c89375571f23f0197cbb6585b84f0b0.png" src="_images/147d37379c1ebd83696143dda6152f017c89375571f23f0197cbb6585b84f0b0.png" />
+<img alt="_images/6aad4063ea51d80dfa8ee96329fc879da3bce67973fe0ef47454a66976ccd2e2.png" src="_images/6aad4063ea51d80dfa8ee96329fc879da3bce67973fe0ef47454a66976ccd2e2.png" />
 </div>
 </div>
 <section id="the-correlation-function">
@@ -1415,7 +1429,7 @@ then we can conclude that the <em>null world</em> is not a good model of the act
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e7a88711551a2437cf957ff99376336e616d4d7ad336141e8447098f2b66c0d0.png" src="_images/e7a88711551a2437cf957ff99376336e616d4d7ad336141e8447098f2b66c0d0.png" />
+<img alt="_images/c9a940140f8135c7cde68d25830a990d8a40c27a502231f939dace0d832525ff.png" src="_images/c9a940140f8135c7cde68d25830a990d8a40c27a502231f939dace0d832525ff.png" />
 </div>
 </div>
 <p>As we know, we can calculate the correlation coefficient by converting each variable to standard scores,
@@ -1480,7 +1494,7 @@ the null world:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e8bb1d10516e927bc8555252e316942e118712c14228d26ce548fe0d51bac336.png" src="_images/e8bb1d10516e927bc8555252e316942e118712c14228d26ce548fe0d51bac336.png" />
+<img alt="_images/cec3d25a5acc8dfc28a5efc090c655dd8fd25767d260652504236593eb01d95f.png" src="_images/cec3d25a5acc8dfc28a5efc090c655dd8fd25767d260652504236593eb01d95f.png" />
 </div>
 </div>
 <p>We can get a specific probability value (a <span class="math notranslate nohighlight">\(p\)</span>-value) by counting the number of simulated
@@ -1496,7 +1510,7 @@ to the actual correlation coefficient, ignoring the direction (+ or -) of the co
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.0)
 </pre></div>
 </div>
 </div>
@@ -1532,7 +1546,7 @@ Here is an example of variables that have a perfect quadratic relation
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1baac1a61ec6c7bff696da8d7afa17bb4a37aa1781eed833ee1c541790219e9a.png" src="_images/1baac1a61ec6c7bff696da8d7afa17bb4a37aa1781eed833ee1c541790219e9a.png" />
+<img alt="_images/95fd68215b4a833839cf810aef19f50b856aec20a00fc1437ac1ca2c8a6a58f8.png" src="_images/95fd68215b4a833839cf810aef19f50b856aec20a00fc1437ac1ca2c8a6a58f8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1566,7 +1580,7 @@ which <span class="math notranslate nohighlight">\(r\)</span> is equal to 0, by 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;x&#39;, ylabel=&#39;y&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/78183cbc045b3396d4f536e63bd3af7baeac010d4a301f2a68afacbf836236e4.png" src="_images/78183cbc045b3396d4f536e63bd3af7baeac010d4a301f2a68afacbf836236e4.png" />
+<img alt="_images/49ea1bfe7534f9d3e25dd2fc97b79ebcb85d0795844bc8986d77385ffc3308c7.png" src="_images/49ea1bfe7534f9d3e25dd2fc97b79ebcb85d0795844bc8986d77385ffc3308c7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1591,7 +1605,7 @@ which <span class="math notranslate nohighlight">\(r\)</span> is equal to 0, by 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b0fdb20e7c4b0ac65ced7bda6014cec3659aa46ea15a3b89ba95646fddbbfca7.png" src="_images/b0fdb20e7c4b0ac65ced7bda6014cec3659aa46ea15a3b89ba95646fddbbfca7.png" />
+<img alt="_images/db881b6c0ef11c30e9cb0b5b87c1c2e878356a6a57693c1ccfe30507b57a2a8d.png" src="_images/db881b6c0ef11c30e9cb0b5b87c1c2e878356a6a57693c1ccfe30507b57a2a8d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1714,7 +1728,7 @@ to 0.985.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Critical Reading&#39;, ylabel=&#39;Math&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/df2f5885aec7d98649a45523092389e229e7853403f3241ddf671494c12b9b03.png" src="_images/df2f5885aec7d98649a45523092389e229e7853403f3241ddf671494c12b9b03.png" />
+<img alt="_images/7eff85eeda2ba920d254df043d22218afc2f764b7c38058b076157fecee43047.png" src="_images/7eff85eeda2ba920d254df043d22218afc2f764b7c38058b076157fecee43047.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1824,8 +1838,7 @@ take a look.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1898,8 +1911,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

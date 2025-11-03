@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -67,7 +64,6 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +79,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -92,6 +99,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,17 +156,21 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -335,14 +346,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -534,16 +540,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -983,22 +997,22 @@ labels.</p>
   <tbody>
     <tr>
       <th>43</th>
-      <td>beer</td>
+      <td>water</td>
       <td>14</td>
     </tr>
     <tr>
       <th>44</th>
-      <td>water</td>
+      <td>beer</td>
       <td>33</td>
     </tr>
     <tr>
       <th>45</th>
-      <td>water</td>
+      <td>beer</td>
       <td>27</td>
     </tr>
     <tr>
       <th>46</th>
-      <td>beer</td>
+      <td>water</td>
       <td>11</td>
     </tr>
     <tr>
@@ -1013,7 +1027,7 @@ labels.</p>
     </tr>
     <tr>
       <th>49</th>
-      <td>water</td>
+      <td>beer</td>
       <td>26</td>
     </tr>
     <tr>
@@ -1033,12 +1047,12 @@ labels.</p>
     </tr>
     <tr>
       <th>53</th>
-      <td>water</td>
+      <td>beer</td>
       <td>22</td>
     </tr>
     <tr>
       <th>54</th>
-      <td>beer</td>
+      <td>water</td>
       <td>36</td>
     </tr>
     <tr>
@@ -1048,22 +1062,22 @@ labels.</p>
     </tr>
     <tr>
       <th>56</th>
-      <td>water</td>
+      <td>beer</td>
       <td>3</td>
     </tr>
     <tr>
       <th>57</th>
-      <td>beer</td>
+      <td>water</td>
       <td>23</td>
     </tr>
     <tr>
       <th>58</th>
-      <td>water</td>
+      <td>beer</td>
       <td>7</td>
     </tr>
     <tr>
       <th>59</th>
-      <td>water</td>
+      <td>beer</td>
       <td>25</td>
     </tr>
     <tr>
@@ -1078,7 +1092,7 @@ labels.</p>
     </tr>
     <tr>
       <th>62</th>
-      <td>beer</td>
+      <td>water</td>
       <td>31</td>
     </tr>
     <tr>
@@ -1093,7 +1107,7 @@ labels.</p>
     </tr>
     <tr>
       <th>65</th>
-      <td>beer</td>
+      <td>water</td>
       <td>20</td>
     </tr>
     <tr>
@@ -1108,12 +1122,12 @@ labels.</p>
     </tr>
     <tr>
       <th>68</th>
-      <td>beer</td>
+      <td>water</td>
       <td>33</td>
     </tr>
     <tr>
       <th>69</th>
-      <td>water</td>
+      <td>beer</td>
       <td>23</td>
     </tr>
     <tr>
@@ -1133,12 +1147,12 @@ labels.</p>
     </tr>
     <tr>
       <th>73</th>
-      <td>beer</td>
+      <td>water</td>
       <td>8</td>
     </tr>
     <tr>
       <th>74</th>
-      <td>water</td>
+      <td>beer</td>
       <td>4</td>
     </tr>
     <tr>
@@ -1148,27 +1162,27 @@ labels.</p>
     </tr>
     <tr>
       <th>76</th>
-      <td>water</td>
+      <td>beer</td>
       <td>24</td>
     </tr>
     <tr>
       <th>77</th>
-      <td>water</td>
+      <td>beer</td>
       <td>21</td>
     </tr>
     <tr>
       <th>78</th>
-      <td>beer</td>
+      <td>water</td>
       <td>26</td>
     </tr>
     <tr>
       <th>79</th>
-      <td>beer</td>
+      <td>water</td>
       <td>27</td>
     </tr>
     <tr>
       <th>80</th>
-      <td>beer</td>
+      <td>water</td>
       <td>22</td>
     </tr>
     <tr>
@@ -1178,22 +1192,22 @@ labels.</p>
     </tr>
     <tr>
       <th>82</th>
-      <td>beer</td>
+      <td>water</td>
       <td>25</td>
     </tr>
     <tr>
       <th>83</th>
-      <td>water</td>
+      <td>beer</td>
       <td>20</td>
     </tr>
     <tr>
       <th>84</th>
-      <td>beer</td>
+      <td>water</td>
       <td>7</td>
     </tr>
     <tr>
       <th>85</th>
-      <td>water</td>
+      <td>beer</td>
       <td>3</td>
     </tr>
   </tbody>
@@ -1211,7 +1225,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.8977777777777796)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(8.542222222222222)
 </pre></div>
 </div>
 </div>
@@ -1230,8 +1244,8 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-2.92444444,  1.28      ,  3.95555556,  3.76444444,  5.48444444,
-        5.48444444,  1.75777778,  6.34444444, -2.63777778, -2.44666667])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 3.38222222,  0.61111111,  0.03777778, -2.06444444, -0.53555556,
+        1.75777778,  2.33111111, -2.54222222, -1.68222222,  0.03777778])
 </pre></div>
 </div>
 </div>
@@ -1246,7 +1260,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/39d547751ce65375a92a0e3d948fe2b2b0203d683ed30f346562153197f831df.png" src="_images/39d547751ce65375a92a0e3d948fe2b2b0203d683ed30f346562153197f831df.png" />
+<img alt="_images/72c77e034f67ed2b4c1ce844bcc9d8ada7ce0987ea3916c775a93c231d1f40e3.png" src="_images/72c77e034f67ed2b4c1ce844bcc9d8ada7ce0987ea3916c775a93c231d1f40e3.png" />
 </div>
 </div>
 <p>The chance of any one difference being greater than the one we observed:</p>
@@ -1258,7 +1272,7 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.057
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.0571)
 </pre></div>
 </div>
 </div>
@@ -1296,11 +1310,11 @@ labels.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_5945/4059303497.py:3: DeprecationWarning: Arguments {&#39;permutations&#39;} are deprecated, whether passed by position or keyword. They will be removed in SciPy 1.17.0. Use ``method`` to perform a permutation test.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_6162/4059303497.py:3: DeprecationWarning: Arguments {&#39;permutations&#39;} are deprecated, whether passed by position or keyword. They will be removed in SciPy 1.17.0. Use ``method`` to perform a permutation test.
   sps.ttest_ind(by_group.get_group(&#39;beer&#39;),
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.060993900609939006), df=np.float64(nan))
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TtestResult(statistic=np.float64(1.6402506050018828), pvalue=np.float64(0.06129387061293871), df=np.float64(nan))
 </pre></div>
 </div>
 </div>
@@ -1345,8 +1359,7 @@ labels.</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1404,8 +1417,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

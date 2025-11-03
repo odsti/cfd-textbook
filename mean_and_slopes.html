@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -71,7 +68,6 @@
     <link rel="prev" title="Argmin (and argmax)" href="np_argmin.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -87,8 +83,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -96,6 +103,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -103,8 +111,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,8 +128,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -151,17 +158,21 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -337,14 +348,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -536,16 +542,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -815,7 +829,7 @@ kidney disease.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/58a032f091ae2d954f162d4fd3d07b0ff3fe405893d6783ed6ecbd677494babb.png" src="_images/58a032f091ae2d954f162d4fd3d07b0ff3fe405893d6783ed6ecbd677494babb.png" />
+<img alt="_images/8810123accd05efc2660549600ba65e90a95e3e9c42aefd1c3b31dbb22efd620.png" src="_images/8810123accd05efc2660549600ba65e90a95e3e9c42aefd1c3b31dbb22efd620.png" />
 </div>
 </div>
 <p>“Hemoglobin” (HGB) is the concentration of the
@@ -833,7 +847,7 @@ cells that carries oxygen to the tissues.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/cd636c4b53081075198f364da2c3bf979b76917f709ee0cfac0bbaee87229ebc.png" src="_images/cd636c4b53081075198f364da2c3bf979b76917f709ee0cfac0bbaee87229ebc.png" />
+<img alt="_images/12da67e9cd4935995729ea75275bcb8ba40e7ed8a0035b817585720e7c31a36e.png" src="_images/12da67e9cd4935995729ea75275bcb8ba40e7ed8a0035b817585720e7c31a36e.png" />
 </div>
 </div>
 <section id="looking-for-straight-lines">
@@ -862,7 +876,7 @@ straight line going through 0, 0, and with a slope of about 3.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f6c43007310ef6e8fd6c952a7a84dcd2b85a140db0817f04f84f862f00dfeb78.png" src="_images/f6c43007310ef6e8fd6c952a7a84dcd2b85a140db0817f04f84f862f00dfeb78.png" />
+<img alt="_images/c0dc6765cc86731218c782180789cbe382a1e8696ed12de9425e8a8993d440bf.png" src="_images/c0dc6765cc86731218c782180789cbe382a1e8696ed12de9425e8a8993d440bf.png" />
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">'o'</span></code> argument to the plot function above is a “plot marker”.  It tells
@@ -889,7 +903,7 @@ x=0, y=0.  In order to this, we can add a <code class="docutils literal notransl
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/bd22129c08c9070c8ea1b6a809ac162bb6d60ecb0ffece4083dfcdf39dc7696a.png" src="_images/bd22129c08c9070c8ea1b6a809ac162bb6d60ecb0ffece4083dfcdf39dc7696a.png" />
+<img alt="_images/c171bd42d7d810007394da48ee16e805451cc16e4054d408686868aee1100d0c.png" src="_images/c171bd42d7d810007394da48ee16e805451cc16e4054d408686868aee1100d0c.png" />
 </div>
 </div>
 <p>It does look plausible that this line goes through the origin, and that makes
@@ -913,10 +927,10 @@ the second.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd6c435bbd0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec97c75950&gt;]
 </pre></div>
 </div>
-<img alt="_images/4a87670372d38bbd9aa99686edd0af98b0cbe6237d0d9d6e6ba91844a6acd6fb.png" src="_images/4a87670372d38bbd9aa99686edd0af98b0cbe6237d0d9d6e6ba91844a6acd6fb.png" />
+<img alt="_images/59119af7aced6d94ae73035cb3018dddbad30031be0b5145cf33aaf5e0eacd77.png" src="_images/59119af7aced6d94ae73035cb3018dddbad30031be0b5145cf33aaf5e0eacd77.png" />
 </div>
 </div>
 <p>To plot more than one point, pass multiple x and y coordinate values:</p>
@@ -929,10 +943,10 @@ the second.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd6c43cd790&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec97c6f5d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/208d613f12df6034163df01f3034f8160670fa9a08faccd9cdb940a27fe0bd17.png" src="_images/208d613f12df6034163df01f3034f8160670fa9a08faccd9cdb940a27fe0bd17.png" />
+<img alt="_images/8bbf94fb348be17e6f10eea9cf36b92ed7444745cb3878b552c70dd9dc0c6dd1.png" src="_images/8bbf94fb348be17e6f10eea9cf36b92ed7444745cb3878b552c70dd9dc0c6dd1.png" />
 </div>
 </div>
 </section>
@@ -983,10 +997,10 @@ and 8, 8 and 9, and so on.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd6c41520d0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec97dd62d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/f5811e0d9ce4bd72d6a92fe6753ad3f78e84f7a1037d0b9feb04100c0e9db5f8.png" src="_images/f5811e0d9ce4bd72d6a92fe6753ad3f78e84f7a1037d0b9feb04100c0e9db5f8.png" />
+<img alt="_images/da0668e83b9af1d1b532d8f92f866bf6eeddaf7e3ce7191c700cdf0a025851b8.png" src="_images/da0668e83b9af1d1b532d8f92f866bf6eeddaf7e3ce7191c700cdf0a025851b8.png" />
 </div>
 </div>
 <p>Take the mean of the PCV values for each bin.</p>
@@ -1022,10 +1036,10 @@ prediction.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd6bdf2fb90&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec97b21890&gt;]
 </pre></div>
 </div>
-<img alt="_images/94a97311f69cc4efb84567716111f2cd7ac51ed323cc4445edcaa90e65d1aeff.png" src="_images/94a97311f69cc4efb84567716111f2cd7ac51ed323cc4445edcaa90e65d1aeff.png" />
+<img alt="_images/53fbcfec3d6092bf48c233c4c37d2b62dc6166bfe2c728ce0e09eee37011e9ab.png" src="_images/53fbcfec3d6092bf48c233c4c37d2b62dc6166bfe2c728ce0e09eee37011e9ab.png" />
 </div>
 </div>
 </section>
@@ -1083,10 +1097,10 @@ y = c + x * s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fd6bdfa6810&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fec97b98110&gt;]
 </pre></div>
 </div>
-<img alt="_images/3c42d436f856a637c319b7878962ba6834c343ac7f6cb574c80c242de410b63f.png" src="_images/3c42d436f856a637c319b7878962ba6834c343ac7f6cb574c80c242de410b63f.png" />
+<img alt="_images/027e1b499b28ebdbbcdb0a11b81d60f6c81234e1dc04b93a637ff05203537328.png" src="_images/027e1b499b28ebdbbcdb0a11b81d60f6c81234e1dc04b93a637ff05203537328.png" />
 </div>
 </div>
 <p>The red are the predictions, the blue are the original data.  At each PCV value
@@ -1121,7 +1135,7 @@ of PCV for each point, and its actual value.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c87b59264ea76355e0df51fa66faa0a8cd885688cff2666c85cdcc4b4ef4791.png" src="_images/6c87b59264ea76355e0df51fa66faa0a8cd885688cff2666c85cdcc4b4ef4791.png" />
+<img alt="_images/dbc2599c0b54899c42b278933e34bc303ce8ff1f02d8716c6bde1a346c147d01.png" src="_images/dbc2599c0b54899c42b278933e34bc303ce8ff1f02d8716c6bde1a346c147d01.png" />
 </div>
 </div>
 </section>
@@ -1627,7 +1641,7 @@ error, on the y-axis.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Sum of squared error&#39;)
 </pre></div>
 </div>
-<img alt="_images/93fcc562a9d5163d41c27f5d14fcf1f2b1bb42ac450a2d2b35dcd8cf7741d895.png" src="_images/93fcc562a9d5163d41c27f5d14fcf1f2b1bb42ac450a2d2b35dcd8cf7741d895.png" />
+<img alt="_images/27b67c15909af0f649d3bfc67a2656ee87f0d16c3589c9dbf23c92eac0cb1cbc.png" src="_images/27b67c15909af0f649d3bfc67a2656ee87f0d16c3589c9dbf23c92eac0cb1cbc.png" />
 </div>
 </div>
 <p>The minimum of the sum of squared error is the value we found:</p>
@@ -1722,7 +1736,7 @@ squared error:</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;The best-fit line using least-squared error&#39;)
 </pre></div>
 </div>
-<img alt="_images/1641f874253d6c3bbd06b07d2ed7eb24744c80656777fa03d6b9869ec12d2044.png" src="_images/1641f874253d6c3bbd06b07d2ed7eb24744c80656777fa03d6b9869ec12d2044.png" />
+<img alt="_images/f5024a71a250544ca5c39312a99a44f112ff72934ff8c9c902b20a091739847e.png" src="_images/f5024a71a250544ca5c39312a99a44f112ff72934ff8c9c902b20a091739847e.png" />
 </div>
 </div>
 <p>The algorithm we have used so far, is rather slow and clunky, because we had to
@@ -1853,8 +1867,7 @@ be using <code class="docutils literal notranslate"><span class="pre">minimize</
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1920,8 +1933,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -69,7 +66,6 @@
     <link rel="prev" title="Confident treatment" href="confident_treatment.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -85,8 +81,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -94,6 +101,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -101,8 +109,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,17 +156,21 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -335,14 +346,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -534,16 +540,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -686,7 +700,7 @@ by taking many thousands of samples.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([63.92, 60.88, 61.92, 63.7 , 66.84])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([62.4 , 67.5 , 69.86, 60.78, 64.68])
 </pre></div>
 </div>
 </div>
@@ -700,7 +714,7 @@ of the population:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(65.2456054)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(65.2489174)
 </pre></div>
 </div>
 </div>
@@ -723,7 +737,7 @@ were between 50 and 50.5 (excluding 50.5), the second bin covers 50.5 up to
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/99b25b9618f10ac31d00994c8a0f98de0ebf3dbb60ff75737100006da856c3cd.png" src="_images/99b25b9618f10ac31d00994c8a0f98de0ebf3dbb60ff75737100006da856c3cd.png" />
+<img alt="_images/44344004ea2ec2eb0c3db3a21635c781027bfd4fee3289a16c0173977a6c7310.png" src="_images/44344004ea2ec2eb0c3db3a21635c781027bfd4fee3289a16c0173977a6c7310.png" />
 </div>
 </div>
 <p>Notice that the distribution has a very slightly longer left tail.</p>
@@ -740,16 +754,16 @@ the values that <code class="docutils literal notranslate"><span class="pre">plt
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   6.,    3.,    5.,   12.,   19.,   20.,   46.,   62.,   83.,
-        137.,  166.,  232.,  327.,  436.,  567.,  706.,  957., 1198.,
-       1493., 1756., 2168., 2568., 2927., 3375., 3869., 4252., 4404.,
-       4954., 5002., 5147., 5215., 5312., 5130., 4995., 4553., 4362.,
-       3972., 3461., 3043., 2680., 2246., 1861., 1596., 1240.,  968.,
-        737.,  514.,  379.,  291.,  198.,  124.,   98.,   50.,   29.,
-         12.,   11.,   10.,    3.,    2.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   3.,    3.,   11.,   17.,   24.,   28.,   46.,   46.,   95.,
+        116.,  157.,  235.,  317.,  435.,  543.,  714.,  951., 1210.,
+       1499., 1791., 2088., 2518., 3001., 3329., 3802., 4200., 4555.,
+       4968., 5003., 5150., 5344., 5265., 5115., 5021., 4673., 4295.,
+       3917., 3473., 3033., 2672., 2216., 1935., 1568., 1187.,  895.,
+        705.,  540.,  415.,  301.,  197.,  141.,   94.,   45.,   36.,
+         26.,   13.,   11.,    4.,    3.])
 </pre></div>
 </div>
-<img alt="_images/bc4ea99a7c4121fd969bcc7862212d4949c690e3a0075750c1c383d5d296ccce.png" src="_images/bc4ea99a7c4121fd969bcc7862212d4949c690e3a0075750c1c383d5d296ccce.png" />
+<img alt="_images/771d4a796d98394ef293d911f864dd1352a54346962b177f48abb808bbe615f7.png" src="_images/771d4a796d98394ef293d911f864dd1352a54346962b177f48abb808bbe615f7.png" />
 </div>
 </div>
 <p>As we saw in the earlier section on <a class="reference internal" href="using_minimize.html#unpacking"><span class="std std-ref">unpacking</span></a>, we can get
@@ -766,16 +780,16 @@ like this:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   6.,    3.,    5.,   12.,   19.,   20.,   46.,   62.,   83.,
-        137.,  166.,  232.,  327.,  436.,  567.,  706.,  957., 1198.,
-       1493., 1756., 2168., 2568., 2927., 3375., 3869., 4252., 4404.,
-       4954., 5002., 5147., 5215., 5312., 5130., 4995., 4553., 4362.,
-       3972., 3461., 3043., 2680., 2246., 1861., 1596., 1240.,  968.,
-        737.,  514.,  379.,  291.,  198.,  124.,   98.,   50.,   29.,
-         12.,   11.,   10.,    3.,    2.])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([   3.,    3.,   11.,   17.,   24.,   28.,   46.,   46.,   95.,
+        116.,  157.,  235.,  317.,  435.,  543.,  714.,  951., 1210.,
+       1499., 1791., 2088., 2518., 3001., 3329., 3802., 4200., 4555.,
+       4968., 5003., 5150., 5344., 5265., 5115., 5021., 4673., 4295.,
+       3917., 3473., 3033., 2672., 2216., 1935., 1568., 1187.,  895.,
+        705.,  540.,  415.,  301.,  197.,  141.,   94.,   45.,   36.,
+         26.,   13.,   11.,    4.,    3.])
 </pre></div>
 </div>
-<img alt="_images/bc4ea99a7c4121fd969bcc7862212d4949c690e3a0075750c1c383d5d296ccce.png" src="_images/bc4ea99a7c4121fd969bcc7862212d4949c690e3a0075750c1c383d5d296ccce.png" />
+<img alt="_images/771d4a796d98394ef293d911f864dd1352a54346962b177f48abb808bbe615f7.png" src="_images/771d4a796d98394ef293d911f864dd1352a54346962b177f48abb808bbe615f7.png" />
 </div>
 </div>
 <p>If we show the counts as a bar graph, it is the same as the histogram, because
@@ -809,7 +823,7 @@ for the x axis, as the histogram routine does, internally.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c0159af1387e62eb9db3e56488f88bceb6bd79508372ee0bb2b8086a921a0d9a.png" src="_images/c0159af1387e62eb9db3e56488f88bceb6bd79508372ee0bb2b8086a921a0d9a.png" />
+<img alt="_images/0af8e9f82cc2e6ed117cbd53cd826e092145450cc2ef125340112f0d6c803301.png" src="_images/0af8e9f82cc2e6ed117cbd53cd826e092145450cc2ef125340112f0d6c803301.png" />
 </div>
 </div>
 <p>For each bin, <code class="docutils literal notranslate"><span class="pre">counts</span></code> gives the count of the 10000 samples we took had a mean
@@ -850,7 +864,7 @@ Upper edge (not included): 60.5
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2168.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(2088.0)
 </pre></div>
 </div>
 </div>
@@ -867,13 +881,13 @@ that fall in this range:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.    , 0.0001, 0.0001, 0.0002, 0.0002, 0.0005, 0.0006,
-       0.0008, 0.0014, 0.0017, 0.0023, 0.0033, 0.0044, 0.0057, 0.0071,
-       0.0096, 0.012 , 0.0149, 0.0176, 0.0217, 0.0257, 0.0293, 0.0338,
-       0.0387, 0.0425, 0.044 , 0.0495, 0.05  , 0.0515, 0.0522, 0.0531,
-       0.0513, 0.05  , 0.0455, 0.0436, 0.0397, 0.0346, 0.0304, 0.0268,
-       0.0225, 0.0186, 0.016 , 0.0124, 0.0097, 0.0074, 0.0051, 0.0038,
-       0.0029, 0.002 , 0.0012, 0.001 , 0.0005, 0.0003, 0.0001, 0.0001,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.    , 0.    , 0.0001, 0.0002, 0.0002, 0.0003, 0.0005, 0.0005,
+       0.0009, 0.0012, 0.0016, 0.0024, 0.0032, 0.0043, 0.0054, 0.0071,
+       0.0095, 0.0121, 0.015 , 0.0179, 0.0209, 0.0252, 0.03  , 0.0333,
+       0.038 , 0.042 , 0.0456, 0.0497, 0.05  , 0.0515, 0.0534, 0.0527,
+       0.0512, 0.0502, 0.0467, 0.043 , 0.0392, 0.0347, 0.0303, 0.0267,
+       0.0222, 0.0193, 0.0157, 0.0119, 0.0089, 0.007 , 0.0054, 0.0042,
+       0.003 , 0.002 , 0.0014, 0.0009, 0.0004, 0.0004, 0.0003, 0.0001,
        0.0001, 0.    , 0.    ])
 </pre></div>
 </div>
@@ -888,7 +902,7 @@ that fall in this range:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.02168)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.02088)
 </pre></div>
 </div>
 </div>
@@ -903,7 +917,7 @@ a mean of 62.25, the probability of any one sample mean being between 60 and
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.02168)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.float64(0.02088)
 </pre></div>
 </div>
 </div>
@@ -918,7 +932,7 @@ values divided by the number of samples (100000):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/92a9a622fd83103214fa46f5de54ad2756aca5d17fa0cf47b018debd03b81613.png" src="_images/92a9a622fd83103214fa46f5de54ad2756aca5d17fa0cf47b018debd03b81613.png" />
+<img alt="_images/b78ce79c013511013753fe11585bd36928667e6d37e840986c835b552ce79fd3.png" src="_images/b78ce79c013511013753fe11585bd36928667e6d37e840986c835b552ce79fd3.png" />
 </div>
 </div>
 <p>Now we are in a position to answer something approaching our intermediate
@@ -972,7 +986,7 @@ sample mean between 58.5 and 59:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.012])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0121])
 </pre></div>
 </div>
 </div>
@@ -989,7 +1003,7 @@ sample mean between 58.5 and 59:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6c62e8d671ef00419c12052826ecd1bfd201c015f56266121ec59b47e3588511.png" src="_images/6c62e8d671ef00419c12052826ecd1bfd201c015f56266121ec59b47e3588511.png" />
+<img alt="_images/f46709054cee798cfae00ddca83d610603c35e6fcadd4ebd3e94bd8c0fa879a1.png" src="_images/f46709054cee798cfae00ddca83d610603c35e6fcadd4ebd3e94bd8c0fa879a1.png" />
 </div>
 </div>
 <p>This is the probability of something close to our observed sample mean (58.74)
@@ -1006,7 +1020,7 @@ population mean:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a7ca6c1c500ee5c7b33b3a218b5c4c8d2e8b27f834b71ba21f38e7b18ff9f905.png" src="_images/a7ca6c1c500ee5c7b33b3a218b5c4c8d2e8b27f834b71ba21f38e7b18ff9f905.png" />
+<img alt="_images/8eb474c0443e132fb175c78bb42c64cfecd1260d3b597122567d9de6f8deba5d.png" src="_images/8eb474c0443e132fb175c78bb42c64cfecd1260d3b597122567d9de6f8deba5d.png" />
 </div>
 </div>
 <p>Let us try a slightly more difficult intermediate problem:</p>
@@ -1035,7 +1049,7 @@ from 62.25 to 62.75. In other words, our assumed sampling distribution shifts
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5c1094661016941bcf8210e9f1c0006581e815ce26dec25f1d74bba83fb9a94f.png" src="_images/5c1094661016941bcf8210e9f1c0006581e815ce26dec25f1d74bba83fb9a94f.png" />
+<img alt="_images/8096eaaeb115e1921ca194305d72607c28a26377e5d92ad0b8ff9024981f3e5c.png" src="_images/8096eaaeb115e1921ca194305d72607c28a26377e5d92ad0b8ff9024981f3e5c.png" />
 </div>
 </div>
 <p>With the shifted sampling distribution, we just follow the same recipe as we
@@ -1065,7 +1079,7 @@ corresponding bin in the sampling distribution is one bin to the right.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0149])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.015])
 </pre></div>
 </div>
 </div>
@@ -1081,7 +1095,7 @@ corresponding bin in the sampling distribution is one bin to the right.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/be904b9bb15fd9db50d7ab7af222705f4c58c523a777aa5908128630ee0b5cb6.png" src="_images/be904b9bb15fd9db50d7ab7af222705f4c58c523a777aa5908128630ee0b5cb6.png" />
+<img alt="_images/818e76badeef80738e4a362102c43f2fe40e2db3cc902fbcff840e7ee5446637.png" src="_images/818e76badeef80738e4a362102c43f2fe40e2db3cc902fbcff840e7ee5446637.png" />
 </div>
 </div>
 <p>This is the probability of something close to our observed sample mean (58.74)
@@ -1100,7 +1114,7 @@ we add the probability value to the plot at this population mean:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/962e3cc46f27ad7c8d0a0ffba16dbc13a52e376d51a99ba2959de88e284ed5ed.png" src="_images/962e3cc46f27ad7c8d0a0ffba16dbc13a52e376d51a99ba2959de88e284ed5ed.png" />
+<img alt="_images/c4a8d3913970e6e637209f1991b1c068c046b533b211013371990236c5c16ef7.png" src="_images/c4a8d3913970e6e637209f1991b1c068c046b533b211013371990236c5c16ef7.png" />
 </div>
 </div>
 <p>You can probably see how this is going to pan out now, but let us do the 61.25
@@ -1120,7 +1134,7 @@ bin for practice.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/42328f6cbdbc9667b000694f8afa7d072f7ac66647d8e791eebee1a3f5156578.png" src="_images/42328f6cbdbc9667b000694f8afa7d072f7ac66647d8e791eebee1a3f5156578.png" />
+<img alt="_images/855449c60228a3295c4b1084f2f0fa2fd00965b38f926082c988371f5720d6dd.png" src="_images/855449c60228a3295c4b1084f2f0fa2fd00965b38f926082c988371f5720d6dd.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1145,7 +1159,7 @@ bin for practice.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0176])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0179])
 </pre></div>
 </div>
 </div>
@@ -1161,7 +1175,7 @@ bin for practice.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/baa0211daccdbc3cffd9bff34398cd106dec68b194f50117574676d3ab245a87.png" src="_images/baa0211daccdbc3cffd9bff34398cd106dec68b194f50117574676d3ab245a87.png" />
+<img alt="_images/4851971515058834d4c92cb7e63df18a58d0f75aa6095a7ba26b5dfb893ddc82.png" src="_images/4851971515058834d4c92cb7e63df18a58d0f75aa6095a7ba26b5dfb893ddc82.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1178,7 +1192,7 @@ bin for practice.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c1e14ff989349bd7d381c2ab9b3868ce3c71e4234bac7aa0cd40cebb1c4e6ace.png" src="_images/c1e14ff989349bd7d381c2ab9b3868ce3c71e4234bac7aa0cd40cebb1c4e6ace.png" />
+<img alt="_images/4f7a887f19a9420238286c77220c1525e4d1988c9be7319a94f9283273f59b6c.png" src="_images/4f7a887f19a9420238286c77220c1525e4d1988c9be7319a94f9283273f59b6c.png" />
 </div>
 </div>
 <p>We can repeat this procedure for every population mean.  For every population
@@ -1225,17 +1239,17 @@ the bin between 58.5 and 59, centered on 58.75.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4546/1732630329.py:14: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_4703/1732630329.py:14: DeprecationWarning: Conversion of an array with ndim &gt; 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
   ps_for_mean[i] = proportions[is_our_bin]
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0001, 0.0001, 0.0003, 0.0005, 0.001 , 0.0012, 0.002 ,
-       0.0029, 0.0038, 0.0051, 0.0074, 0.0097, 0.0124, 0.016 , 0.0186,
-       0.0225, 0.0268, 0.0304, 0.0346, 0.0397, 0.0436, 0.0455, 0.05  ,
-       0.0513, 0.0531, 0.0522, 0.0515, 0.05  , 0.0495, 0.044 , 0.0425,
-       0.0387, 0.0338, 0.0293, 0.0257, 0.0217, 0.0176, 0.0149, 0.012 ,
-       0.0096, 0.0071, 0.0057, 0.0044, 0.0033, 0.0023, 0.0017, 0.0014,
-       0.0008, 0.0006])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0001, 0.0003, 0.0004, 0.0004, 0.0009, 0.0014, 0.002 ,
+       0.003 , 0.0042, 0.0054, 0.007 , 0.0089, 0.0119, 0.0157, 0.0193,
+       0.0222, 0.0267, 0.0303, 0.0347, 0.0392, 0.043 , 0.0467, 0.0502,
+       0.0512, 0.0527, 0.0534, 0.0515, 0.05  , 0.0497, 0.0456, 0.042 ,
+       0.038 , 0.0333, 0.03  , 0.0252, 0.0209, 0.0179, 0.015 , 0.0121,
+       0.0095, 0.0071, 0.0054, 0.0043, 0.0032, 0.0024, 0.0016, 0.0012,
+       0.0009, 0.0005])
 </pre></div>
 </div>
 </div>
@@ -1248,7 +1262,7 @@ the bin between 58.5 and 59, centered on 58.75.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ca8bc527d2c52554e552be8495fdcfae0b7506ae3dd013bf13508747d14527d9.png" src="_images/ca8bc527d2c52554e552be8495fdcfae0b7506ae3dd013bf13508747d14527d9.png" />
+<img alt="_images/d2221815b9a2cd1e51326dd19e97323cd3bb2eb86e13e6a327ce17d0fd7994de.png" src="_images/d2221815b9a2cd1e51326dd19e97323cd3bb2eb86e13e6a327ce17d0fd7994de.png" />
 </div>
 </div>
 <p>For reasons that might be clear from the calculations above, this probability
@@ -1273,7 +1287,7 @@ mean.</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0761df2665b04624f12ac161b15bf051165db8d23206286cc612bca550f7b0c8.png" src="_images/0761df2665b04624f12ac161b15bf051165db8d23206286cc612bca550f7b0c8.png" />
+<img alt="_images/dd3e36b3a933173d040e9f6d514bce24b7b0372ee53487dc81e0194f0b989702.png" src="_images/dd3e36b3a933173d040e9f6d514bce24b7b0372ee53487dc81e0194f0b989702.png" />
 </div>
 </div>
 <section id="reversing-the-probabilities">
@@ -1328,13 +1342,13 @@ probabilities:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0001, 0.0001, 0.0003, 0.0005, 0.001 , 0.0012, 0.002 ,
-       0.0029, 0.0038, 0.0051, 0.0074, 0.0097, 0.0124, 0.016 , 0.0186,
-       0.0225, 0.0268, 0.0305, 0.0347, 0.0398, 0.0437, 0.0456, 0.05  ,
-       0.0514, 0.0532, 0.0522, 0.0515, 0.0501, 0.0496, 0.0441, 0.0426,
-       0.0387, 0.0338, 0.0293, 0.0257, 0.0217, 0.0176, 0.0149, 0.012 ,
-       0.0096, 0.0071, 0.0057, 0.0044, 0.0033, 0.0023, 0.0017, 0.0014,
-       0.0008, 0.0006])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0001, 0.0003, 0.0004, 0.0005, 0.0009, 0.0014, 0.002 ,
+       0.003 , 0.0042, 0.0054, 0.0071, 0.009 , 0.0119, 0.0157, 0.0194,
+       0.0222, 0.0268, 0.0304, 0.0348, 0.0392, 0.043 , 0.0468, 0.0503,
+       0.0512, 0.0527, 0.0535, 0.0516, 0.0501, 0.0498, 0.0456, 0.0421,
+       0.0381, 0.0333, 0.0301, 0.0252, 0.0209, 0.0179, 0.015 , 0.0121,
+       0.0095, 0.0072, 0.0054, 0.0044, 0.0032, 0.0024, 0.0016, 0.0012,
+       0.001 , 0.0005])
 </pre></div>
 </div>
 </div>
@@ -1349,7 +1363,7 @@ of around 58.75.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/843ef7189fcb3a7c95b3b030a2943683d9407a85735579b61adcfe44852d0ff6.png" src="_images/843ef7189fcb3a7c95b3b030a2943683d9407a85735579b61adcfe44852d0ff6.png" />
+<img alt="_images/4d023fdc7cce8cf145e706ff0cea24f21cfdd88bf0a173ce3338a6058c12ba20.png" src="_images/4d023fdc7cce8cf145e706ff0cea24f21cfdd88bf0a173ce3338a6058c12ba20.png" />
 </div>
 </div>
 <p>You might notice that this looks very much like the original plot (in red,
@@ -1411,13 +1425,13 @@ corresponding position.  This might be clearer by example:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0002, 0.0003, 0.0006, 0.0011, 0.0021, 0.0033, 0.0053,
-       0.0082, 0.012 , 0.0172, 0.0246, 0.0343, 0.0467, 0.0626, 0.0813,
-       0.1038, 0.1306, 0.1611, 0.1957, 0.2355, 0.2792, 0.3248, 0.3748,
-       0.4261, 0.4793, 0.5315, 0.5831, 0.6332, 0.6828, 0.7269, 0.7694,
-       0.8082, 0.842 , 0.8713, 0.897 , 0.9187, 0.9363, 0.9512, 0.9632,
-       0.9728, 0.9799, 0.9856, 0.9899, 0.9932, 0.9955, 0.9972, 0.9985,
-       0.9994, 1.    ])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.0001, 0.0002, 0.0005, 0.0009, 0.0013, 0.0023, 0.0037, 0.0056,
+       0.0087, 0.0128, 0.0182, 0.0253, 0.0342, 0.0461, 0.0618, 0.0812,
+       0.1034, 0.1302, 0.1605, 0.1953, 0.2345, 0.2775, 0.3243, 0.3746,
+       0.4259, 0.4786, 0.5321, 0.5837, 0.6338, 0.6835, 0.7291, 0.7712,
+       0.8093, 0.8426, 0.8727, 0.8979, 0.9188, 0.9367, 0.9517, 0.9639,
+       0.9734, 0.9805, 0.986 , 0.9903, 0.9935, 0.9959, 0.9974, 0.9986,
+       0.9995, 1.    ])
 </pre></div>
 </div>
 </div>
@@ -1486,7 +1500,7 @@ in the sampling distribution.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/99b25b9618f10ac31d00994c8a0f98de0ebf3dbb60ff75737100006da856c3cd.png" src="_images/99b25b9618f10ac31d00994c8a0f98de0ebf3dbb60ff75737100006da856c3cd.png" />
+<img alt="_images/44344004ea2ec2eb0c3db3a21635c781027bfd4fee3289a16c0173977a6c7310.png" src="_images/44344004ea2ec2eb0c3db3a21635c781027bfd4fee3289a16c0173977a6c7310.png" />
 </div>
 </div>
 <p>As we did for the proportions, we will shift this distribution to have a mean
@@ -1510,7 +1524,7 @@ this:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6b86d658f684b5d7520a01c5bba9f9aa8d9666573b5fa2bd27850bfc87421f5b.png" src="_images/6b86d658f684b5d7520a01c5bba9f9aa8d9666573b5fa2bd27850bfc87421f5b.png" />
+<img alt="_images/547a70ae1210316226c3517eef06d91b9434fb5bac88aca4e5aa4ff8800abf7f.png" src="_images/547a70ae1210316226c3517eef06d91b9434fb5bac88aca4e5aa4ff8800abf7f.png" />
 </div>
 </div>
 <p>Here’s the same histogram, but built using the counts we got back from the
@@ -1524,7 +1538,7 @@ call, just to show it is the same.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/fbdc6ec573902dcd609eb24ba5e9a1b367db39aa3cfe320a33d0309ae67445f5.png" src="_images/fbdc6ec573902dcd609eb24ba5e9a1b367db39aa3cfe320a33d0309ae67445f5.png" />
+<img alt="_images/682a4a33660504b8db45fa466e79ccd70b5eb36b013e771dc4acf7e51e894eba.png" src="_images/682a4a33660504b8db45fa466e79ccd70b5eb36b013e771dc4acf7e51e894eba.png" />
 </div>
 </div>
 <p>Notice that, if we divide the counts in this histogram by the number of
@@ -1547,7 +1561,7 @@ superimposed; they overlap so completely that you cannot distinguish the two.</p
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/20c6d087bfe22871e44783dcd2882ad51fc093c837b2f622d2608ca4069214f6.png" src="_images/20c6d087bfe22871e44783dcd2882ad51fc093c837b2f622d2608ca4069214f6.png" />
+<img alt="_images/c1eb52c8e6c1eac567d37c005f9c59db64b1a576b44c226b66cd9bf7fce63e37.png" src="_images/c1eb52c8e6c1eac567d37c005f9c59db64b1a576b44c226b66cd9bf7fce63e37.png" />
 </div>
 </div>
 <p>Using this reversed shifted version, we can get our threshold rather easily, by
@@ -1646,8 +1660,7 @@ sample of 50 marks from 2019?</p>
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1707,8 +1720,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

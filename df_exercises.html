@@ -16,33 +16,30 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
@@ -67,7 +64,6 @@
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -83,8 +79,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -92,6 +99,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search this book..."
          aria-label="Search this book..."
          autocomplete="off"
@@ -99,8 +107,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -118,8 +126,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -149,17 +156,21 @@
     
     
     <img src="_static/dsfe_logo.png" class="logo__image only-light" alt="Coding for data - Home"/>
-    <img src="_static/dsfe_logo.png" class="logo__image only-dark pst-js-only" alt="Coding for data - Home"/>
+    <script>document.write(`<img src="_static/dsfe_logo.png" class="logo__image only-dark" alt="Coding for data - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Coding for data</span></p>
@@ -335,14 +346,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -534,16 +540,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -1150,7 +1164,7 @@ selecting the column you want, and press Enter.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
 </pre></div>
 </div>
-<img alt="_images/2d492a929911c6283ea135000f4f9613afa68c8705f47406d08f2a9d051b684b.png" src="_images/2d492a929911c6283ea135000f4f9613afa68c8705f47406d08f2a9d051b684b.png" />
+<img alt="_images/16e2c706e95193d0bdaff4b08331fc6243a0f5989a0c3e325da8ac2d849e0f31.png" src="_images/16e2c706e95193d0bdaff4b08331fc6243a0f5989a0c3e325da8ac2d849e0f31.png" />
 </div>
 </div>
 <p>Something is clearly wrong with our histogram. It shows the
@@ -1203,7 +1217,7 @@ find out!</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SepalLength&#39;, ylabel=&#39;PetalLength&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/12d4ee9ace93f206efae6c8e58b7d0d74abb916ba14613ec8887a9072c730597.png" src="_images/12d4ee9ace93f206efae6c8e58b7d0d74abb916ba14613ec8887a9072c730597.png" />
+<img alt="_images/0e617ddec2cf74bb69075c2a3bdf4a18a983c17d68af5b6e8e0b7f7aa9819eb0.png" src="_images/0e617ddec2cf74bb69075c2a3bdf4a18a983c17d68af5b6e8e0b7f7aa9819eb0.png" />
 </div>
 </div>
 <p>Hmm, doesn’t look that related.  Is that the case for all three
@@ -1227,7 +1241,7 @@ species?)</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SepalLength&#39;, ylabel=&#39;SepalWidth&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/a2b12b9a64ef7170c794d2e5bb2fb9052cacda27d9479a558955594763abaa6c.png" src="_images/a2b12b9a64ef7170c794d2e5bb2fb9052cacda27d9479a558955594763abaa6c.png" />
+<img alt="_images/89147c5934e1a322b1fd318ae12e603db286835d6cf81d6aa5408e04d7c0adff.png" src="_images/89147c5934e1a322b1fd318ae12e603db286835d6cf81d6aa5408e04d7c0adff.png" />
 </div>
 </div>
 <p>Now we are starting to see some relationship! What other variable pairs
@@ -1260,7 +1274,7 @@ take a look at the whole dataset again.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SepalLength&#39;, ylabel=&#39;PetalLength&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/890fc9837188537dd69c34bf5eafcdaf89908c74b7fcd5721c3d87a313379d8a.png" src="_images/890fc9837188537dd69c34bf5eafcdaf89908c74b7fcd5721c3d87a313379d8a.png" />
+<img alt="_images/2c12f36703fab581770810502461a6ae41422c4103080d14c3c9ac69af078f9f.png" src="_images/2c12f36703fab581770810502461a6ae41422c4103080d14c3c9ac69af078f9f.png" />
 </div>
 </div>
 <p>We can see a linear relationship between Sepal Length and Petal Length
@@ -1277,7 +1291,7 @@ points are in that bottom-left island of the graph.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SepalLength&#39;, ylabel=&#39;PetalLength&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/4f17a311cdedc2387d6c366e61019c458efb6503659561e17adb8fe32948e50d.png" src="_images/4f17a311cdedc2387d6c366e61019c458efb6503659561e17adb8fe32948e50d.png" />
+<img alt="_images/c34cf8b9f2e08149fb683953ed9b82b52a22cfb724664aebf209db61a8c4271b.png" src="_images/c34cf8b9f2e08149fb683953ed9b82b52a22cfb724664aebf209db61a8c4271b.png" />
 </div>
 </div>
 <p><em>(super-extra-cool points if you figure out how to colorise points by
@@ -1293,7 +1307,7 @@ species name)</em> - if you want to try, add that cell below.</p>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;SepalLength&#39;, ylabel=&#39;PetalLength&#39;&gt;
 </pre></div>
 </div>
-<img alt="_images/8038da551de1b3b1f5a9bbafe0191b1580701b0a0d3cd725ddb39608e18512e6.png" src="_images/8038da551de1b3b1f5a9bbafe0191b1580701b0a0d3cd725ddb39608e18512e6.png" />
+<img alt="_images/451cd56f166cf0bd86e040d57983151b9fc9f86c1015dc0b8cc3e2a4f034f8aa.png" src="_images/451cd56f166cf0bd86e040d57983151b9fc9f86c1015dc0b8cc3e2a4f034f8aa.png" />
 </div>
 </div>
 <p>What is happening in the above cell? Make sure to utilize <code class="docutils literal notranslate"><span class="pre">SHIFT+TAB</span></code>
@@ -1309,7 +1323,7 @@ value?</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6ea87ee95571d877588e25f5633dd01884c230f7bfcbdb2a1ad9fe65129a1af0.png" src="_images/6ea87ee95571d877588e25f5633dd01884c230f7bfcbdb2a1ad9fe65129a1af0.png" />
+<img alt="_images/4047b527123556da22e19c76d28d7d5c851a856f3d7990fa1f1e712f2ca61f00.png" src="_images/4047b527123556da22e19c76d28d7d5c851a856f3d7990fa1f1e712f2ca61f00.png" />
 </div>
 </div>
 </section>
@@ -1394,8 +1408,8 @@ By Matthew Brett, Peter Rush, Ani Adhikari, John Denero, David Wagner
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

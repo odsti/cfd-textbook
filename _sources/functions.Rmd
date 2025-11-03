@@ -94,7 +94,7 @@ After Python executes this statement, the name "a" points to the CR of int 2.
 
 To continue the revision:
 
-```{pythno}
+```{python}
 b = a * 4
 ```
 
@@ -107,7 +107,7 @@ multiplies these results to get an CR of int 8.
 
 Finally:
 
-```{pythn}
+```{python}
 a = 3
 ```
 
